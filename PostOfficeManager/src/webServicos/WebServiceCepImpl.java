@@ -162,13 +162,13 @@ final class WebServiceCepImpl implements WebServiceCep {
 	/**
 	 * Informa se houve falhas na busca do cep
 	 * @return	<tt>true</tt> - Caso ocorra falhas
-	 * 			<BR><tt>false</tt> - Caso n�o haja falhas.
+	 * 			<BR><tt>false</tt> - Caso não haja falhas.
 	 */
 	public boolean hasException() {
 		return (exception != null);
 	}
 	/**
-	 * Pega a exce��o que ocorreu durante a busca, retorna null caso n�o haja exce��es.
+	 * Pega a exceção que ocorreu durante a busca, retorna null caso n�o haja exce��es.
 	 * @return	<tt>{@link Exception}</tt> - Caso ocorra falhas
 	 * 			<BR><tt>null</tt> - Caso n�o haja falhas.
 	 */
