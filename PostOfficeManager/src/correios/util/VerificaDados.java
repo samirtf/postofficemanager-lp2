@@ -96,7 +96,7 @@ public class VerificaDados {
 		verificaSoNumeros(cpf);
 		
 		if(cpf.length() != 11 )
-			throw new IndexOutOfBoundsException("Deve conter 8 digitos");
+			throw new IndexOutOfBoundsException("Deve conter 11 digitos");
 			
 		return true;
 		
