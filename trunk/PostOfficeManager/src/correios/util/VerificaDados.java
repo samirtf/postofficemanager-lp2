@@ -3,7 +3,7 @@ package correios.util;
 /**
  * Classe de verificação de dados para agencia de correio
  * @author Rafael O. Vieira
- * @version 1.0
+ * @version 2.0
  */
 
 import java.util.regex.Matcher;
@@ -52,10 +52,10 @@ public class VerificaDados {
 	 * @return boolean
 	 * @throws Exception
 	 */
-	public static boolean verificaEstado(String estado) throws Exception{
+	public static boolean verificaNome(String nome) throws Exception{
 				
-	    if(estado.equals(null) || estado.equals("") || estado.equals(" ")
-	    	||!estado.matches("^[a-zA-z àáâãéêíóôõúüçÁÚÍÉÓ]*$") )
+	    if(nome.equals(null) || nome.equals("") || nome.equals(" ")
+	    	||!nome.matches("^[a-zA-z àáâãéêíóôõúüçÁÚÍÉÓ]*$") )
 	    	
 	    	throw new Exception("Informe um nome valido");
 	    	
@@ -99,6 +99,13 @@ public class VerificaDados {
 			throw new IndexOutOfBoundsException("Deve conter 8 digitos");
 			
 		return true;
+		
+		
+	}
+	
+	public static boolean verificaEstado(String estado) throws Exception{
+		return verificaNome(estado);
+		
 	}
 }
 
