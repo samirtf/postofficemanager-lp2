@@ -11,7 +11,7 @@ public interface BancoDeDadosCepServicoIF {
 
    public boolean adicCepAoBancoDeDados(Cep cep);
    /**
-    * Adiciona Cep ao BancoDeDadosCep.
+    * Adiciona Cep ao Banco de Dados Cep.
     *
     * @return
     *      True - Se o Cep for adicionado ao banco de dados.
