@@ -3,7 +3,7 @@ package correios.util;
 /**
  * Classe de verificação de dados para agencia de correio
  * @author Rafael O. Vieira
- * @version 2.0
+ * @version 2.1
  */
 
 import java.util.regex.Matcher;
@@ -54,7 +54,7 @@ public class VerificaDados {
 	 */
 	public static boolean verificaNome(String nome) throws Exception{
 				
-	    if(nome.equals(null) || nome.equals("") || nome.equals(" ")
+	    if(nome.equals(null) || nome.trim().equals("")
 	    	||!nome.matches("^[a-zA-z àáâãéêíóôõúüçÁÚÍÉÓ]*$") )
 	    	
 	    	throw new Exception("Informe um nome valido");
