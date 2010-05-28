@@ -23,6 +23,7 @@ public abstract class Encomenda {
 	private double peso;
 	private Atendente atendente;
 	private int chancesDeSerEntregue;
+	private double expresso;
 	private ArrayList<String> motivosDeFalhaNaEntrega = new ArrayList<String>();
 	/* o atributo id eh a identificação de cada encomenda, ela é única
 	 * é utilizada ao obter acesso a persistencia e seu valor inteiro
@@ -93,6 +94,10 @@ public abstract class Encomenda {
 	
 	public double getPeso() {
 		return peso;
+	}
+	
+	public double getExpresso() {
+		return expresso;
 	}
 	
 	// OUTROS MÉTODOS
