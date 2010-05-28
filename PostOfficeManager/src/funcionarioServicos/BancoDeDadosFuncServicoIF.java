@@ -13,7 +13,7 @@ public interface BancoDeDadosFuncServicoIF {
 	 * 		False - Se o Funcionario não for adicionado ao Banco de Dados de Funcionario.
 	 */
 	
-	public boolean removeFuncDoBancoDeDados(Funcionario func);
+	public boolean delFuncDoBancoDeDados(Funcionario func);
 	/**
 	 * Remove um Funcionario do Banco de Dados de Funcionario.
 	 * 
