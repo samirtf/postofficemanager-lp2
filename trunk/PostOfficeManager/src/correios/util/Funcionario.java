@@ -1,4 +1,5 @@
 package correios.util;
+import correios.util.VerificaDados;
 
  /**
   * Classe mãe Funcionário
@@ -7,7 +8,7 @@ package correios.util;
   * 
   */
 
-public abstract class Funcionario {
+public class Funcionario {
 	
 	protected String nome,dataNascimento,cpf,salario,senha;
 	protected boolean chave;
@@ -19,9 +20,14 @@ public abstract class Funcionario {
 	 * @param cpf
 	 * @param senha
 	 * @param chave
+	 * @throws Exception 
 	 */
 	public Funcionario(String nome,String dataNascimento,
-			String cpf, String senha, boolean chave){
+			String cpf, String senha, boolean chave) throws Exception{
+		
+		VerificaDados.verificaNome(nome);
+		VerificaDados.verificaData(dataNascimento);
+		VerificaDados.verificaCpf(cpf);
 		
 		this.nome = nome;
 		this.dataNascimento = dataNascimento;
@@ -53,7 +59,6 @@ public abstract class Funcionario {
 	 * Medotodo abstrato implementado em suas subclasses
 	 * 
 	 */
-	public abstract String getSalario();		
-		
+			
 
 }

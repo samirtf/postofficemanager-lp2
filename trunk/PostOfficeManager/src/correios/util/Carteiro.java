@@ -14,11 +14,14 @@ public class Carteiro extends Funcionario {
 	 * @param senha
 	 * @param chave - Status do carteiro no momento
 	 * @param salario
+	 * @throws Exception 
 	 */
 	public Carteiro(String nome,String dataNascimento,
-			String cpf,String senha, boolean chave,String salario){
+			String cpf,String senha, boolean chave,String salario) throws Exception{
 		
 		super(nome,dataNascimento,cpf,senha,chave);
+		
+		VerificaDados.verificaSoNumeros(salario);
 		
 		this.salario = salario;
 		
@@ -28,11 +31,12 @@ public class Carteiro extends Funcionario {
 	 * Construtor 2
 	 * @param Objeto Funcionario
 	 * @param salario
+	 * @throws Exception 
 	 */
-	public Carteiro(Funcionario func, String salario){
+	public Carteiro(Funcionario func, String salario) throws Exception{
 		super( func.nome, func.dataNascimento, func.cpf, func.senha, 
 				func.chave);
-			
+		VerificaDados.verificaSoNumeros(salario);
 		this.salario = salario;
 		
 	}
@@ -40,7 +44,6 @@ public class Carteiro extends Funcionario {
 	 * Busca o salario do carteiro
 	 * @return salario
 	 */
-	@Override
 	public String getSalario() {
 		return this.salario;
 	}
