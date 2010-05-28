@@ -14,7 +14,7 @@ public class EnvioRegistrado extends Encomenda {
 	}
 
 	public double custo() {
-		return 0;
+		return (double) 1.4 + (int) (getPeso()*10)*0.2;
 	}
 	
 	public String getRegistro() {
