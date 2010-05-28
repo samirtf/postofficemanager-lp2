@@ -3,7 +3,7 @@ package funcionalidades;
 import correios.util.Atendente;
 
 public class EnvioNormal extends Encomenda {
-		
+
 	public EnvioNormal(String dataDeEnvio, String dataDeChegada, 
 	                   String cepRemetente, String cepDestinatario,
 	                   double peso, Atendente atendente, int chancesDeSerEntregue) {
@@ -13,10 +13,8 @@ public class EnvioNormal extends Encomenda {
 		      peso, atendente, chancesDeSerEntregue);
 		
 	}
-
-	@Override
+	
 	public double custo() {
-
-		return 0;
+		return (double) 0.75 + (int) (getPeso()*10)*0.2;
 	}
 }
