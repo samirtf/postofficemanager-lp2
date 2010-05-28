@@ -17,6 +17,9 @@ public class Encomenda {
 		this.CEPdestinatario = CEPdestinatario;
 		this.data = data;
 		this.peso = peso;
+		if (peso > 2){
+			viaExpressa = true;
+		}
 		this.atendente = atendente;	
 	}
 	
@@ -31,6 +34,9 @@ public class Encomenda {
 		this.data = data;
 		this.peso = peso;
 		this.atendente = atendente;	
+		if (peso > 2){
+			viaExpressa = true;
+		}
 		this.valorDeclarado = valor_declarado;
 	}
 
