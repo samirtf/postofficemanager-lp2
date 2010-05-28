@@ -35,7 +35,7 @@ public interface BancoDeDadosCepServicoIF {
     *      O número de registros de Ceps no banco de dados.
     */
 
-   public boolean pesquisaCepNoBancoDeDadosLocal();
+   public boolean pesquisaCepNoBancoDeDadosLocal(String cep);
    /**
     * Pesquisa cep no banco de dados local.
     *
