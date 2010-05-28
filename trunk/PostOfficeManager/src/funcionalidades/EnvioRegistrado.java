@@ -13,7 +13,6 @@ public class EnvioRegistrado extends Encomenda {
 		      peso, atendente, chancesDeSerEntregue);	
 	}
 
-	@Override
 	public double custo() {
 		return 0;
 	}
