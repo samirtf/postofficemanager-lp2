@@ -5,12 +5,12 @@ package webServicos;
 * @author Samir Trajano Feitosa 20921299
 */
 public class Cep {
-   String cep;
-   String logradouro;
-   String bairro;
-   String cidade;
-   String uf;
-   boolean chave = true;
+   private String cep;
+   private String logradouro;
+   private String bairro;
+   private String cidade;
+   private String uf;
+   private boolean chave = true;
 
    public Cep(String cep, String logradouro, String bairro, String cidade, String uf, String chave) throws Exception{
 
