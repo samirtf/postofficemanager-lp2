@@ -14,7 +14,7 @@ public class EncomendaResistrada {
 		this.minuto = minuto;		
 	}
 	
-	//Metados assesadores
+	//Metados acessadores
 	public String getCodigoRastreamento() {
 		return codigo_rastreamento;
 	}
