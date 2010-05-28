@@ -10,12 +10,12 @@ package funcionarioServicos;
 
 public class FuncDados {
 	
-	public String nome;
-	public String dataNascimento;
-	public String cpf;
-	public String salario;
-	public String senha;
-	public boolean chave;
+	private String nome;
+	private String dataNascimento;
+	private String cpf;
+	private String salario;
+	private String senha;
+	private boolean chave;
 
 	/**
 	 * Contrutor FuncDados
