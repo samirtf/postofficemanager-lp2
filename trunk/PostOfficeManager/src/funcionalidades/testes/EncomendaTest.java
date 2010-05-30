@@ -3,8 +3,16 @@ package funcionalidades.testes;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+
 import static org.junit.Assert.*;
 
+import funcionalidades.Encomenda;
+
+
+/*
+ * autor: Vinícius Souza 
+ */
 public class EncomendaTest {
 
     private Encomenda encomenda1;
@@ -29,7 +37,7 @@ public class EncomendaTest {
     }
 
     @After
-    public void tearDown() {
+    public void tearDown() throws Exception {
     	encomenda1 = null;
     }
 
@@ -80,77 +88,60 @@ public class EncomendaTest {
 
     @Test
     public void testGetValorDeclarado() {
+        assertEquals("valor declarado errado 1", valorDeclarado2, encomenda1.getValorDeclarado(), 0);
+        assertEquals("valor declarado errado 2", 0, encomenda2.getValorDeclarado(), 0);
+        assertEquals("valor declarado errado 3", valorDeclarado1, encomenda3.getValorDeclarado(), 0);
         
     }
 
-    /**
-     * Test of getData method, of class Encomenda.
-     */
     @Test
     public void testGetData() {
-        System.out.println("getData");
-        Encomenda instance = null;
-        String expResult = "";
-        String result = instance.getData();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    	assertEquals("data esperada errada 1", data, encomenda1.getData());
+    	assertEquals("data esperada errada 2", data, encomenda2.getData());
+    	assertEquals("data esperada errada 3", data, encomenda3.getData());
     }
 
-    /**
-     * Test of ValorDaEncomenda method, of class Encomenda.
-     */
+    
+
+    
+
     @Test
-    public void testValorDaEncomenda() {
-        System.out.println("ValorDaEncomenda");
-        Encomenda instance = null;
-        double expResult = 0.0;
-        double result = instance.ValorDaEncomenda();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testEnviaCartaEGetEnviadas() {
+    	assertEquals("enviadas erradas 1", 0, encomenda1.getEnviadas());
+    	assertEquals("enviadas erradas 2", 0, encomenda2.getEnviadas());
+    	assertEquals("enviadas erradas 3", 0, encomenda3.getEnviadas());
+    	assertEquals("envio errado 1", "A encomenda foi enviada ao destinatario 1 vez(es).", encomenda1.enviaCarta());
+    	assertEquals("envio errado 2", "A encomenda foi enviada ao destinatario 1 vez(es).", encomenda2.enviaCarta());
+    	assertEquals("enviadas erradas 4", 1, encomenda1.getEnviadas());
+    	assertEquals("enviadas erradas 5", 1, encomenda2.getEnviadas());
+    	assertEquals("enviadas erradas 6", 0, encomenda3.getEnviadas());
+    	assertEquals("envio errado 3", "A encomenda foi enviada ao destinatario 2 vez(es).", encomenda1.enviaCarta());
+    	assertEquals("enviadas erradas 7", 2, encomenda1.getEnviadas());
+    	assertEquals("envio errado 4", "A encomenda foi enviada ao destinatario 3 vez(es).", encomenda1.enviaCarta());
+    	assertEquals("envio errado 5", "A carta foi enviada ao remetente", encomenda1.enviaCarta());
+    	assertEquals("enviadas erradas 8", 4, encomenda1.getEnviadas());
+    	
+    	
     }
-
-    /**
-     * Test of getEnviadas method, of class Encomenda.
-     */
-    @Test
-    public void testGetEnviadas() {
-        System.out.println("getEnviadas");
-        Encomenda instance = null;
-        int expResult = 0;
-        int result = instance.getEnviadas();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of enviaCarta method, of class Encomenda.
-     */
-    @Test
-    public void testEnviaCarta() {
-        System.out.println("enviaCarta");
-        Encomenda instance = null;
-        String expResult = "";
-        String result = instance.enviaCarta();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getId method, of class Encomenda.
-     */
+    
     @Test
     public void testGetId() {
-        System.out.println("getId");
-        Encomenda instance = null;
-        String expResult = "";
-        String result = instance.getId();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    	assertFalse("ids iguais 1", encomenda1.getId().equals(encomenda2.getId()));
+    	assertFalse("ids iguais 2", encomenda1.getId().equals(encomenda3.getId()));
+    	assertFalse("ids iguais 3", encomenda2.getId().equals(encomenda3.getId()));
+    }
+    
+    
+    
+    @Test
+    public void testValorDaEncomenda() {
+    	assertEquals("valor da encomenda errado 1", 244.7, encomenda1.ValorDaEncomenda(), 0);
+    	assertEquals("valor da encomenda errado 2", 384.75, encomenda2.ValorDaEncomenda(), 0);
+    	assertEquals("valor da encomenda errado 3", 25.75, encomenda3.ValorDaEncomenda(), 0);
+    	encomenda3.ConfirmaEnvioResistrado();
+    	assertEquals("valor da encomenda errado 1", 51.15, encomenda3.ValorDaEncomenda(), 0);
+    	encomenda3.ConfirmaViaExpressa();
+    	assertEquals("valor da encomenda errado 1", 216.4, encomenda3.ValorDaEncomenda(), 0);
     }
 
 }
