@@ -81,7 +81,7 @@ public class EncomendaTest {
     @Test
     public void testConfirmaViaExpressa() {
         assertFalse("não deveria ser via expressa 4", encomenda3.getViaExpressa());
-        encomenda3.ConfirmaViaExpressa();
+        encomenda3.confirmaViaExpressa();
         assertTrue("deveria ser via expressa 5", encomenda3.getViaExpressa());
     }
 
@@ -132,16 +132,15 @@ public class EncomendaTest {
     }
     
     
-    
     @Test
     public void testValorDaEncomenda() {
-    	assertEquals("valor da encomenda errado 1", 244.7, encomenda1.ValorDaEncomenda(), 0);
-    	assertEquals("valor da encomenda errado 2", 384.75, encomenda2.ValorDaEncomenda(), 0);
-    	assertEquals("valor da encomenda errado 3", 25.75, encomenda3.ValorDaEncomenda(), 0);
-    	encomenda3.ConfirmaEnvioResistrado();
-    	assertEquals("valor da encomenda errado 1", 51.15, encomenda3.ValorDaEncomenda(), 0);
-    	encomenda3.ConfirmaViaExpressa();
-    	assertEquals("valor da encomenda errado 1", 216.4, encomenda3.ValorDaEncomenda(), 0);
+    	assertEquals("valor da encomenda errado 1", 244.7, encomenda1.valorDaEncomenda(), 0);
+    	assertEquals("valor da encomenda errado 2", 384.75, encomenda2.valorDaEncomenda(), 0);
+    	assertEquals("valor da encomenda errado 3", 25.75, encomenda3.valorDaEncomenda(), 0);
+    	encomenda3.confirmaEnvioResistrado();
+    	assertEquals("valor da encomenda errado 1", 51.15, encomenda3.valorDaEncomenda(), 0);
+    	encomenda3.confirmaViaExpressa();
+    	assertEquals("valor da encomenda errado 1", 216.4, encomenda3.valorDaEncomenda(), 0);
     }
 
 }
