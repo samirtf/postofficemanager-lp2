@@ -24,7 +24,7 @@ public interface BancoDeDadosCepServicoIF {
     *
     * @return
     *      True - Se o Cep for removido do banco de dados.
-    *      False - Se o Cep não for removido do banco de dados.
+    *      False - Se o Cep nao for removido do banco de dados.
     */
 
    public int totalRegistrosBancoDeDados();
@@ -32,7 +32,7 @@ public interface BancoDeDadosCepServicoIF {
     * Retorna o número de registros de Ceps no banco de dados.
     *
     * @return
-    *      O número de registros de Ceps no banco de dados.
+    *      O numero de registros de Ceps no banco de dados.
     */
 
    public boolean pesquisaCepNoBancoDeDadosLocal(String cep);
@@ -41,17 +41,17 @@ public interface BancoDeDadosCepServicoIF {
     *
     * @return
     *      True - Se existir o cep no banco de dados local.
-    *      False - Se a existência for negada.
+    *      False - Se a existencia for negada.
     */
 
    public boolean testaConexaoInternet();
    /**
-    * Testa se há conexão com a Internet, especificamente, com um site de banco
+    * Testa se ha conexao com a Internet, especificamente, com um site de banco
     * de dados de CEP.
     *
     * @return
-    *      True - Se houver conexão e se o site estiver acessível.
-    *      False - Quando a situação acima não for descrita.
+    *      True - Se houver conexao e se o site estiver acessivel.
+    *      False - Quando a situacao acima nao for descrita.
     */
 
    public boolean pequisaCepBancoDeDadosOnline();
