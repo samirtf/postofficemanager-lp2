@@ -8,7 +8,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  *
@@ -26,7 +28,7 @@ public class BancoDeDadosCepServico implements BancoDeDadosCepServicoIF{
         try {
             File arquivoBd = new File("bdcep.dat");
             if ( !( arquivoBd.exists() && arquivoBd.isFile() && arquivoBd.canRead() ) ){
-                throw new FileNotFoundException("Arquivo bdcep.dat não encontrado.");
+                throw new FileNotFoundException("Arquivo bdcep.dat nao encontrado.");
             }
             FileReader arquivo = new FileReader("bdcep.dat");
 
@@ -65,7 +67,7 @@ public class BancoDeDadosCepServico implements BancoDeDadosCepServicoIF{
         	    //Fecha saida do fstream
         	    saida.close();
         	}
-        	catch (Exception e){//Pega uma exceção se ocorrer
+        	catch (IOException e){//Pega uma excecao se ocorrer
         	    System.err.println("Error: " + e.getMessage() + e);
         	}
         	
@@ -82,24 +84,26 @@ public class BancoDeDadosCepServico implements BancoDeDadosCepServicoIF{
           //Atualizao BD com o objeto Cep no arquivo "bccep.dat".
         	try{
         	    // Cria arquivo
-        	    FileWriter fstream = new FileWriter("bdcep.dat");
-        	    BufferedWriter saida = new BufferedWriter(fstream);
-        	    
-        	    //Iterando em uma série do mapa
-        	    for (Map.Entry<String, Cep> entry : mapa.entrySet()){
-        	    	Cep cep = entry.getValue();
-        	    	
-        	    	String textoSaida = String.format("%s|%s|%s|%s|%s|%s", entry.getKey(),
-        	    			cep.getLogradouro(), cep.getBairro(), cep.getCidade(),
-        	    			cep.getUf(), cep.getChave());
-        	        saida.write(textoSaida);
-        	    }
+        		FileWriter leitura = new FileWriter(new File("bdfunc.dat"));
+    			BufferedWriter saida = new BufferedWriter(leitura, 1*1024*1024);
+        	    //cep, logradouro, bairro, cidade, uf, chave
+        	    Iterator<Entry<String, Cep>> it = mapa.entrySet().iterator();
+    		    
+        	    while (it.hasNext()) {
+    		        Entry<String, Cep> pairs = (Map.Entry<String, Cep>)it.next();
+    		        System.out.println(pairs.getKey() + " = " + pairs.getValue());
+    		        Cep cepTemp = pairs.getValue();
+    		        String cepString = String.format("%s|%s|%s|%s|%s|%s", cepTemp.getCep(), 
+    		        		cepTemp.getLogradouro(), cepTemp.getBairro(), 
+    		        		cepTemp.getCidade(), cepTemp.getUf(), cepTemp.getChave());
+    		        saida.write(cepString);
+    		    }
         	    
         	    //Fecha saida do fstream
         	    saida.close();
         	    return true;
         	}
-        	catch (Exception e){//Pega uma exceção se ocorrer
+        	catch (Exception e){ //Pega uma excecao se ocorrer
         	    System.err.println("Error: " + e.getMessage() + e);
         	}
             
@@ -109,7 +113,7 @@ public class BancoDeDadosCepServico implements BancoDeDadosCepServicoIF{
     }
 
     /**
-     * Calcula o total de registros na memória carregados do
+     * Calcula o total de registros na memoria carregados do
      * banco de dados.
      */
     public int totalRegistrosBancoDeDados() {
