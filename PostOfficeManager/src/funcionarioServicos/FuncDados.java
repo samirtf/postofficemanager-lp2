@@ -76,6 +76,45 @@ public class FuncDados {
 		return this.salario;
 	}
 	
+	public String getSenha(){
+		return this.senha;
+	}
+	
+	public boolean getChave(){
+		return this.chave;
+	}
+	
+	/**
+	 * Gera o inteiro hashcode de FuncDados
+	 * 
+	 * @return
+	 * 		O hashcode de FuncDados.
+	 */
+	@Override
+	public int hashCode(){
+		int result = 17;  
+		result = 37 * result + this.nome.hashCode() + this.cpf.hashCode();
+		return result;
+	}
+	
+	/**
+	 * Compara se um objeto FuncDados é igual a outro.
+	 * 
+	 * @return
+	 * 		True - Se os 2 objetos FuncDados forem iguais.
+	 * 		False - Se os 2 objetos forem de instâncias diferentes 
+	 *      ou se não forem objetos iguais.
+	 */
+	@Override
+	public boolean equals(Object objeto){
+		if ( !(objeto instanceof FuncDados )){
+			return false;
+		}
+		
+		FuncDados outroFuncDados = (FuncDados) objeto;
+		return this.hashCode() == outroFuncDados.hashCode();
+	}
+	
 	
 		
 
