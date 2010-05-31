@@ -8,17 +8,13 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import webServicos.Cep;
-import correios.util.Funcionario;
 
 public class BancoDeDadosFuncServico implements BancoDeDadosFuncServicoIF{
 	
-	private Map< String, FuncDados> mapa;
-    private Map< String, FuncDados> mapaTemp;
+	private Map< String, FuncDados> mapa;         
     
     public BancoDeDadosFuncServico() throws Exception{
         mapa = new HashMap<String, FuncDados>();
-        mapaTemp = new HashMap<String, FuncDados>();
 
         try {
             File arquivoBd = new File("bdfunc.dat");
@@ -55,11 +51,10 @@ public class BancoDeDadosFuncServico implements BancoDeDadosFuncServicoIF{
 	 * 		False - Se o Funcionario não for adicionado ao Banco de Dados de Funcionario.
 	 */
 	public boolean adicFuncAoBancoDeDados(FuncDados func){
-		if ( (mapa == null && ( mapaTemp == null || !mapaTemp.containsKey(func.getCpf()))) ||
-	            (!mapa.containsKey(func.getCpf()) && (mapaTemp == null || !mapaTemp.containsKey(func.getCpf()))) ){
-	            mapaTemp.put(func.getCpf(), func);
-	            return true;
-	        }
+		if ( mapa == null || !mapa.containsKey( func.getCpf() )){
+			mapa.put(func.getCpf(), func);
+	           return true;
+	    }
 	        return false;
 	}
 	
@@ -77,31 +72,30 @@ public class BancoDeDadosFuncServico implements BancoDeDadosFuncServicoIF{
             mapa.remove(func.getCpf());
             chave = true;
         }
-        if ( mapaTemp != null && mapaTemp.containsKey(func.getCpf())){
-            mapaTemp.remove(func.getCpf());
-            chave = true;
-        }
+        
         return chave;
 	}
 	
 	/**
-	    * Retorna o número de registros de Funcionarios no banco de dados.
-	    *
-	    * @return
-	    *      O número de registros de Funcionarios no banco de dados.
-	    */
+	 * Retorna o número de registros de Funcionarios no banco de dados.
+	 *
+	 * @return
+	 *      O número de registros de Funcionarios no banco de dados.
+	 */
 	public int totalRegistrosBancoDeDados(){
+		return mapa.size();
+	}
+	   
+	/**
+	 * Pesquisa cFuncionario no banco de dados local.
+	 *
+	 * @return
+	 *      True - Se existir o Funcionario no banco de dados local.
+	 *      False - Se a existência for negada.
+	 */
+	public boolean pesquisaFuncionarioNoBancoDeDadosLocal(FuncDados func){
 		
 	}
 	   
-	
-	public boolean pesquisaFuncionarioNoBancoDeDadosLocal();
-	   /**
-	    * Pesquisa cFuncionario no banco de dados local.
-	    *
-	    * @return
-	    *      True - Se existir o Funcionario no banco de dados local.
-	    *      False - Se a existência for negada.
-	    */
 
 }
