@@ -1,17 +1,21 @@
 package funcionarioServicos;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 
 public class BancoDeDadosFuncServico implements BancoDeDadosFuncServicoIF{
 	
-	private Map< String, FuncDados> mapa;         
+	private Map<String, FuncDados> mapa;         
     
     public BancoDeDadosFuncServico() throws Exception{
         mapa = new HashMap<String, FuncDados>();
@@ -19,7 +23,7 @@ public class BancoDeDadosFuncServico implements BancoDeDadosFuncServicoIF{
         try {
             File arquivoBd = new File("bdfunc.dat");
             if ( !( arquivoBd.exists() && arquivoBd.isFile() && arquivoBd.canRead() ) ){
-                throw new FileNotFoundException("Arquivo bdfunc.dat não encontrado.");
+                throw new FileNotFoundException("Arquivo bdfunc.dat n�o encontrado.");
             }
             FileReader arquivo = new FileReader("bdfunc.dat");
 
@@ -39,63 +43,104 @@ public class BancoDeDadosFuncServico implements BancoDeDadosFuncServicoIF{
             leitura.close();
         }
         catch (IOException e) {
+        	System.err.print("Erro: " + e.getMessage() + e);
         }
     }
 
 	/**
-	 * Adiciona um Funcionario no Banco de Dados de Funcionario.
+	 * Adiciona um funcionario no banco de dados de funcionario.
 	 * @param
-	 * 		Objeto do tipo Funcionario.
+	 * 		Objeto do tipo funcionario.
 	 * @return
-	 * 		True - Se o Funcionario for adicionado ao Banco de Dados de Funcionario.
-	 * 		False - Se o Funcionario não for adicionado ao Banco de Dados de Funcionario.
+	 * 		True - Se o funcionario for adicionado ao banco de dados de funcionario.
+	 * 		False - Se o funcionario nao for adicionado ao banco de dados de funcionario.
+	 * @throws IOException 
 	 */
-	public boolean adicFuncAoBancoDeDados(FuncDados func){
+	public boolean adicFuncAoBancoDeDados(FuncDados func) throws IOException{
 		if ( mapa == null || !mapa.containsKey( func.getCpf() )){
 			mapa.put(func.getCpf(), func);
+			
+			//adiciona no arquivo do banco de dados
+			
+			try{
+				File arquivoBd = new File("bdfunc.dat");
+	            if ( !( arquivoBd.exists() && arquivoBd.isFile() && arquivoBd.canRead() ) ){
+	                throw new FileNotFoundException("Arquivo bdfunc.dat nao encontrado.");
+	            }
+	            
+				FileWriter leitura = new FileWriter(new File("bdfunc.dat"),true);
+				BufferedWriter saida = new BufferedWriter(leitura, 1*1024*1024);
+				//cpf|nome|dataNascimento|senha|chave
+				String funcString = String.format("%s|%s|%s|%s|%s|%s", func.getCpf(), func.getNome(), 
+						func.getDataNascimento(), func.getSenha(), func.getChave());
+				saida.write(funcString);
+				saida.close();
+			}
+			catch(IOException e){
+				System.out.print("Erro: " + e.getMessage() + e);
+			}
+			
 	           return true;
 	    }
 	        return false;
 	}
 	
 	/**
-	 * Remove um Funcionario do Banco de Dados de Funcionario.
+	 * Remove um funcionario do banco de bados de funcionario.
 	 * 
 	 * @return
-	 * 		True - Se o Funcionario for removido do Banco de Dados de Funcionario.
-	 * 		False - Se o Funcionario não for removido do Banco de Dados de Funcionario.
+	 * 		True - Se o funcionario for removido do banco de dados de funcionario.
+	 * 		False - Se o funcionario nao for removido do banco de dados de funcionario.
+	 * @throws IOException 
 	 */
-	public boolean delFuncDoBancoDeDados(FuncDados func){
+	public boolean delFuncDoBancoDeDados(FuncDados func) throws IOException{
 		boolean chave = false;
 
         if ( mapa != null && mapa.containsKey(func.getCpf())){
             mapa.remove(func.getCpf());
             chave = true;
+            
+            FileWriter leitura = new FileWriter(new File("bdfunc.dat"),true);
+			BufferedWriter saida = new BufferedWriter(leitura, 1*1024*1024);
+			//cpf|nome|dataNascimento|senha|chave
+			Iterator<Entry<String, FuncDados>> it = mapa.entrySet().iterator();
+			
+		    while (it.hasNext()) {
+		        Map.Entry<String, FuncDados> pairs = (Map.Entry<String, FuncDados>)it.next();
+		        System.out.println(pairs.getKey() + " = " + pairs.getValue());
+		        FuncDados funcTemp = pairs.getValue();
+		        String funcString = String.format("%s|%s|%s|%s|%s|%s", funcTemp.getCpf(), funcTemp.getNome(), 
+						funcTemp.getDataNascimento(), funcTemp.getSenha(), funcTemp.getChave());
+		        saida.write(funcString);
+		    }
+			
+			saida.close();
         }
         
         return chave;
 	}
 	
 	/**
-	 * Retorna o número de registros de Funcionarios no banco de dados.
+	 * Retorna o numero de registros de funcionarios no banco de dados.
 	 *
 	 * @return
-	 *      O número de registros de Funcionarios no banco de dados.
+	 *      O numero de registros de funcionarios no banco de dados.
 	 */
 	public int totalRegistrosBancoDeDados(){
 		return mapa.size();
 	}
 	   
 	/**
-	 * Pesquisa cFuncionario no banco de dados local.
+	 * Pesquisa o funcionario no banco de dados local.
 	 *
 	 * @return
-	 *      True - Se existir o Funcionario no banco de dados local.
-	 *      False - Se a existência for negada.
+	 *      True - Se existir o funcionario no banco de dados local.
+	 *      False - Se a existencia for negada.
 	 */
 	public boolean pesquisaFuncionarioNoBancoDeDadosLocal(FuncDados func){
+		return this.mapa.containsKey(func.getCpf());
 		
 	}
-	   
+	
 
 }
