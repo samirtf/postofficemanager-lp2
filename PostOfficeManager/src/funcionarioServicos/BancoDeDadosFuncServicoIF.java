@@ -1,10 +1,10 @@
 package funcionarioServicos;
 
-import correios.util.Funcionario;
+
 
 public interface BancoDeDadosFuncServicoIF {
 	
-	public boolean adicFuncAoBancoDeDados(Funcionario func);
+	public boolean adicFuncAoBancoDeDados(FuncDados func);
 	/**
 	 * Adiciona um Funcionario no Banco de Dados de Funcionario.
 	 * 
@@ -13,7 +13,7 @@ public interface BancoDeDadosFuncServicoIF {
 	 * 		False - Se o Funcionario não for adicionado ao Banco de Dados de Funcionario.
 	 */
 	
-	public boolean delFuncDoBancoDeDados(Funcionario func);
+	public boolean delFuncDoBancoDeDados(FuncDados func);
 	/**
 	 * Remove um Funcionario do Banco de Dados de Funcionario.
 	 * 
@@ -30,7 +30,7 @@ public interface BancoDeDadosFuncServicoIF {
 	    *      O número de registros de Funcionarios no banco de dados.
 	    */
 	
-	public boolean pesquisaFuncionarioNoBancoDeDadosLocal();
+	public boolean pesquisaFuncionarioNoBancoDeDadosLocal(FuncDados func);
 	   /**
 	    * Pesquisa cFuncionario no banco de dados local.
 	    *
