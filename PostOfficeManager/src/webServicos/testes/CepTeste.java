@@ -111,61 +111,67 @@ public class CepTeste {
 
     /**
      * Teste do método setLogradouro, da classe Cep.
+     * @throws Exception 
      */
     @Test
-    public void testSetLogradouro() {
+    public void testSetLogradouro() throws Exception {
         System.out.println("setLogradouro");
-        String logradouro = "";
-        Cep instance = null;
+        String logradouro = "Avenida Francisco C. Campos";
+        Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "Monte", "Caninde", "CE", "true");
         instance.setLogradouro(logradouro);
+        assertEquals(logradouro, instance.getLogradouro());
     }
 
     /**
-     * Test of setBairro method, of class Cep.
+     * Teste do método setBairro, da classe Cep.
+     * @throws Exception 
      */
     @Test
-    public void testSetBairro() {
+    public void testSetBairro() throws Exception {
         System.out.println("setBairro");
-        String bairro = "";
-        Cep instance = null;
+        String bairro = "Monte Carlos";
+        Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "Monte", "Caninde", "CE", "true");
         instance.setBairro(bairro);
-        fail("The test case is a prototype.");
+        assertEquals(bairro, instance.getBairro());
     }
 
     /**
-     * Test of setCidade method, of class Cep.
+     * Teste do metodo setCidade, da classe Cep.
+     * @throws Exception 
      */
     @Test
-    public void testSetCidade() {
+    public void testSetCidade() throws Exception {
         System.out.println("setCidade");
-        String cidade = "";
-        Cep instance = null;
+        String cidade = "Cannis";
+        Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "Monte", "Caninde", "CE", "true");
         instance.setCidade(cidade);
-        fail("The test case is a prototype.");
+        assertEquals(cidade, instance.getCidade());
     }
 
     /**
-     * Test of setUf method, of class Cep.
+     * Teste do metodo setUf da classe Cep.
+     * @throws Exception 
      */
     @Test
-    public void testSetUf() {
+    public void testSetUf() throws Exception {
         System.out.println("setUf");
         String uf = "";
-        Cep instance = null;
+        Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "Monte", "Caninde", "CE", "true");
         instance.setUf(uf);
-        fail("The test case is a prototype.");
+        assertEquals(uf, instance.getUf());
     }
 
     /**
-     * Test of setChave method, of class Cep.
+     * Teste do metodo setChave, da classe Cep.
+     * @throws Exception 
      */
     @Test
-    public void testSetChave() {
+    public void testSetChave() throws Exception {
         System.out.println("setChave");
         boolean chave = false;
-        Cep instance = null;
+        Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "Monte", "Caninde", "CE", "true");
         instance.setChave(chave);
-        fail("The test case is a prototype.");
+        assertEquals(chave, instance.getChave());
     }
 
 }
