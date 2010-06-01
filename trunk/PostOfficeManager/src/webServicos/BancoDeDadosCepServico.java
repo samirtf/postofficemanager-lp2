@@ -166,7 +166,7 @@ public class BancoDeDadosCepServico implements BancoDeDadosCepServicoIF{
      */
     public boolean devoCadastrarCepNoBancoDeDados(String CEP) throws IOException{
     	WebServiceCep cep = CepSearchEngineByQueryString.searchCep(CEP);
-		//A ferramenta de busca ignora qualquer caracter que não seja número.
+		//A ferramenta de busca ignora qualquer caracter que nao seja numero.
     	
     	try{
     		return !mapa.containsKey(CEP) && testaConexaoInternet() && !cep.wasSuccessful();
