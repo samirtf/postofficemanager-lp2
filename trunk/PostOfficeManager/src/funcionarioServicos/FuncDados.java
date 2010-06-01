@@ -22,6 +22,7 @@ public class FuncDados {
 	 * @param nome
 	 * @param dataNascimento
 	 * @param cpf
+	 * @param salario
 	 * @param senha
 	 * @param chave
 	 */

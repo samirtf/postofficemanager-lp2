@@ -23,21 +23,21 @@ public class BancoDeDadosFuncServico implements BancoDeDadosFuncServicoIF{
         try {
             File arquivoBd = new File("bdfunc.dat");
             if ( !( arquivoBd.exists() && arquivoBd.isFile() && arquivoBd.canRead() ) ){
-                throw new FileNotFoundException("Arquivo bdfunc.dat não encontrado.");
+                throw new FileNotFoundException("Arquivo bdfunc.dat nao encontrado.");
             }
             FileReader arquivo = new FileReader("bdfunc.dat");
 
             BufferedReader leitura = new BufferedReader(arquivo);
             String dado;
+            //nome|dataNascimento|cpf|salario|senha|chave
             while (leitura.ready()) {
                 dado = leitura.readLine();
                 String[] arrayDados = dado.split("\\|");
-                //cep, logradouro, bairro, cidade, uf, chave
                 FuncDados infoFunc = new FuncDados(arrayDados[0], arrayDados[1], arrayDados[2],
                         arrayDados[3], arrayDados[4], Boolean.valueOf(arrayDados[5]));
 
                 //adicionando dado no mapa
-                mapa.put(arrayDados[0], infoFunc);
+                mapa.put(arrayDados[2], infoFunc);
 
             }
             leitura.close();
@@ -61,7 +61,6 @@ public class BancoDeDadosFuncServico implements BancoDeDadosFuncServicoIF{
 			mapa.put(func.getCpf(), func);
 			
 			//adiciona no arquivo do banco de dados
-			
 			try{
 				File arquivoBd = new File("bdfunc.dat");
 	            if ( !( arquivoBd.exists() && arquivoBd.isFile() && arquivoBd.canRead() ) ){
@@ -70,9 +69,9 @@ public class BancoDeDadosFuncServico implements BancoDeDadosFuncServicoIF{
 	            
 				FileWriter leitura = new FileWriter(new File("bdfunc.dat"),true);
 				BufferedWriter saida = new BufferedWriter(leitura, 1*1024*1024);
-				//cpf|nome|dataNascimento|senha|chave
-				String funcString = String.format("%s|%s|%s|%s|%s|%s", func.getCpf(), func.getNome(), 
-						func.getDataNascimento(), func.getSenha(), func.getChave());
+				//nome|dataNascimento|cpf|salario|senha|chave
+				String funcString = String.format("%s|%s|%s|%s|%s|%s", func.getNome(), func.getDataNascimento(), 
+						func.getCpf(), func.getSalario(), func.getSenha(), func.getChave());
 				saida.write(funcString);
 				saida.close();
 			}
@@ -100,17 +99,16 @@ public class BancoDeDadosFuncServico implements BancoDeDadosFuncServicoIF{
             mapa.remove(func.getCpf());
             chave = true;
             
-            FileWriter leitura = new FileWriter(new File("bdfunc.dat"),true);
+            FileWriter leitura = new FileWriter(new File("bdfunc.dat"));
 			BufferedWriter saida = new BufferedWriter(leitura, 1*1024*1024);
-			//cpf|nome|dataNascimento|senha|chave
 			Iterator<Entry<String, FuncDados>> it = mapa.entrySet().iterator();
-			
+			//nome|dataNascimento|cpf|salario|senha|chave
 		    while (it.hasNext()) {
 		        Map.Entry<String, FuncDados> pairs = (Map.Entry<String, FuncDados>)it.next();
-		        System.out.println(pairs.getKey() + " = " + pairs.getValue());
 		        FuncDados funcTemp = pairs.getValue();
-		        String funcString = String.format("%s|%s|%s|%s|%s|%s", funcTemp.getCpf(), funcTemp.getNome(), 
-						funcTemp.getDataNascimento(), funcTemp.getSenha(), funcTemp.getChave());
+		        String funcString = String.format("%s|%s|%s|%s|%s|%s", funcTemp.getNome(), 
+		        		funcTemp.getDataNascimento(), pairs.getKey(), 
+		        		funcTemp.getSalario(), funcTemp.getSenha(), funcTemp.getChave());
 		        saida.write(funcString);
 		    }
 			
