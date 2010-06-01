@@ -1,5 +1,8 @@
 package webServicos;
 
+import java.io.IOException;
+import java.net.UnknownHostException;
+
 /**
 *
 * @author Samir Trajano Feitosa 20921299
@@ -42,11 +45,14 @@ public interface BancoDeDadosCepServicoIF {
     * @return
     *      True - Se existir o cep no banco de dados local.
     *      False - Se a existencia for negada.
+    * @throws UnknownHostException
+    * 	   Se o servidor estiver nao estiver acessivel	
+    * @throws IOException 
     */
 
-   public boolean testaConexaoInternet();
+   public boolean testaConexaoInternet() throws UnknownHostException, IOException;
    /**
-    * Testa se ha conexao com a Internet, especificamente, com um site de banco
+    * Testa se ha conexao com a Internet, especificamente, com o site de banco
     * de dados de CEP.
     *
     * @return

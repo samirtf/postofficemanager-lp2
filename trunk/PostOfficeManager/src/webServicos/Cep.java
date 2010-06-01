@@ -15,22 +15,22 @@ public class Cep {
    public Cep(String cep, String logradouro, String bairro, String cidade, String uf, String chave) throws Exception{
 
 	   if ( cep == null || cep.trim().equals("")){
-           throw new Exception("Cep inválido.");
+           throw new Exception("Cep invalido.");
        }
        else if ( logradouro == null || logradouro.trim().equals("")){
-           throw new Exception("Logradouro inválido.");
+           throw new Exception("Logradouro invalido.");
        }
        else if ( bairro == null || bairro.trim().equals("")){
-           throw new Exception("Bairro inválido.");
+           throw new Exception("Bairro invalido.");
        }
        else if ( cidade == null || cidade.trim().equals("")){
-           throw new Exception("Cidade inválida.");
+           throw new Exception("Cidade invalida.");
        }
        else if ( uf == null || uf.trim().equals("")){
-           throw new Exception("UF inválida.");
+           throw new Exception("UF invalida.");
        }
        else if ( chave == null || ( !chave.trim().equals("true") && !chave.trim().equals("false"))){
-           throw new Exception("Chave inválida.");
+           throw new Exception("Chave invalida.");
        }
 
        this.cep = cep;
