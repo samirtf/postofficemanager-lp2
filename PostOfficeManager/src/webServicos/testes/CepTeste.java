@@ -1,5 +1,7 @@
 package webServicos.testes;
 
+import junit.framework.Assert;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -22,6 +24,109 @@ public class CepTeste {
 
     @AfterClass
     public static void tearDownClass() throws Exception {
+    }
+    
+    /**
+     * Teste de erros no construtor
+     */
+    @Test
+    public void testaErrosNoConstrutor(){
+    	try{
+    		Cep instance = new Cep(null, "Av. Francisco C. Campos", "Monte", "Caninde", "CE", "true");
+    		Assert.fail("Esperava mensagem de Cep invalido.");
+    	}
+    	catch(Exception e){
+    		Assert.assertEquals("Cep invalido.", e.getMessage());
+    	}// teste para cep nulo
+    	
+    	try{
+    		Cep instance = new Cep("", "Av. Francisco C. Campos", "Monte", "Caninde", "CE", "true");
+    		Assert.fail("Esperava mensagem de Cep invalido.");
+    	}
+    	catch(Exception e){
+    		Assert.assertEquals("Cep invalido.", e.getMessage());
+    	}// teste para cep vazio
+    	
+    	try{
+    		Cep instance = new Cep("62700000", null, "Monte", "Caninde", "CE", "true");
+    		Assert.fail("Esperava mensagem de Logradouro invalido.");
+    	}
+    	catch(Exception e){
+    		Assert.assertEquals("Logradouro invalido.", e.getMessage());
+    	}// teste para logradouro nulo
+    	
+    	try{
+    		Cep instance = new Cep("62700000", "", "Monte", "Caninde", "CE", "true");
+    		Assert.fail("Esperava mensagem de Logradouro invalido.");
+    	}
+    	catch(Exception e){
+    		Assert.assertEquals("Logradouro invalido.", e.getMessage());
+    	}// teste para logradouro vazio
+    	
+    	try{
+    		Cep instance = new Cep("62700000", "Av. Francisco C. Campos", null, "Caninde", "CE", "true");
+    		Assert.fail("Esperava mensagem de Bairro invalido.");
+    	}
+    	catch(Exception e){
+    		Assert.assertEquals("Bairro invalido.", e.getMessage());
+    	}// teste para bairro nulo
+    	
+    	try{
+    		Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "", "Caninde", "CE", "true");
+    		Assert.fail("Esperava mensagem de Bairro invalido.");
+    	}
+    	catch(Exception e){
+    		Assert.assertEquals("Bairro invalido.", e.getMessage());
+    	}// teste para bairro vazio
+    	
+    	try{
+    		Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "Monte", null, "CE", "true");
+    		Assert.fail("Esperava mensagem de Cidade invalido.");
+    	}
+    	catch(Exception e){
+    		Assert.assertEquals("Cidade invalida.", e.getMessage());
+    	}// teste para cidade nulo
+    	
+    	try{
+    		Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "Monte", "", "CE", "true");
+    		Assert.fail("Esperava mensagem de Cidade invalida.");
+    	}
+    	catch(Exception e){
+    		Assert.assertEquals("Cidade invalida.", e.getMessage());
+    	}// teste para cidade vazio
+    	
+    	try{
+    		Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "Monte", "Caninde", null, "true");
+    		Assert.fail("Esperava mensagem de UF invalida.");
+    	}
+    	catch(Exception e){
+    		Assert.assertEquals("UF invalida.", e.getMessage());
+    	}// teste para estado nulo
+    	
+    	try{
+    		Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "Monte", "Caninde", "", "true");
+    		Assert.fail("Esperava mensagem de UF invalida.");
+    	}
+    	catch(Exception e){
+    		Assert.assertEquals("UF invalida.", e.getMessage());
+    	}// teste para estado vazio
+    	
+    	try{
+    		Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "Monte", "Caninde", "CE", null);
+    		Assert.fail("Esperava mensagem de Chave invalida.");
+    	}
+    	catch(Exception e){
+    		Assert.assertEquals("Chave invalida.", e.getMessage());
+    	}// teste para chave nulo
+    	
+    	try{
+    		Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "Monte", "Caninde", "CE", "");
+    		Assert.fail("Esperava mensagem de Chave invalida.");
+    	}
+    	catch(Exception e){
+    		Assert.assertEquals("Chave invalida.", e.getMessage());
+    	}// teste para chave vazio
+    	
     }
 
     /**
