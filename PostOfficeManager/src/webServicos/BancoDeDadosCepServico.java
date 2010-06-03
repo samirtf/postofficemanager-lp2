@@ -52,6 +52,10 @@ public class BancoDeDadosCepServico implements BancoDeDadosCepServicoIF{
         catch (IOException e) {
         }
     }
+    
+    public Map< String, Cep> getMapaBD(){
+    	return mapa;
+    }
 
     public boolean adicCepAoBancoDeDados(Cep CEP) {
         if ( mapa != null && mapa.containsKey(CEP.getCep())){
