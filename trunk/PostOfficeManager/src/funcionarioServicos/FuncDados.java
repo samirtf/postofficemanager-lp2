@@ -27,7 +27,24 @@ public class FuncDados {
 	 * @param chave
 	 */
 	public FuncDados(String nome,String dataNascimento,
-			String cpf, String salario, String senha, boolean chave){
+			String cpf, String salario, String senha, boolean chave)throws Exception{
+		
+		if ( nome == null || nome.trim().equals("") ){
+			throw new Exception("Nome invalido.");
+		}
+		else if ( dataNascimento == null || dataNascimento.trim().equals("") ){
+			throw new Exception("Data de Nascimento invalida.");
+		}
+		else if ( cpf == null || cpf.trim().equals("") ){
+			throw new Exception("CPF invalido.");
+		}
+		else if ( salario == null || salario.trim().equals("") ){
+			throw new Exception("Salario invalido.");
+		}
+		else if ( senha == null || senha.trim().equals("") ){
+			throw new Exception("Senha invalida");
+		}
+
 		
 		this.nome = nome;
 		this.dataNascimento = dataNascimento;
