@@ -35,7 +35,7 @@ public class CepTeste {
     	}
     	catch(Exception e){
     		Assert.assertEquals("Cep invalido.", e.getMessage());
-    	}// teste para cep nulo
+    	}// fim de teste para cep nulo
     	
     	try{
     		Cep instance = new Cep("", "Av. Francisco C. Campos", "Monte", "Caninde", "CE", "true");
@@ -43,7 +43,7 @@ public class CepTeste {
     	}
     	catch(Exception e){
     		Assert.assertEquals("Cep invalido.", e.getMessage());
-    	}// teste para cep vazio
+    	}// fim de teste para cep vazio
     	
     	try{
     		Cep instance = new Cep("62700000", null, "Monte", "Caninde", "CE", "true");
@@ -51,7 +51,7 @@ public class CepTeste {
     	}
     	catch(Exception e){
     		Assert.assertEquals("Logradouro invalido.", e.getMessage());
-    	}// teste para logradouro nulo
+    	}// fim de teste para logradouro nulo
     	
     	try{
     		Cep instance = new Cep("62700000", "", "Monte", "Caninde", "CE", "true");
@@ -59,7 +59,7 @@ public class CepTeste {
     	}
     	catch(Exception e){
     		Assert.assertEquals("Logradouro invalido.", e.getMessage());
-    	}// teste para logradouro vazio
+    	}// fim de teste para logradouro vazio
     	
     	try{
     		Cep instance = new Cep("62700000", "Av. Francisco C. Campos", null, "Caninde", "CE", "true");
@@ -67,7 +67,7 @@ public class CepTeste {
     	}
     	catch(Exception e){
     		Assert.assertEquals("Bairro invalido.", e.getMessage());
-    	}// teste para bairro nulo
+    	}// fim de teste para bairro nulo
     	
     	try{
     		Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "", "Caninde", "CE", "true");
@@ -75,7 +75,7 @@ public class CepTeste {
     	}
     	catch(Exception e){
     		Assert.assertEquals("Bairro invalido.", e.getMessage());
-    	}// teste para bairro vazio
+    	}// fim de teste para bairro vazio
     	
     	try{
     		Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "Monte", null, "CE", "true");
@@ -83,7 +83,7 @@ public class CepTeste {
     	}
     	catch(Exception e){
     		Assert.assertEquals("Cidade invalida.", e.getMessage());
-    	}// teste para cidade nulo
+    	}// fim de teste para cidade nulo
     	
     	try{
     		Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "Monte", "", "CE", "true");
@@ -91,7 +91,7 @@ public class CepTeste {
     	}
     	catch(Exception e){
     		Assert.assertEquals("Cidade invalida.", e.getMessage());
-    	}// teste para cidade vazio
+    	}// fim de teste para cidade vazio
     	
     	try{
     		Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "Monte", "Caninde", null, "true");
@@ -99,7 +99,7 @@ public class CepTeste {
     	}
     	catch(Exception e){
     		Assert.assertEquals("UF invalida.", e.getMessage());
-    	}// teste para estado nulo
+    	}// fim de teste para estado nulo
     	
     	try{
     		Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "Monte", "Caninde", "", "true");
@@ -107,7 +107,7 @@ public class CepTeste {
     	}
     	catch(Exception e){
     		Assert.assertEquals("UF invalida.", e.getMessage());
-    	}// teste para estado vazio
+    	}// fim de teste para estado vazio
     	
     	try{
     		Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "Monte", "Caninde", "CE", null);
@@ -115,7 +115,7 @@ public class CepTeste {
     	}
     	catch(Exception e){
     		Assert.assertEquals("Chave invalida.", e.getMessage());
-    	}// teste para chave nulo
+    	}// fim de teste para chave nulo
     	
     	try{
     		Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "Monte", "Caninde", "CE", "");
@@ -123,7 +123,7 @@ public class CepTeste {
     	}
     	catch(Exception e){
     		Assert.assertEquals("Chave invalida.", e.getMessage());
-    	}// teste para chave vazio
+    	}// fim de teste para chave vazio
     	
     }
 
