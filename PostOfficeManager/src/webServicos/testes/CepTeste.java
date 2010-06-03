@@ -14,8 +14,6 @@ import webServicos.Cep;
  */
 public class CepTeste {
 
-    public CepTeste() {
-    }
 
     @BeforeClass
     public static void setUpClass() throws Exception {
