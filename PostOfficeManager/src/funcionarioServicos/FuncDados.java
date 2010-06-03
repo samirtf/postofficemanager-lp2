@@ -26,7 +26,7 @@ public class FuncDados {
 	 * @param senha
 	 * @param chave
 	 */
-	public FuncDados(String nome,String dataNascimento,
+	public FuncDados(String nome, String dataNascimento,
 			String cpf, String salario, String senha, boolean chave)throws Exception{
 		
 		if ( nome == null || nome.trim().equals("") ){
