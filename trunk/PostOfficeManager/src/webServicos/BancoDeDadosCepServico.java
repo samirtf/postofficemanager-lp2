@@ -22,6 +22,7 @@ import java.util.Map.Entry;
 public class BancoDeDadosCepServico implements BancoDeDadosCepServicoIF{
 
     private Map< String, Cep> mapa;
+    final String ENDLINE = System.getProperty ("line.separator");
 
     public BancoDeDadosCepServico() throws Exception{
         mapa = new HashMap<String, Cep>();
@@ -58,7 +59,7 @@ public class BancoDeDadosCepServico implements BancoDeDadosCepServicoIF{
     }
 
     public boolean adicCepAoBancoDeDados(Cep CEP) {
-        if ( mapa != null && mapa.containsKey(CEP.getCep())){
+        if ( mapa != null && !mapa.containsKey(CEP.getCep())){
             //adiciona objeto Cep na memoria em mapa.
         	mapa.put(CEP.getCep(), CEP);
         	
@@ -67,7 +68,7 @@ public class BancoDeDadosCepServico implements BancoDeDadosCepServicoIF{
         	    // Cria arquivo para "APPEND - TRUE"
         	    FileWriter fstream = new FileWriter("bdcep.dat", true);
         	    BufferedWriter saida = new BufferedWriter(fstream);
-        	    String textoSaida = String.format("%s|%s|%s|%s|%s|%s", CEP.getCep(), CEP.getLogradouro(),
+        	    String textoSaida = String.format("%s|%s|%s|%s|%s|%s" + ENDLINE, CEP.getCep(), CEP.getLogradouro(),
         	    		CEP.getBairro(), CEP.getCidade(), CEP.getUf(), CEP.getChave());
         	    saida.write(textoSaida);
         	    //Fecha saida do fstream
@@ -90,14 +91,13 @@ public class BancoDeDadosCepServico implements BancoDeDadosCepServicoIF{
           //Atualizao BD com o objeto Cep no arquivo "bccep.dat".
         	try{
         	    // Cria arquivo
-        		FileWriter leitura = new FileWriter(new File("bdfunc.dat"));
+        		FileWriter leitura = new FileWriter(new File("bdcep.dat"));
     			BufferedWriter saida = new BufferedWriter(leitura, 1*1024*1024);
         	    //cep, logradouro, bairro, cidade, uf, chave
         	    Iterator<Entry<String, Cep>> it = mapa.entrySet().iterator();
     		    
         	    while (it.hasNext()) {
     		        Entry<String, Cep> pairs = (Map.Entry<String, Cep>)it.next();
-    		        System.out.println(pairs.getKey() + " = " + pairs.getValue());
     		        Cep cepTemp = pairs.getValue();
     		        String cepString = String.format("%s|%s|%s|%s|%s|%s", cepTemp.getCep(), 
     		        		cepTemp.getLogradouro(), cepTemp.getBairro(), 
@@ -133,32 +133,42 @@ public class BancoDeDadosCepServico implements BancoDeDadosCepServicoIF{
     public boolean testaConexaoInternet() throws IOException {
     	
     	try{
-    		InetAddress endereco = InetAddress.getByName("http://www.republicavirtual.com.br");
-    		int timeout = 30000;  
-      	  
-        	if (endereco.isReachable(timeout))  {
-        		return true;
-        	}
-        	else{
-        		return false;
-        	}
+            java.net.URL mandarMail = new java.net.URL("http://www.republicavirtual.com.br/cep");
+            java.net.URLConnection conn = mandarMail.openConnection();
+
+            java.net.HttpURLConnection httpConn = (java.net.HttpURLConnection) conn;
+            httpConn.connect();
+            int x = httpConn.getResponseCode();
+            if(x == 200){
+                System.out.println("Conectado");
+                return true;
+            }
         }
-    	catch(UnknownHostException unknownHostException){
-    		System.err.print("Erro: " + unknownHostException.getMessage() + 
-    				unknownHostException);
-    	}
-    	catch(IOException iOException){
-    		System.err.print("Erro: " + iOException.getMessage() + 
-    				iOException);
-    	}
-		return false;
-        	  
-    	
+        catch(java.net.MalformedURLException urlmal){
+            System.err.println("Nao Conectado");
+            return false;
+        }
+        catch(java.io.IOException ioexcp){
+            System.err.println("Nao Conectado");
+            return false;
+        }
+
+        return false;
+
     	
     }
 
-    public boolean pequisaCepBancoDeDadosOnline() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public boolean pesquisaCepBancoDeDadosOnline(String cep) {
+    	WebServiceCep numCep = null;
+    	try{
+    		//faz a busca para o cep
+    		numCep = CepSearchEngineByQueryString.searchCep(cep);
+    	}
+    	catch(Exception e){
+    		System.err.println("ERRO: " + e.getMessage() + e);
+    	}
+    	
+        return numCep.wasSuccessful();
     }
     
     /**
@@ -169,10 +179,11 @@ public class BancoDeDadosCepServico implements BancoDeDadosCepServicoIF{
      * @throws IOException 
      */
     public boolean devoCadastrarCepNoBancoDeDados(String CEP) throws IOException{
-    	WebServiceCep cep = CepSearchEngineByQueryString.searchCep(CEP);
+    	WebServiceCep cep = null;
 		//A ferramenta de busca ignora qualquer caracter que nao seja numero.
     	
     	try{
+    		cep = CepSearchEngineByQueryString.searchCep(CEP);
     		return !mapa.containsKey(CEP) && testaConexaoInternet() && !cep.wasSuccessful();
     	}
     	catch(IOException iOException){
@@ -180,7 +191,17 @@ public class BancoDeDadosCepServico implements BancoDeDadosCepServicoIF{
     	}
     	return false;
     	
-    }
+    }// fim do metodo devoCadastrarCepNoBancoDeDados.
+
+	public Cep recuperaCepBancoDeDadosOnline(String CEP) throws Exception {
+		WebServiceCep cep = CepSearchEngineByQueryString.searchCep(CEP);
+		Cep recupCep = new Cep(CEP, cep.getLogradouro(), cep.getBairro(), 
+				cep.getCidade(), cep.getUf(), "true");
+		
+		return recupCep;
+	}
+    
+    
 
 
 }
