@@ -6,9 +6,9 @@ import java.net.UnknownHostException;
 /**
 *
 * @author Samir Trajano Feitosa 20921299
-* Esta interface é de propriedade de Samir T. Feitosa. Qualquer novo método adi-
-* cionado a interface deve ter comentário de método com nome do proprietário do
-* novo método criado.
+* Esta interface e de propriedade de Samir T. Feitosa. Qualquer novo metodo adi-
+* cionado a interface deve ter comentario de metodo com nome do proprietario do
+* novo metodo criado.
 */
 public interface BancoDeDadosCepServicoIF {
 
@@ -17,7 +17,7 @@ public interface BancoDeDadosCepServicoIF {
 	 *
 	 * @return
 	 *      True - Se o Cep for adicionado ao banco de dados.
-	 *      False - Se o Cep não for adicionado ao banco de dados.
+	 *      False - Se o Cep naoo for adicionado ao banco de dados.
 	 */
    public boolean adicCepAoBancoDeDados(Cep cep);
    
@@ -33,7 +33,7 @@ public interface BancoDeDadosCepServicoIF {
    
 
    /**
-    * Retorna o número de registros de Ceps no banco de dados.
+    * Retorna o numero de registros de Ceps no banco de dados.
     *
     * @return
     *      O numero de registros de Ceps no banco de dados.
@@ -79,5 +79,5 @@ public interface BancoDeDadosCepServicoIF {
    public Cep recuperaCepBancoDeDadosOnline(String CEP) throws Exception;
 
 
-}
+}// Fim da interface.
 
