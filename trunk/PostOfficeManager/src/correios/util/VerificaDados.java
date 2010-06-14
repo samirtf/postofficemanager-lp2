@@ -81,10 +81,15 @@ public class VerificaDados {
 	 * @param data
 	 * @return boolean
 	 */
-	public static boolean verificaData(String data){
-		return verificaOitoDigitos(data);
+	public static boolean verificaData(String data)throws Exception{
+		verificaOitoDigitos(data);
+		int dataHoje = Integer.parseInt(data);
+		if((dataHoje % 100) < 1 || (dataHoje % 100) > 12 || (dataHoje / 100) < 1 || (dataHoje / 100) > 31){
+			throw new Exception("A data fornecida eh invalida");
+		}	
+		return true;
+			
 	}
-
 	
 	/**
 	 * Verifica se o cpf possui so numeros e exatos 11 digitos
