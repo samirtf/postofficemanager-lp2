@@ -215,8 +215,7 @@ public class Encomenda {
 	public void entregouComSucesso() {
 		dataRecebimento = new SimpleDateFormat("ddMMyyyy").format((new GregorianCalendar()).getTime());
 	}
-	/**Exception
-	 * Calcula o valor da encomenda e o retorna.
+	/**Calcula o valor da encomenda e o retorna.
 	 * Tantos encomendas com valor declarado, 
 	 * como as simples.
 	 * @return double - valor
