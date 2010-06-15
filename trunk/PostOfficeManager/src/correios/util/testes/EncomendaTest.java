@@ -1,13 +1,14 @@
-package funcionalidades.testes;
+package correios.util.testes;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import correios.util.Encomenda;
+
 
 import static org.junit.Assert.*;
 
-import funcionalidades.Encomenda;
 
 
 /*
