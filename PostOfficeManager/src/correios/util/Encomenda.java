@@ -1,4 +1,4 @@
-package funcionalidades;
+package correios.util;
 
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;

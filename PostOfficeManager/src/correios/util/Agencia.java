@@ -1,8 +1,7 @@
-package funcionalidades;
+package correios.util;
 
 import java.util.ArrayList;
 
-import correios.util.Atendente;
 
 public class Agencia {
 	
