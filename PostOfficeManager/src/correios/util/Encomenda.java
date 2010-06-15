@@ -3,21 +3,43 @@ package correios.util;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
+/**
+ * Classe que implementa encomendas simples e com valor declarado.
+ * Essa classe também é a superclasse de EncomendaRegistrada e 
+ * consequentemente de EncomendaExpressa.
+ * @author Vinícius Souza
+ * @version 2.0
+ */
 public class Encomenda {
 	
-	protected String cepRemetente, cepDestinatario, dataEnvio, dataRecebimento, id, atendente;
+	protected String cepRemetente, cepDestinatario, dataEnvio, dataRecebimento, id, atendente, cidade, estado;
 	protected double peso, valorDeclarado;
 	protected int tentativasDeEntrega=3;
 	
+	/**
+	 * Construtor que não recebe valor declarado como parâmetro (Encomendas simples). 
+	 * @param String - cepRemetente
+	 * @param String - cepDestinatario
+	 * @param String - dataEnvio
+	 * @param String - nome da(o) atendente
+	 * @param String - cidade
+	 * @param String - estado
+	 * @param double - peso (em gramas)
+	 * @throws IllegalArgumentException - quando algum parâmetro é inválido.
+	 *         TipoDeEncomendaException - Quando o peso ou valor declarado da encomenda, a caracterizam de outro tipo.
+	 */
 	public Encomenda(String cepRemetente, String cepDestinatario, 
-					 String dataEnvio, String atendente, 
+					 String dataEnvio, String atendente,
+					 String cidade, String estado,
 					 double peso) throws Exception {
 		
-		if ((!correios.util.VerificaDados.verificaCep(cepRemetente)) ||
-			(!correios.util.VerificaDados.verificaCep(cepDestinatario)) ||
+		if ((!VerificaDados.verificaCep(cepRemetente)) ||
+			(!VerificaDados.verificaCep(cepDestinatario)) ||
 			(peso <= 0) ||
-			(!correios.util.VerificaDados.verificaNome(atendente)) ||
-			(!correios.util.VerificaDados.verificaData(dataEnvio))) {
+			(!VerificaDados.verificaNome(atendente)) ||
+			(!VerificaDados.verificaData(dataEnvio)) ||
+			(!VerificaDados.verificaEstado(estado)) ||
+			(!VerificaDados.verificaNome(cidade))) {
 			
 			throw new IllegalArgumentException("algum(ns) parametro(s) inválido(s)");
 		}
@@ -31,6 +53,8 @@ public class Encomenda {
 		this.cepDestinatario = cepDestinatario;
 		this.dataEnvio = dataEnvio;
 		this.atendente = atendente;
+		this.cidade = cidade;
+		this.estado = estado;
 		this.peso = peso;
 		
 		/* O id de uma encomenda é único. É utilizado para acessar os dados persistentes da encomenda.
@@ -43,8 +67,22 @@ public class Encomenda {
         Thread.sleep(1000);
 	}
 	
+	/**
+	 * Construtor que recebe valor declarado como parâmetro. 
+	 * @param String - cepRemetente
+	 * @param String - cepDestinatario
+	 * @param String - dataEnvio
+	 * @param String - nome da(o) atendente
+	 * @param String - cidade
+	 * @param String - estado
+	 * @param double - peso (em gramas)
+	 * @param double - valor declarado
+	 * @throws IllegalArgumentException - quando algum parâmetro é inválido.
+	 *         TipoDeEncomendaException - Quando o peso ou valor declarado da encomenda, a caracterizam de outro tipo.
+	 */
 	public Encomenda(String cepRemetente, String cepDestinatario, 
-			 String dataEnvio, String atendente, 
+			 String dataEnvio, String atendente,
+			 String cidade, String estado,
 			 double peso, double valorDeclarado) throws Exception {
 		
 		if ((!correios.util.VerificaDados.verificaCep(cepRemetente)) ||
@@ -52,7 +90,9 @@ public class Encomenda {
 			(peso <= 0) ||
 			(!correios.util.VerificaDados.verificaNome(atendente)) ||
 			(!correios.util.VerificaDados.verificaData(dataEnvio)) ||
-			(valorDeclarado<0)) {
+			(valorDeclarado<0) ||
+			(!VerificaDados.verificaEstado(estado)) ||
+			(!VerificaDados.verificaNome(cidade))) {
 				
 			throw new IllegalArgumentException("algum(ns) parametro(s) inválido(s)");
 		}
@@ -67,14 +107,15 @@ public class Encomenda {
 		this.cepDestinatario = cepDestinatario;
 		this.dataEnvio = dataEnvio;
 		this.atendente = atendente;
+		this.cidade = cidade;
+		this.estado = estado;
 		this.peso = peso;
 		this.valorDeclarado = valorDeclarado;
 		
 		id = new SimpleDateFormat("ddMMyyHHmmss").format((new GregorianCalendar()).getTime());
         Thread.sleep(1000);
 	}
-	
-	
+		
 	//ACCESSOR METHODS
 	/**
 	 * Retorna o atendente que realizou a operação
@@ -144,6 +185,22 @@ public class Encomenda {
 	public int getTentativasDeEntrega() {
 		return tentativasDeEntrega;
 	}
+	/**
+	 * Retorna a cidade para onde a encomenda vai ser entregue.
+	 * @return String - cidade
+	 */
+	public String getCidade() {
+		return cidade;
+	}
+	/**
+	 * Retorna o estado para onde a encomenda vai ser entregue.
+	 * @return String - estado
+	 */
+	public String getEstado() {
+		return estado;
+	}
+	
+	//OUTROS MÉTODOS
 	/**
 	 * Diminui o contador de chances da encomenda, se ele chegar a zero, significa que a carta voltou ao destinátario.
 	 */
