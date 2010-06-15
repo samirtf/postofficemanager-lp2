@@ -83,7 +83,8 @@ public class VerificaDados {
 	 */
 	public static boolean verificaData(String data)throws Exception{
 		verificaOitoDigitos(data);
-		int dataHoje = Integer.parseInt(data);
+		
+		int dataHoje = Integer.parseInt(data)/10000;
 		if((dataHoje % 100) < 1 || (dataHoje % 100) > 12 || (dataHoje / 100) < 1 || (dataHoje / 100) > 31){
 			throw new Exception("A data fornecida eh invalida");
 		}	
