@@ -14,7 +14,7 @@ public class LoginErrado extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
-    public void initComponents() {
+    private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         jPasswordField2 = new javax.swing.JPasswordField();
