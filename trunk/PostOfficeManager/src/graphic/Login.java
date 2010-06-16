@@ -14,7 +14,7 @@ public class Login extends javax.swing.JFrame {
      * initialize the form.
      */
     @SuppressWarnings("unchecked")
-    public void initComponents() {
+    private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         jPasswordField2 = new javax.swing.JPasswordField();
@@ -102,7 +102,16 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }
-
+    
+    public static void main(String[] args) throws InterruptedException {
+		Login l = new Login();
+		l.setVisible(true);
+		Thread.sleep(1000);
+		LoginErrado l2 = new LoginErrado();
+		l2.setVisible(true);
+	}
+    
+    
     // Variables declaration 
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
