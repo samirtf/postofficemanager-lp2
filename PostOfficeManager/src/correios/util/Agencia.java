@@ -1,6 +1,11 @@
 package correios.util;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+
 /**
  * Classe que implementa os atributos e comportamentos de uma agencia de Correios.
  * @author Vinícius Souza
@@ -11,13 +16,25 @@ public class Agencia {
 	private Atendente atendenteAtivo;
 	private ArrayList<Encomenda> listaDeEncomendas;
 	
+	
 	/**
 	 * Construtor da classe. O usuário passado como parâmetro tem que estar ativo no momento.
 	 * @param Atendente - atendente ativo no momento.
 	 */
 	public Agencia(Atendente atendenteAtivo) {
 		this.atendenteAtivo = atendenteAtivo;
-		listaDeEncomendas = new ArrayList<Encomenda>();
+		
+		//LEITURA		
+		try {
+			FileInputStream fis = new FileInputStream("t.tmp");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			
+			listaDeEncomendas = (ArrayList<Encomenda>) ois.readObject();
+			ois.close();
+		} catch (Exception e) {
+			listaDeEncomendas = new ArrayList<Encomenda>();
+		}
+		salvarEmDisco();
 	}
 	/**
 	 * Retorna o atendente ativo no momento.
@@ -105,6 +122,7 @@ public class Agencia {
 		return encomendasDataEnvio;
 		
 	}
+	
 	/**
 	 * Retorna uma lista com todas as encomendas recebidas numa determinada data.
 	 * @param String - data
@@ -118,5 +136,37 @@ public class Agencia {
 			}
 		}
 		return encomendasDataRecebimento;
-	}	
+	}
+	
+	/**
+	 * Método tilizado para o envio de encomendas.
+	 * @param Encomenda - encomenda a ser enviada.
+	 * @return boolean - se a operação realizada.
+	 */
+	public boolean addEncomenda(Encomenda encomenda) {
+		listaDeEncomendas.add(encomenda);
+		if (salvarEmDisco()) {
+			return true;
+		}
+		listaDeEncomendas.remove(encomenda);
+		return false;
+	}
+		
+	/**
+	 * Salva as informações de encomenda em disco.
+	 * @return boolean - Se a operação foi realizada com sucesso
+	 */
+	public boolean salvarEmDisco() {
+		try {
+			FileOutputStream arquivo = new FileOutputStream("t.tmp");
+			ObjectOutputStream encomendas = new ObjectOutputStream(arquivo);
+
+			encomendas.writeObject(listaDeEncomendas);
+			encomendas.close();
+			
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
 }
