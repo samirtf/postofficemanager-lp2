@@ -1,5 +1,8 @@
 package graphic;
 
+/** 
+ * @author Vinícius Souza
+ */
 public class LoginErrado extends javax.swing.JFrame {
 
     /** Creates new form LoginErrado */
