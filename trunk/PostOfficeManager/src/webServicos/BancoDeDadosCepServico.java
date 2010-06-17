@@ -32,7 +32,7 @@ public class BancoDeDadosCepServico implements BancoDeDadosCepServicoIF{
      * Contrutor padrao do BancoDeDadosCepServico.
      * 
      * @throws Exception
-     * 		
+     * 		Caso ocorra algum erro na manipulacao do arquivo.
      */
     public BancoDeDadosCepServico() throws Exception{
         mapa = new HashMap<String, Cep>();
@@ -219,7 +219,7 @@ public class BancoDeDadosCepServico implements BancoDeDadosCepServicoIF{
      * Verifica se o endereco http://www.republicavirtual.com.br/cep esta acessivel.
      * 
      * @exception
-     * 
+     * 		Em caso de problemas na conexão ou na acessibilidade ao endereco eletronico.
      */
     public boolean testaConexaoInternet() throws IOException {
     	
