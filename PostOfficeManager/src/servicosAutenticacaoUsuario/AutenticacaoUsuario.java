@@ -2,13 +2,12 @@
 package servicosAutenticacaoUsuario;
 
 
-import AutenticacaoUsuario.Usuario;
-import AutenticacaoUsuario.Usuario.Prioridade;
-import Excecoes.AutenticacaoUsuarioExcecao;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.HashMap;
+
+import servicosAutenticacaoUsuario.Usuario.Prioridade;
 
 /**
  *
