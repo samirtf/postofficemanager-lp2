@@ -105,7 +105,7 @@ package graphic;
 	    }                                        
 
 	    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-	        // TODO add your handling code here:
+	        
 	    }                                        
 
 	    
