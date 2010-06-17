@@ -10,7 +10,7 @@ package AutenticacaoUsuario;
 public class Criptografia {
 
     /**
-     * Criptografa senha do usuário a partir do login e da senha do usuári.
+     * Criptografa senha do usuário a partir do login e da senha do usuário.
      * @param login
      *      O login do usuário.
      * @param senha
@@ -41,6 +41,7 @@ public class Criptografia {
             nsae.printStackTrace();
         }
         return codificado;
-    }
-}
+    }// fim do método estático criptografia.
+    
+}// fim da classe Criptografia.
 

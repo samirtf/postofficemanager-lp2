@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package AutenticacaoUsuario;
 
@@ -11,6 +7,8 @@ import java.util.GregorianCalendar;
 /**
  *
  * @author Samir Trajano Feitosa
+ * @version 1.0
+ * @since 11/06/2010
  */
 public class ErroAutenticacaoUsuario {
     private String id = null;
@@ -31,7 +29,7 @@ public class ErroAutenticacaoUsuario {
         this.idParcial = ano + "/" + diaDoAno;
         this.dataHora = String.format("%tc", instanteErro);
         
-    }
+    }// fim do construtor padrão.
 
     /**
      * Constroi um erro de autenticação de usuário a partir de um login.
@@ -41,7 +39,7 @@ public class ErroAutenticacaoUsuario {
     public ErroAutenticacaoUsuario(String login){
         this();
         this.login = login;
-    }
+    }// fim do construtor a partir de uma String login.
 
     /**
      * Recupera o ID do erro de autenticação do usuário.
@@ -50,7 +48,7 @@ public class ErroAutenticacaoUsuario {
      */
     public String getId(){
         return this.id;
-    }
+    }// fim do método getId.
 
     /**
      * Recupera dados do instante em que o erro foi gerado.
@@ -59,7 +57,7 @@ public class ErroAutenticacaoUsuario {
      */
     public GregorianCalendar getInstanteErro(){
         return this.instanteErro;
-    }
+    }// fim do método getInstanteErro.
 
     /**
      * Recupera o login que estava sendo usado para logar no sistema.
@@ -68,7 +66,7 @@ public class ErroAutenticacaoUsuario {
      */
     public String getLogin(){
         return this.login;
-    }
+    }// fim do método getLogin.
 
     /**
      * Recupera a data e a hora do erro.
@@ -77,7 +75,7 @@ public class ErroAutenticacaoUsuario {
      */
     public String getDataHora(){
         return this.dataHora;
-    }
+    }// fim do método getDataHora.
 
     /**
      * Recupera o ID Parcial. O ID Parcial serve usar como filtro dos erros do dia.
@@ -86,7 +84,7 @@ public class ErroAutenticacaoUsuario {
      */
     public String getIdParcial(){
         return this.idParcial;
-    }
+    }// fim do método getIdParcial.
 
     /**
      * Compara a igualdade de dois erros.
@@ -112,15 +110,14 @@ public class ErroAutenticacaoUsuario {
             return false;
         }
         return true;
-    }
+    }// fim do método equals.
 
     @Override
     public int hashCode() {
         int hash = 7;
         hash = 79 * hash + (this.id != null ? this.id.hashCode() : 0);
         return hash;
-    }
+    }// fim do método hashCode.
 
-
-}
+}// fim da classe ErroAutenticacaoUsuario.
 
