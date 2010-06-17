@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Classe que implementa os atributos e comportamentos de uma agencia de Correios.
  * @author Vinícius Souza
- * @version 1.0
+ * @version 1.5
  */
 public class Agencia {
 	
