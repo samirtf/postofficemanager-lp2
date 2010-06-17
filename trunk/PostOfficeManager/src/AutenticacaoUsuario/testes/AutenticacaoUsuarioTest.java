@@ -1,9 +1,7 @@
 
-
 package AutenticacaoUsuario;
 
 import AutenticacaoUsuario.Usuario.Prioridade;
-import Excecoes.AutenticacaoUsuarioExcecao;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -13,13 +11,11 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Samir Trajano Feitosa
- * @version 1.0
- * @since 17/06/2010
+ * @author Samir
  */
-public class AutenticacaoUsuarioIFTest {
+public class AutenticacaoUsuarioTest {
 
-    public AutenticacaoUsuarioIFTest() {
+    public AutenticacaoUsuarioTest() {
     }
 
     @BeforeClass
@@ -39,13 +35,13 @@ public class AutenticacaoUsuarioIFTest {
     }
 
     /**
-     * Test of validaLogin method, of class AutenticacaoUsuarioIF.
+     * Test of validaLogin method, of class AutenticacaoUsuario.
      */
     @Test
     public void testValidaLogin() throws Exception {
         System.out.println("validaLogin");
         String login = "";
-        AutenticacaoUsuarioIF instance = new AutenticacaoUsuarioIFImpl();
+        AutenticacaoUsuario instance = new AutenticacaoUsuario();
         boolean expResult = false;
         boolean result = instance.validaLogin(login);
         assertEquals(expResult, result);
@@ -54,14 +50,14 @@ public class AutenticacaoUsuarioIFTest {
     }
 
     /**
-     * Test of validaSenha method, of class AutenticacaoUsuarioIF.
+     * Test of validaSenha method, of class AutenticacaoUsuario.
      */
     @Test
     public void testValidaSenha() throws Exception {
         System.out.println("validaSenha");
         String login = "";
         String senha = "";
-        AutenticacaoUsuarioIF instance = new AutenticacaoUsuarioIFImpl();
+        AutenticacaoUsuario instance = new AutenticacaoUsuario();
         boolean expResult = false;
         boolean result = instance.validaSenha(login, senha);
         assertEquals(expResult, result);
@@ -70,7 +66,7 @@ public class AutenticacaoUsuarioIFTest {
     }
 
     /**
-     * Test of cadastraUsuario method, of class AutenticacaoUsuarioIF.
+     * Test of cadastraUsuario method, of class AutenticacaoUsuario.
      */
     @Test
     public void testCadastraUsuario() throws Exception {
@@ -78,7 +74,7 @@ public class AutenticacaoUsuarioIFTest {
         String login = "";
         String senha = "";
         Prioridade prioridade = null;
-        AutenticacaoUsuarioIF instance = new AutenticacaoUsuarioIFImpl();
+        AutenticacaoUsuario instance = new AutenticacaoUsuario();
         boolean expResult = false;
         boolean result = instance.cadastraUsuario(login, senha, prioridade);
         assertEquals(expResult, result);
@@ -87,14 +83,14 @@ public class AutenticacaoUsuarioIFTest {
     }
 
     /**
-     * Test of logaNoSistema method, of class AutenticacaoUsuarioIF.
+     * Test of logaNoSistema method, of class AutenticacaoUsuario.
      */
     @Test
     public void testLogaNoSistema() {
         System.out.println("logaNoSistema");
         String login = "";
         String senha = "";
-        AutenticacaoUsuarioIF instance = new AutenticacaoUsuarioIFImpl();
+        AutenticacaoUsuario instance = new AutenticacaoUsuario();
         boolean expResult = false;
         boolean result = instance.logaNoSistema(login, senha);
         assertEquals(expResult, result);
@@ -103,52 +99,27 @@ public class AutenticacaoUsuarioIFTest {
     }
 
     /**
-     * Test of contadorFalhaAutenticacao method, of class AutenticacaoUsuarioIF.
+     * Test of contadorFalhaAutenticacao method, of class AutenticacaoUsuario.
      */
     @Test
     public void testContadorFalhaAutenticacao() {
         System.out.println("contadorFalhaAutenticacao");
-        AutenticacaoUsuarioIF instance = new AutenticacaoUsuarioIFImpl();
+        AutenticacaoUsuario instance = new AutenticacaoUsuario();
         instance.contadorFalhaAutenticacao();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of bloquearSistema method, of class AutenticacaoUsuarioIF.
+     * Test of bloquearSistema method, of class AutenticacaoUsuario.
      */
     @Test
     public void testBloquearSistema() {
         System.out.println("bloquearSistema");
-        AutenticacaoUsuarioIF instance = new AutenticacaoUsuarioIFImpl();
+        AutenticacaoUsuario instance = new AutenticacaoUsuario();
         instance.bloquearSistema();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }
-
-    public class AutenticacaoUsuarioIFImpl implements AutenticacaoUsuarioIF {
-
-        public boolean validaLogin(String login) throws AutenticacaoUsuarioExcecao {
-            return false;
-        }
-
-        public boolean validaSenha(String login, String senha) throws AutenticacaoUsuarioExcecao {
-            return false;
-        }
-
-        public boolean cadastraUsuario(String login, String senha, Prioridade prioridade) throws AutenticacaoUsuarioExcecao {
-            return false;
-        }
-
-        public boolean logaNoSistema(String login, String senha) {
-            return false;
-        }
-
-        public void contadorFalhaAutenticacao() {
-        }
-
-        public void bloquearSistema() {
-        }
     }
 
 }
