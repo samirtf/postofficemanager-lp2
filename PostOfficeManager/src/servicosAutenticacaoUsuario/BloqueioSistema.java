@@ -11,8 +11,8 @@ import java.util.GregorianCalendar;
  * @version 1.0
  * @since 11/06/2010
  *
- * @Definição:
- *      Bloqueia o sistema por 30 minutos para a segurança dos dados do sistema.
+ * @Definiï¿½ï¿½o:
+ *      Bloqueia o sistema por 30 minutos para a seguranï¿½a dos dados do sistema.
  *
  */
 public class BloqueioSistema {
@@ -23,9 +23,9 @@ public class BloqueioSistema {
     private boolean desbloqueado = false;
 
     /**
-     * Constroi um bloqueio de sistema a partir de um Erro de Autenticação do Usuário.
+     * Constroi um bloqueio de sistema a partir de um Erro de Autenticaï¿½ï¿½o do Usuï¿½rio.
      * @param erroAutenticacaoUsuario
-     *      O erro de autenticação do usuário.
+     *      O erro de autenticaï¿½ï¿½o do usuï¿½rio.
      */
     public BloqueioSistema(ErroAutenticacaoUsuario erroAutenticacaoUsuario){
         this.erroAutenticacaoUsuario = erroAutenticacaoUsuario;
@@ -42,35 +42,35 @@ public class BloqueioSistema {
      */
     public String getId(){
         return this.id;
-    }// fim do método getId.
+    }// fim do metodo getId.
 
     /**
-     * Recupera o erro de autencitação do usuário.
+     * Recupera o erro de autencitaï¿½ï¿½o do usuï¿½rio.
      * @return
-     *      O erro de autenticação do usuário.
+     *      O erro de autenticaï¿½ï¿½o do usuï¿½rio.
      */
     public ErroAutenticacaoUsuario getErroAutenticacaoUsuario(){
         return this.erroAutenticacaoUsuario;
-    }// fim do método getErroAutenticacaoUsuario
+    }// fim do metodo getErroAutenticacaoUsuario
 
     /**
-     * Recupera a previsão de desbloqueio do sistema.
+     * Recupera a previsï¿½o de desbloqueio do sistema.
      * @return
-     *      A previsão de desbloqueio do sistema.
+     *      A previsï¿½o de desbloqueio do sistema.
      */
     public GregorianCalendar getPrevisaoDesbloqueio(){
         return this.previsaoDesbloqueio;
-    }// fim do método getPrevisaoDesbloqueado
+    }// fim do mï¿½todo getPrevisaoDesbloqueado
 
     /**
      * Recupera o estado do sistema.
      * @return
      *      True - Se o sistema estiver desbloqueado.
-     *      False - Se o sistema não estiver desbloqueado.
+     *      False - Se o sistema nï¿½o estiver desbloqueado.
      */
     public boolean getDesbloqueado(){
         return this.desbloqueado;
-    }// fim do método getDesbloqueado.
+    }// fim do mï¿½todo getDesbloqueado.
 
     /**
      * Configura o estado do sistema.
@@ -80,18 +80,18 @@ public class BloqueioSistema {
      */
     public void setDesbloqueado(boolean desbloquear){
         this.desbloqueado = desbloquear;
-    }// fim do método setDesbloqueio.
+    }// fim do mï¿½todo setDesbloqueio.
 
     /**
      * Compara a igualdade de dois objetos. Supoe-se que o outro objeto seja
-     * instância de BloqueioSistema.
+     * instï¿½ncia de BloqueioSistema.
      * @param obj
      *      O outro objeto a ser comparado.
      * @return
      *      True - Se os dois bloqueios de sistema forem iguais.
-     *      False - Se o segundo objeto a se comparar não for uma instância
+     *      False - Se o segundo objeto a se comparar nï¿½o for uma instï¿½ncia
      *              de BloqueioSistema.
-     *      False - Se os dois bloqueios não forem iguais.
+     *      False - Se os dois bloqueios nï¿½o forem iguais.
      */
     @Override
     public boolean equals(Object obj) {
@@ -106,7 +106,7 @@ public class BloqueioSistema {
             return false;
         }
         return true;
-    }// fim do método equals.
+    }// fim do mï¿½todo equals.
 
     /**
      * Gera o hashCode do bloqueio de sistema.
@@ -118,7 +118,7 @@ public class BloqueioSistema {
         int hash = 7;
         hash = 37 * hash + (this.id != null ? this.id.hashCode() : 0);
         return hash;
-    }// fim do método hashCode.
+    }// fim do mï¿½todo hashCode.
 
 }// fim da classe BloqueioSistema
 

@@ -6,6 +6,7 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import servicosAutenticacaoUsuario.Usuario.Prioridade;
 
@@ -17,41 +18,93 @@ import servicosAutenticacaoUsuario.Usuario.Prioridade;
  */
 public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	//Mapa de usuarios cadastrados.
+    private HashMap<String, Usuario> cadastros;
+    
+	private LinkedList<ErroAutenticacaoUsuario>  listaDeErros;
+	
+	private LinkedList<BloqueioSistema> listaDeBloqueios;
+	
+	private BloqueioSistema bloqueioSistema = null;
+	
+	private boolean sistemaDesbloqueado = true;
+
 	// Contador do numero de falhas geradas durante o login.
     private Integer contadorFalhasAutenticacao = 0;
 
-    //Mapa de usuários cadastrados.
-    HashMap<String, Usuario> cadastros = new HashMap<String, Usuario>();
+    
     public AutenticacaoUsuario(){
-    	//Recupera usuários cadastrados do banco de dados cadastrosUsuarios.txt.
+    	
+    	// Recupera usuarios cadastrados do banco de dados cadastrosUsuarios.txt.
         try{
             ObjectInputStream objectIn = new ObjectInputStream(
-                    new BufferedInputStream(new FileInputStream("cadastrosUsuarios.txt")));
-            cadastros = (HashMap<String, Usuario>)objectIn.readObject();
+                    new BufferedInputStream(new FileInputStream("cadastros_usuarios.txt")));
+            HashMap<String, Usuario> readObject = (HashMap<String, Usuario>)objectIn.readObject();
+			cadastros = readObject;
             objectIn.close();
 
             
         }catch(Exception e){
-            System.out.println("Erro: " + e.getMessage() + e);
+            System.err.println("Erro: " + e.getMessage() + e);
             e.printStackTrace();
         }
+        
+        // Recupera a lista de erros de autenticacao.
+        try{
+            ObjectInputStream objectIn = new ObjectInputStream(
+                    new BufferedInputStream(new FileInputStream("lista_erros_autenticacao.txt")));
+            LinkedList<ErroAutenticacaoUsuario> readObject = 
+            	   (LinkedList<ErroAutenticacaoUsuario>)objectIn.readObject();
+            listaDeErros = readObject;
+            objectIn.close();
+            
+        }catch(Exception e){
+            System.err.println("Erro: " + e.getMessage() + e);
+            e.printStackTrace();
+        }
+        
+        // Recupera a lista de erros de bloqueio de sistema.
+        try{
+            ObjectInputStream objectIn = new ObjectInputStream(
+                    new BufferedInputStream(new FileInputStream("lista_bloqueios.txt")));
+            LinkedList<BloqueioSistema> readObject = 
+            	   (LinkedList<BloqueioSistema>)objectIn.readObject();
+            listaDeBloqueios = readObject;
+            objectIn.close();
+            
+        }catch(Exception e){
+            System.err.println("Erro: " + e.getMessage() + e);
+            e.printStackTrace();
+        }
+        
+        // Recupera a lista de erros de bloqueio de sistema.
+        if ( listaDeBloqueios != null && !listaDeBloqueios.isEmpty() ){
+        	bloqueioSistema = listaDeBloqueios.getLast();
+        	sistemaDesbloqueado = bloqueioSistema.getDesbloqueado();
+        }
+        
 
     }
 
 
     /**
-     * Verifica se Login do Usuário é válido.
+     * Verifica se Login do Usuï¿½rio ï¿½ vï¿½lido.
      * @param login
-     *      O login do usuário.
+     *      O login do usuï¿½rio.
      * @return
-     *      True - Se o login for válido.
-     *      False - Se o login não for válido.
+     *      True - Se o login for vï¿½lido.
+     *      False - Se o login nï¿½o for vï¿½lido.
      * @throws AutenticacaoUsuarioExcecao
-     *      Se houver problemas na autenticação do login.
+     *      Se houver problemas na autenticaï¿½ï¿½o do login.
      */
     public boolean validaLogin(String login) throws AutenticacaoUsuarioExcecao{
-        final int MIN_LENGTH_PASS = 8;// Tamanho mínimo do login.
-        final int MAX_LENGTH_PASS = 12;// Tamanho máximo do login.
+        final int MIN_LENGTH_PASS = 8;// Tamanho mï¿½nimo do login.
+        final int MAX_LENGTH_PASS = 12;// Tamanho mï¿½ximo do login.
 
         // Se login for nulo, retorna false.
         if( login == null ){
@@ -61,7 +114,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
         else if( login.equals("")){
             throw new AutenticacaoUsuarioExcecao(2);
         }
-        // Se login não for formado apenas por caracteres alfanuméricos,
+        // Se login nï¿½o for formado apenas por caracteres alfanumï¿½ricos,
         // retorna false.
         else if( !(login.matches("^[a-zA-Z0-9]*$") )){
             throw new AutenticacaoUsuarioExcecao(3);
@@ -79,21 +132,21 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     }
 
     /**
-     * Verifica se Senha do Usuário é válida.
+     * Verifica se Senha do Usuï¿½rio ï¿½ vï¿½lida.
      * @param login
-     *      O login do usuário.
+     *      O login do usuï¿½rio.
      * @param senha
-     *      A senha do usuário.
+     *      A senha do usuï¿½rio.
      * @return
-     *      True - Se a senha for válida.
-     *      False - Se a senha não for válida.
+     *      True - Se a senha for vï¿½lida.
+     *      False - Se a senha nï¿½o for vï¿½lida.
      * @throws AutenticacaoUsuarioExcecao
-     *      Se houver problemas na autenticação do login.
+     *      Se houver problemas na autenticaï¿½ï¿½o do login.
      */
     public boolean validaSenha(String login, String senha) 
             throws AutenticacaoUsuarioExcecao{
-        final int MIN_LENGTH_PASS = 8;// Tamanho mínimo do login.
-        final int MAX_LENGTH_PASS = 12;// Tamanho máximo do login.
+        final int MIN_LENGTH_PASS = 8;// Tamanho mï¿½nimo do login.
+        final int MAX_LENGTH_PASS = 12;// Tamanho mï¿½ximo do login.
 
         // Se senha for nulo, retorna false.
         if( senha == null ){
@@ -116,26 +169,26 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     }
 
     /**
-     * Cadastra um usuário no sistema a partir de um login e uma senha. O cadastro
-     * de usuários só deve ser realizado por um usuário Administrador.
+     * Cadastra um usuï¿½rio no sistema a partir de um login e uma senha. O cadastro
+     * de usuï¿½rios sï¿½ deve ser realizado por um usuï¿½rio Administrador.
      * @param login
-     *      O login do usuário.
+     *      O login do usuï¿½rio.
      * @param senha
-     *      A senha do usuário.
+     *      A senha do usuï¿½rio.
      * @return
-     *      True - Se o usuário for cadastrado.
-     *      False - Se o usuário não for cadastrado.
+     *      True - Se o usuï¿½rio for cadastrado.
+     *      False - Se o usuï¿½rio nï¿½o for cadastrado.
      */
     public boolean cadastraUsuario(String login, String senha, Prioridade prioridade)
               throws AutenticacaoUsuarioExcecao{
         try{
-            // Se prioridade for null, um usuário default será cadastrado
+            // Se prioridade for null, um usuï¿½rio default serï¿½ cadastrado
             if ( validaLogin(login) && validaSenha(login, senha) && prioridade == null){
                 cadastros.put(login, new Usuario(login, senha));
                 return true;
             }
-            // Se prioridade for instancia de Prioridade, será criado um usuário
-            // com prioridade pré-definida.
+            // Se prioridade for instancia de Prioridade, serï¿½ criado um usuï¿½rio
+            // com prioridade prï¿½-definida.
             else if( validaLogin(login) && validaSenha(login, senha) &&
                     prioridade.getClass() == Prioridade.class ){
                 cadastros.put(login, new Usuario(login, senha, prioridade));
@@ -151,14 +204,14 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     }
 
     /**
-     * Loga usuário no sistema a partir de um login e uma senha.
+     * Loga usuï¿½rio no sistema a partir de um login e uma senha.
      * @param login
-     *      O login do usuário.
+     *      O login do usuï¿½rio.
      * @param senha
-     *      A senha do usuário.
+     *      A senha do usuï¿½rio.
      * @return
      *      True - Se o Login no sistema for realizado.
-     *      False - Se o Login no sistema não for realizado.
+     *      False - Se o Login no sistema nï¿½o for realizado.
      */
     public boolean logaNoSistema(String login, String senha) {
         if ( cadastros != null && cadastros.size()!= 0 &&
@@ -173,14 +226,49 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     }
 
     /**
-     * Incrementa contador de falha na autenticação de 1.
+     * Incrementa contador de falha na autenticaï¿½ï¿½o de 1.
      */
     public void contadorFalhaAutenticacao() {
         this.contadorFalhasAutenticacao++;
     }
 
     /**
-     *  Método criado com o intuito de evitar a entrada no sistema por Força-Bruta.
+     * Gera um erro de autenticacao.
+     * @return
+     * 		True - Se o erro de autenticacao for gerado e adicionada na lista de erros
+     *             de autenticacao.
+     *      False - Se nÃ£o o erro nao for gerado.
+     */
+    public boolean geraErroAutenticacao(){
+    	if( listaDeErros != null ){
+    		listaDeErros.addLast(new ErroAutenticacaoUsuario());
+    		return true;
+    	}
+    	return false;
+    }// fim do metodo geraErroAutenticacao.
+    
+    /**
+     * Gera um erro de autenticacao a partir de um login de usuÃ¡rio.
+     * @param login
+     * 		O login do usuÃ¡rio.
+     * @return
+     * 		True - Se o erro de autenticacao for gerado e adicionada na lista de erros
+     *             de autenticacao.
+     *      False - Se nÃ£o o erro nao for gerado.
+     */
+    public boolean geraErroAutenticacao(String login){
+    	if( login == null ){
+    		login = "";
+    	}
+    	if( listaDeErros != null ){
+    		listaDeErros.addLast(new ErroAutenticacaoUsuario(login));
+    		return true;
+    	}
+    	return false;
+    }
+    
+    /**
+     *  Mï¿½todo criado com o intuito de evitar a entrada no sistema por Forï¿½a-Bruta.
      *  Bloqueia o sistema por 30 minutos.
      */
     public void bloquearSistema() {
