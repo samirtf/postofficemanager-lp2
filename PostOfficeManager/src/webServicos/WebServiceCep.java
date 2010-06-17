@@ -29,6 +29,7 @@ public interface WebServiceCep {
 	 * @return {@link SearchEngineResults} contendo o resultado da opera��o.
 	 */
 	public SearchEngineResults getResult();
+	
 	/**
 	 * Informa o c�digo do resultado da pesquisa.
 	 * <BR>C�digos conhecidos:
@@ -44,11 +45,13 @@ public interface WebServiceCep {
 	 * @return <tt>int</tt> C�digo do resultado.
 	 */
 	public int getResulCode();
+	
 	/**
 	 * Informa��o textual sobre o resultado da pesquisa
 	 * @return {@link String} contendo a descri��o do resultado da pesquisa.
 	 */
 	public String getResultText();
+	
 	/**
 	 * Informa se o cep foi encontrado com sucesso.
 	 * @return	<tt>true</tt> - caso a pesquisa ache um resultado no banco.
@@ -56,54 +59,64 @@ public interface WebServiceCep {
 	 * 			cadastrado.
 	 */
 	public boolean wasSuccessful();
+	
 	/**
 	 * Informa se n�o existe o cep cadastrado.
 	 * @return	<tt>true</tt> - Caso o cep n�o tenha cido encontrado.
 	 * 			<BR><tt>false</tt> - Caso haja falhas, ou caso o cep esteja cadastrado.
 	 */
 	public boolean isCepNotFound();
+	
 	/**
 	 * Informa se houve falhas na busca do cep
 	 * @return	<tt>true</tt> - Caso ocorra falhas
 	 * 			<BR><tt>false</tt> - Caso n�o haja falhas.
 	 */
 	public boolean hasException();
+	
 	/**
 	 * Pega a exce��o que ocorreu durante a busca, retorna null caso n�o haja exce��es.
 	 * @return	<tt>{@link Exception}</tt> - Caso ocorra falhas
 	 * 			<BR><tt>null</tt> - Caso n�o haja falhas.
 	 */
 	public Exception getException();
+	
 	/**
 	 * Informa o bairro
 	 * @return {@link String} contendo o nome bairro
 	 */
 	public String getBairro();
+	
 	/**
 	 * Informa a cidade
 	 * @return {@link String} contendo o nome da Cidade
 	 */
 	public String getCidade();
+	
 	/**
 	 * Informa a Unidade Federativa
 	 * @return {@link String} contendo o nome da Unidade Federativa
 	 */
 	public String getUf();
+	
 	/**
 	 * Informa o logradouro.
 	 * @return {@link String} contendo o nome do Logradouro
 	 */
 	public String getLogradouro();
+	
 	/**
 	 * Informa o logradouro junto com o tipo de logradouro.
 	 * @return {@link String} contendo o tipo de Logradouro + nome do Logradouro.
 	 */
 	public String getLogradouroFull();
+	
 	/**
 	 * Informa o tipo do logradouro.
 	 * @return {@link String} contendo o tipo de logradouuro.
 	 */
 	public String getLogradouroType();
+	
 	/**
 	 * Informa o cep.
 	 * @return {@link String} contendo o cep.

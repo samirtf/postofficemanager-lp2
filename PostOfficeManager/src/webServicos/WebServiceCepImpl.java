@@ -59,6 +59,7 @@ final class WebServiceCepImpl implements WebServiceCep {
     void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
+    
     /**
 	 * Ajusta o valor do bairro deste objeto.
 	 * <BR>Este m�todo tem visibilidade default pois deve ser acessado apenas pelas
@@ -68,6 +69,7 @@ final class WebServiceCepImpl implements WebServiceCep {
     void setBairro(String bairro) {
 		this.bairro = bairro;
 	}
+    
     /**
 	 * Ajusta o valor do Tipo de Logradouro deste objeto.
 	 * <BR>Este m�todo tem visibilidade default pois deve ser acessado apenas pelas
@@ -77,6 +79,7 @@ final class WebServiceCepImpl implements WebServiceCep {
     void setLogradouroType(String logradouroType) {
 		this.logradouroType = logradouroType;
 	}
+    
     /**
 	 * Ajusta o valor do logradouro deste objeto.
 	 * <BR>Este m�todo tem visibilidade default pois deve ser acessado apenas pelas
@@ -86,6 +89,7 @@ final class WebServiceCepImpl implements WebServiceCep {
     void setLogradouro(String logradouro) {
 		this.logradouro = logradouro;
 	}
+    
     /**
 	 * Ajusta o valor do resultado deste objeto.
 	 * <BR>Este m�todo tem visibilidade default pois deve ser acessado apenas pelas
@@ -95,6 +99,7 @@ final class WebServiceCepImpl implements WebServiceCep {
     void setResulCode(int resultado) {
 		this.resulCode = resultado;
 	}
+    
     /**
 	 * Ajusta o valor do texto do resultado deste objeto.
 	 * <BR>Este m�todo tem visibilidade default pois deve ser acessado apenas pelas
@@ -104,6 +109,7 @@ final class WebServiceCepImpl implements WebServiceCep {
     void setResultText(String resultado_txt) {
 		this.resultText = resultado_txt;
 	}
+    
     /**
 	 * Ajusta o valor da unidade federativa deste objeto.
 	 * <BR>Este m�todo tem visibilidade default pois deve ser acessado apenas pelas
@@ -132,9 +138,16 @@ final class WebServiceCepImpl implements WebServiceCep {
 	public int getResulCode() {
 		return resulCode;
 	}
+	
+	/**
+	 * Recupera o resultado da SearchEngine.
+	 * @return
+	 * 		O resultado da SearchEngine.
+	 */
 	public SearchEngineResults getResult() {
 		return SearchEngineResults.valueOf(getResulCode());
 	}
+	
 	/**
 	 * Informa��o textual sobre o resultado da pesquisa
 	 * @return {@link String} contendo a descri��o do resultado da pesquisa.
@@ -142,6 +155,7 @@ final class WebServiceCepImpl implements WebServiceCep {
 	public String getResultText() {
 		return resultText;
     }
+	
 	/**
 	 * Informa se o cep foi encontrado com sucesso.
 	 * @return	<tt>true</tt> - caso a pesquisa ache um resultado no banco.
@@ -151,6 +165,7 @@ final class WebServiceCepImpl implements WebServiceCep {
 	public boolean wasSuccessful() {
 		return (resulCode == 1 && exception == null);
 	}
+	
 	/**
 	 * Informa se n�o existe o cep cadastrado.
 	 * @return	<tt>true</tt> - Caso o cep n�o tenha cido encontrado.
@@ -159,6 +174,7 @@ final class WebServiceCepImpl implements WebServiceCep {
 	public boolean isCepNotFound() {
 		return (resulCode == 0);
 	}
+	
 	/**
 	 * Informa se houve falhas na busca do cep
 	 * @return	<tt>true</tt> - Caso ocorra falhas
@@ -167,6 +183,7 @@ final class WebServiceCepImpl implements WebServiceCep {
 	public boolean hasException() {
 		return (exception != null);
 	}
+	
 	/**
 	 * Pega a exceção que ocorreu durante a busca, retorna null caso n�o haja exce��es.
 	 * @return	<tt>{@link Exception}</tt> - Caso ocorra falhas
@@ -175,6 +192,7 @@ final class WebServiceCepImpl implements WebServiceCep {
 	public Exception getException() {
 		return exception;
 	}
+	
 	/**
 	 * Informa o bairro
 	 * @return {@link String} contendo o nome bairro
@@ -182,6 +200,7 @@ final class WebServiceCepImpl implements WebServiceCep {
 	public String getBairro() {
 		return bairro;
 	}
+	
 	/**
 	 * Informa a cidade
 	 * @return {@link String} contendo o nome da Cidade
@@ -189,6 +208,7 @@ final class WebServiceCepImpl implements WebServiceCep {
 	public String getCidade() {
 		return cidade;
 	}
+	
 	/**
 	 * Informa a Unidade Federativa
 	 * @return {@link String} contendo o nome da Unidade Federativa
@@ -196,6 +216,7 @@ final class WebServiceCepImpl implements WebServiceCep {
 	public String getUf() {
 		return uf;
 	}
+	
 	/**
 	 * Informa o logradouro.
 	 * @return {@link String} contendo o nome do Logradouro
@@ -203,6 +224,7 @@ final class WebServiceCepImpl implements WebServiceCep {
 	public String getLogradouro() {
 		return logradouro;
 	}
+	
 	/**
 	 * Informa o logradouro junto com o tipo de logradouro.
 	 * @return {@link String} contendo o tipo de Logradouro + nome do Logradouro.
@@ -211,6 +233,7 @@ final class WebServiceCepImpl implements WebServiceCep {
 		return (logradouro == null || logradouroType ==null) ? null : 
 			logradouroType + " " + logradouro; 
 	}
+	
 	/**
 	 * Informa o tipo do logradouro.
 	 * @return {@link String} contendo o tipo de logradouuro.
@@ -218,6 +241,7 @@ final class WebServiceCepImpl implements WebServiceCep {
 	public String getLogradouroType() {
 		return logradouroType;
 	}
+	
 	/**
 	 * Informa o cep.
 	 * @return {@link String} contendo o cep.
