@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * Classe que implementa os atributos e comportamentos de uma agencia de Correios.
  * @author Vinícius Souza
- * @version 1.5
+ * @version 1.6
  */
 public class Agencia {
 	
@@ -31,6 +31,7 @@ public class Agencia {
 			
 			listaDeEncomendas = (ArrayList<Encomenda>) ois.readObject();
 			ois.close();
+		//caso algum erro ocorra uma nova lista de encomendas é criada
 		} catch (Exception e) {
 			listaDeEncomendas = new ArrayList<Encomenda>();
 		}
@@ -143,7 +144,7 @@ public class Agencia {
 	 * @param Encomenda - encomenda a ser enviada.
 	 * @return boolean - se a operação realizada.
 	 */
-	public boolean addEncomenda(Encomenda encomenda) {
+	public boolean addEncomenda(Encomenda encomenda) { 
 		listaDeEncomendas.add(encomenda);
 		if (salvarEmDisco()) {
 			return true;
