@@ -101,7 +101,7 @@ package graphic;
 	    }// </editor-fold>
 
 	    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-	        // TODO add your handling code here:
+	        
 	    }                                        
 
 	    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
