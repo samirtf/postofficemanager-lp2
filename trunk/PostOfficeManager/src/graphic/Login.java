@@ -5,14 +5,10 @@ package graphic;
  */
 public class Login extends javax.swing.JFrame {
 
-    /** Creates new form Login */
     public Login() {
         initComponents();
     }
 
-    /** This method is called from within the constructor to
-     * initialize the form.
-     */
     @SuppressWarnings("unchecked")
     private void initComponents() {
 
