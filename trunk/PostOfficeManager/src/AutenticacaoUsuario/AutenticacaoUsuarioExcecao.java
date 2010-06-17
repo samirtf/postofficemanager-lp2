@@ -17,7 +17,7 @@ public class AutenticacaoUsuarioExcecao extends Exception{
      * Construtor padrão(default).
      */
     public AutenticacaoUsuarioExcecao(){
-    }
+    }// fim do construtor padrão.
 
     /**
      * Constroi uma exceção de autenticação de usuário a partir
@@ -27,7 +27,7 @@ public class AutenticacaoUsuarioExcecao extends Exception{
      */
     public AutenticacaoUsuarioExcecao(String mensagem){
         super(mensagem);
-    }
+    }// fim do construtor a partir de String mensagem.
 
     /**
      * Constroi uma exceção de autenticação de usuário a partir
@@ -52,7 +52,7 @@ public class AutenticacaoUsuarioExcecao extends Exception{
      */
     public AutenticacaoUsuarioExcecao(Integer codigoExcecao){
         this.codigoExcecao = codigoExcecao;
-    }
+    }// fim do construtor a partir de Integer codicoExcecao.
 
     /**
      * Constroi uma exceção de autenticação de usuário a partir de uma mensagem e
@@ -65,7 +65,7 @@ public class AutenticacaoUsuarioExcecao extends Exception{
     public AutenticacaoUsuarioExcecao(String mensagem, Integer codigoExcecao){
         super(mensagem);
         this.codigoExcecao = codigoExcecao;
-    }
+    }// fim do construtor a partir de String mensagem e Integer codigoExcecao.
 
     /**
      * Recupera o código de exceção.
@@ -74,7 +74,7 @@ public class AutenticacaoUsuarioExcecao extends Exception{
      */
     public Integer getCodigoExcecao(){
         return this.codigoExcecao;
-    }
+    }// fim do método getCodigoExcecao
 
     /**
      * Obtém a mensagem da exceção de autenticação de usuário. Se o código de
@@ -116,7 +116,8 @@ public class AutenticacaoUsuarioExcecao extends Exception{
             }
         }
         return super.getMessage();
-    }
-}
+    }// fim do método getMessage()
+    
+}// fim da classe AutenticacaoUsuarioExcecao
 
 

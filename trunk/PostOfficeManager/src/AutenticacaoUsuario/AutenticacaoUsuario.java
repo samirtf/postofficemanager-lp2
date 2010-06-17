@@ -16,10 +16,13 @@ import java.util.HashMap;
  */
 public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
 
+	// Contador do numero de falhas geradas durante o login.
     private Integer contadorFalhasAutenticacao = 0;
 
+    //Mapa de usuários cadastrados.
     HashMap<String, Usuario> cadastros = new HashMap<String, Usuario>();
     public AutenticacaoUsuario(){
+    	//Recupera usuários cadastrados do banco de dados cadastrosUsuarios.txt.
         try{
             ObjectInputStream objectIn = new ObjectInputStream(
                     new BufferedInputStream(new FileInputStream("cadastrosUsuarios.txt")));
@@ -176,7 +179,8 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     }
 
     /**
-     * Bloqueia o sistema por 30 minutos.
+     *  Método criado com o intuito de evitar a entrada no sistema por Força-Bruta.
+     *  Bloqueia o sistema por 30 minutos.
      */
     public void bloquearSistema() {
         throw new UnsupportedOperationException("Not supported yet.");

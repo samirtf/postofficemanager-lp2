@@ -32,7 +32,7 @@ public class BloqueioSistema {
         this.previsaoDesbloqueio = this.erroAutenticacaoUsuario.getInstanteErro();
         this.previsaoDesbloqueio.set(Calendar.MINUTE,
                 this.previsaoDesbloqueio.get(Calendar.MINUTE) + 30);
-    }
+    }// fim do construtor.
 
     /**
      * Recupera o ID do bloqueio sistema.
@@ -41,7 +41,7 @@ public class BloqueioSistema {
      */
     public String getId(){
         return this.id;
-    }
+    }// fim do método getId.
 
     /**
      * Recupera o erro de autencitação do usuário.
@@ -50,7 +50,7 @@ public class BloqueioSistema {
      */
     public ErroAutenticacaoUsuario getErroAutenticacaoUsuario(){
         return this.erroAutenticacaoUsuario;
-    }
+    }// fim do método getErroAutenticacaoUsuario
 
     /**
      * Recupera a previsão de desbloqueio do sistema.
@@ -59,7 +59,7 @@ public class BloqueioSistema {
      */
     public GregorianCalendar getPrevisaoDesbloqueio(){
         return this.previsaoDesbloqueio;
-    }
+    }// fim do método getPrevisaoDesbloqueado
 
     /**
      * Recupera o estado do sistema.
@@ -69,7 +69,7 @@ public class BloqueioSistema {
      */
     public boolean getDesbloqueado(){
         return this.desbloqueado;
-    }
+    }// fim do método getDesbloqueado.
 
     /**
      * Configura o estado do sistema.
@@ -79,7 +79,7 @@ public class BloqueioSistema {
      */
     public void setDesbloqueado(boolean desbloquear){
         this.desbloqueado = desbloquear;
-    }
+    }// fim do método setDesbloqueio.
 
     /**
      * Compara a igualdade de dois objetos. Supoe-se que o outro objeto seja
@@ -105,7 +105,7 @@ public class BloqueioSistema {
             return false;
         }
         return true;
-    }
+    }// fim do método equals.
 
     /**
      * Gera o hashCode do bloqueio de sistema.
@@ -117,7 +117,7 @@ public class BloqueioSistema {
         int hash = 7;
         hash = 37 * hash + (this.id != null ? this.id.hashCode() : 0);
         return hash;
-    }
+    }// fim do método hashCode.
 
-}
+}// fim da classe BloqueioSistema
 
