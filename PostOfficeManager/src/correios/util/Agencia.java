@@ -151,6 +151,193 @@ public class Agencia {
 		listaDeEncomendas.remove(encomenda);
 		return false;
 	}
+	
+	/**
+	 * Tenta criar uma encomenda simples com os atributos passados como parâmetros.
+	 * Caso a encomenda tenha que ser de outro tipo(Expressa) o método retornará uma encomenda expressa.
+	 * Caso haja algum parâmetros seja inválido, retornará null.
+	 * @param String - cepRemetente
+	 * @param String - cepDestinatario
+	 * @param String - dataEnvio
+	 * @param String - atendente
+	 * @param String - cidade
+	 * @param String - estado
+	 * @param double - peso
+	 * @return Encomenda - se a encomendar puder ser criada, ela será retornada,
+	 * caso não retornará <i>null</i>.
+	 */
+	public Encomenda criaEncomendaSimples(String cepRemetente, String cepDestinatario, String dataEnvio, 
+								   String atendente, String cidade, String estado, double peso) {
+		try {
+			return new Encomenda(cepRemetente, cepDestinatario, dataEnvio, atendente, cidade, estado, peso);
+		} catch (Exception e) {
+			if (e.getMessage()=="algum(ns) parametro(s) inválido(s)") {
+				return null;
+			}
+			if (e.getMessage()=="tipo errado de encomenda") {
+				try {
+					return new EncomendaExpressa(cepRemetente, cepDestinatario, dataEnvio, atendente, cidade, estado, peso);
+				} catch (Exception exc) {
+					if (exc.getMessage()=="algum(ns) parametro(s) inválido(s)") {
+						return null;
+					}
+				}
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Tenta criar uma encomenda simples (com valor declarado) com os atributos passados como parâmetros.
+	 * Caso a encomenda tenha que ser de outro tipo(Expressa) o método retornará uma encomenda expressa.
+	 * Caso haja algum parâmetros seja inválido, retornará null.
+	 * @param String - cepRemetente
+	 * @param String - cepDestinatario
+	 * @param String - dataEnvio
+	 * @param String - atendente
+	 * @param String - cidade
+	 * @param String - estado
+	 * @param double - peso
+	 * @param double - valorDeclarado
+	 * @return Encomenda - se a encomendar puder ser criada, ela será retornada,
+	 * caso não retornará <i>null</i>.
+	 */
+	public Encomenda criaEncomendaSimples(String cepRemetente, String cepDestinatario, String dataEnvio, 
+								   String atendente, String cidade, String estado, double peso, double valorDeclarado) {
+		try {
+			return new Encomenda(cepRemetente, cepDestinatario, dataEnvio, atendente, cidade, estado, peso, valorDeclarado);
+		} catch (Exception e) {
+			if (e.getMessage()=="algum(ns) parametro(s) inválido(s)") {
+				return null;
+			}
+			if (e.getMessage()=="tipo errado de encomenda") {
+				try {
+					return new EncomendaExpressa(cepRemetente, cepDestinatario, dataEnvio, atendente, cidade, estado, peso, valorDeclarado);
+				} catch (Exception exc) {
+					if (exc.getMessage()=="algum(ns) parametro(s) inválido(s)") {
+						return null;
+					}
+				}
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Tenta criar uma encomenda registrada com os atributos passados como parâmetros.
+	 * Caso a encomenda tenha que ser de outro tipo(Expressa) o método retornará uma encomenda expressa.
+	 * Caso haja algum parâmetro seja inválido, retornará null.
+	 * @param String - cepRemetente
+	 * @param String - cepDestinatario
+	 * @param String - dataEnvio
+	 * @param String - atendente
+	 * @param String - cidade
+	 * @param String - estado
+	 * @param double - peso
+	 * @return Encomenda - se a encomendar puder ser criada, ela será retornada,
+	 * caso não retornará <i>null</i>.
+	 */
+	public Encomenda criaEncomendaRegistrada(String cepRemetente, String cepDestinatario, String dataEnvio, 
+								   String atendente, String cidade, String estado, double peso) {
+		try {
+			return new EncomendaRegistrada(cepRemetente, cepDestinatario, dataEnvio, atendente, cidade, estado, peso);
+		} catch (Exception e) {
+			if (e.getMessage()=="algum(ns) parametro(s) inválido(s)") {
+				return null;
+			}
+			if (e.getMessage()=="tipo errado de encomenda") {
+				try {
+					return new EncomendaExpressa(cepRemetente, cepDestinatario, dataEnvio, atendente, cidade, estado, peso);
+				} catch (Exception exc) {
+					if (exc.getMessage()=="algum(ns) parametro(s) inválido(s)") {
+						return null;
+					}
+				}
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Tenta criar uma encomenda registrada (com valor declarado) com os atributos passados como parâmetros.
+	 * Caso a encomenda tenha que ser de outro tipo(Expressa) o método retornará uma encomenda expressa.
+	 * Caso haja algum parâmetro seja inválido, retornará null.
+	 * @param String - cepRemetente
+	 * @param String - cepDestinatario
+	 * @param String - dataEnvio
+	 * @param String - atendente
+	 * @param String - cidade
+	 * @param String - estado
+	 * @param double - peso
+	 * @param double - valorDeclarado
+	 * @return Encomenda - se a encomendar puder ser criada, ela será retornada,
+	 * caso não retornará <i>null</i>.
+	 */
+	public Encomenda criaEncomendaRegistrada(String cepRemetente, String cepDestinatario, String dataEnvio, 
+								   String atendente, String cidade, String estado, double peso, double valorDeclarado) {
+		try {
+			return new EncomendaRegistrada(cepRemetente, cepDestinatario, dataEnvio, atendente, cidade, estado, peso, valorDeclarado);
+		} catch (Exception e) {
+			if (e.getMessage()=="algum(ns) parametro(s) inválido(s)") {
+				return null;
+			}
+			if (e.getMessage()=="tipo errado de encomenda") {
+				try {
+					return new EncomendaExpressa(cepRemetente, cepDestinatario, dataEnvio, atendente, cidade, estado, peso, valorDeclarado);
+				} catch (Exception exc) {
+					if (exc.getMessage()=="algum(ns) parametro(s) inválido(s)") {
+						return null;
+					}
+				}
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Tenta criar uma encomenda expressa com os atributos passados como parâmetros.
+	 * Caso haja algum parâmetro seja inválido, retornará null.
+	 * @param String - cepRemetente
+	 * @param String - cepDestinatario
+	 * @param String - dataEnvio
+	 * @param String - atendente
+	 * @param String - cidade
+	 * @param String - estado
+	 * @param double - peso
+	 * @return Encomenda - tenta retornar uma encomenda expresa, caso não retornará <i>null</i>.
+	 */
+	public Encomenda criaEncomendaExpressa(String cepRemetente, String cepDestinatario, String dataEnvio, 
+								   String atendente, String cidade, String estado, double peso) {
+		try {
+			return new EncomendaExpressa(cepRemetente, cepDestinatario, dataEnvio, atendente, cidade, estado, peso);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	/**
+	 * Tenta criar uma encomenda expressa (com valor declarado) com os atributos passados como parâmetros.
+	 * Caso haja algum parâmetro seja inválido, retornará null.
+	 * @param String - cepRemetente
+	 * @param String - cepDestinatario
+	 * @param String - dataEnvio
+	 * @param String - atendente
+	 * @param String - cidade
+	 * @param String - estado
+	 * @param double - peso
+	 * @param double - valorDeclarado
+	 * @return Encomenda - tenta retornar uma encomenda expresa, caso não retornará <i>null</i>.
+	 */
+	public Encomenda criaEncomendaExpressa(String cepRemetente, String cepDestinatario, String dataEnvio, 
+								   String atendente, String cidade, String estado, double peso, double valorDeclarado) {
+		try {
+			return new EncomendaExpressa(cepRemetente, cepDestinatario, dataEnvio, atendente, cidade, estado, peso, valorDeclarado);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	
 		
 	/**
 	 * Salva as informações de encomenda em disco.
