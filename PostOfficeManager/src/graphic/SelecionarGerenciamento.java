@@ -11,7 +11,7 @@ package graphic;
 
 	    
 	    @SuppressWarnings("unchecked")
-	    // <editor-fold defaultstate="collapsed" desc="Generated Code">
+	    // <editor-fold defaultstate="col//nome|dataNascimento|cpf|salario|senha|chavelapsed" desc="Generated Code">
 	    private void initComponents() {
 
 	        jPanel1 = new javax.swing.JPanel();
