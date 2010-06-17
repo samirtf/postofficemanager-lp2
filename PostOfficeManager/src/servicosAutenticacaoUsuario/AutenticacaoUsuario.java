@@ -1,14 +1,18 @@
 
 package servicosAutenticacaoUsuario;
 
-
+//TODO COLOCAR FINALLY
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.LinkedList;
 
 import servicosAutenticacaoUsuario.Usuario.Prioridade;
+import sun.applet.Main;
 
 /**
  *
@@ -43,17 +47,29 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     	// Recupera usuarios cadastrados do banco de dados cadastrosUsuarios.txt.
         try{
             ObjectInputStream objectIn = new ObjectInputStream(
-                    new BufferedInputStream(new FileInputStream("cadastros_usuarios.txt")));
+                    new BufferedInputStream(new FileInputStream("cadastros_usuarios.dat")));
             HashMap<String, Usuario> readObject = (HashMap<String, Usuario>)objectIn.readObject();
 			cadastros = readObject;
             objectIn.close();
 
             
         }catch(Exception e){
-            System.err.println("Erro: " + e.getMessage() + e);
-            e.printStackTrace();
+        	
+        	try {
+            	cadastros = new HashMap<String, Usuario>();
+            	Usuario admin = new Usuario("admin", "admin", Prioridade.ADMINISTRADOR);
+            	cadastros.put("admin", admin);
+            	FileOutputStream arquivo = new FileOutputStream("cadastros_usuarios.dat");
+    			ObjectOutputStream usuarios = new ObjectOutputStream(arquivo);
+    			usuarios.writeObject(cadastros);
+    			usuarios.close();
+        	} catch (Exception f) {
+        		//Nunca vai dar erro
+			}
+        	
+
         }
-        
+        /*
         // Recupera a lista de erros de autenticacao.
         try{
             ObjectInputStream objectIn = new ObjectInputStream(
@@ -88,7 +104,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
         	sistemaDesbloqueado = bloqueioSistema.getDesbloqueado();
         }
         
-
+*/
     }
 
 
@@ -130,6 +146,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
 
         return false;
     }
+    
 
     /**
      * Verifica se Senha do Usu�rio � v�lida.
@@ -274,9 +291,11 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     public void bloquearSistema() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
     
-    
-
+    public static void main(String[] args) {
+		AutenticacaoUsuario a = new AutenticacaoUsuario();
+		System.out.println(a.cadastros.values().toString());
+		System.out.println(a.logaNoSistema("admin", "admin"));
+	}
 }
 
