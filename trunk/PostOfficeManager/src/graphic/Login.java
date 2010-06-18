@@ -102,9 +102,6 @@ public class Login extends javax.swing.JFrame {
     public static void main(String[] args) throws InterruptedException {
 		Login l = new Login();
 		l.setVisible(true);
-		Thread.sleep(1000);
-		LoginErrado l2 = new LoginErrado();
-		l2.setVisible(true);
 	}
     
     
