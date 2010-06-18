@@ -14,6 +14,10 @@ import java.util.ArrayList;
  */
 public class Agencia implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String atendenteAtivo;
 	private ArrayList<Encomenda> listaDeEncomendas;
 	
@@ -31,6 +35,7 @@ public class Agencia implements Serializable {
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			
 			listaDeEncomendas = (ArrayList<Encomenda>) ois.readObject();
+			fis.close();
 			ois.close();
 		//caso algum erro ocorra uma nova lista de encomendas é criada
 		} catch (Exception e) {
@@ -51,9 +56,6 @@ public class Agencia implements Serializable {
 	 * @return List<Encomenda> - lista das encomendas.
 	 */
 	public ArrayList<Encomenda> getEncomendas() {
-		for (Encomenda i: listaDeEncomendas) {
-			System.out.println(i.id);
-		}
 		return listaDeEncomendas;
 	}
 	/**
@@ -353,6 +355,7 @@ public class Agencia implements Serializable {
 			ObjectOutputStream encomendas = new ObjectOutputStream(arquivo);
 
 			encomendas.writeObject(listaDeEncomendas);
+			arquivo.close();
 			encomendas.close();
 			
 			return true;

@@ -1,5 +1,6 @@
 package correios.util;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
@@ -10,8 +11,12 @@ import java.util.GregorianCalendar;
  * @author Vinícius Souza
  * @version 2.0
  */
-public class Encomenda {
+public class Encomenda implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected String cepRemetente, cepDestinatario, dataEnvio, dataRecebimento, id, atendente, cidade, estado;
 	protected double peso, valorDeclarado;
 	protected int tentativasDeEntrega=3;
