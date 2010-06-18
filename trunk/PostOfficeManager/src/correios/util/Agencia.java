@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Agencia {
 	
-	private Atendente atendenteAtivo;
+	private String atendenteAtivo;
 	private ArrayList<Encomenda> listaDeEncomendas;
 	
 	
@@ -21,7 +21,7 @@ public class Agencia {
 	 * Construtor da classe. O usuário passado como parâmetro tem que estar ativo no momento.
 	 * @param Atendente - atendente ativo no momento.
 	 */
-	public Agencia(Atendente atendenteAtivo) {
+	public Agencia(String atendenteAtivo) {
 		this.atendenteAtivo = atendenteAtivo;
 		
 		//LEITURA		
@@ -41,7 +41,7 @@ public class Agencia {
 	 * Retorna o atendente ativo no momento.
 	 * @return Atendente - atendente ativo
 	 */
-	public Atendente getAtendenteAtivo() {
+	public String getAtendenteAtivo() {
 		return atendenteAtivo;
 	}
 	/**
