@@ -1,15 +1,22 @@
 
 package servicosAutenticacaoUsuario;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Samir Trajano Feitosa
  * @version 1.0
  * @since 13/06/2010
  */
-public class Criptografia {
+public class Criptografia implements Serializable{
 
     /**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Criptografa senha do usuário a partir do login e da senha do usuário.
      * @param login
      *      O login do usuário.
