@@ -1,6 +1,7 @@
 
 package servicosAutenticacaoUsuario;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -10,15 +11,19 @@ import java.util.GregorianCalendar;
  * @version 1.0
  * @since 11/06/2010
  */
-public class ErroAutenticacaoUsuario {
-    private String id = null;
+public class ErroAutenticacaoUsuario implements Serializable{
+    /**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = 1L;
+	private String id = null;
     private String idParcial = null;
     private GregorianCalendar instanteErro = null;
     private String login = "";
     private String dataHora = "";
 
     /**
-     * Constroi um erro de autenticação de usuário.
+     * Constroi um erro de autenticação de usuario.
      */
     public ErroAutenticacaoUsuario(){
         this.instanteErro = new GregorianCalendar();
