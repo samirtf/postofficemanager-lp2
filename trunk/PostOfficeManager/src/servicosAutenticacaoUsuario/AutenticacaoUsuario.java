@@ -3,6 +3,7 @@ package servicosAutenticacaoUsuario;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
@@ -40,72 +41,83 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
 
     
     @SuppressWarnings("unchecked")
-	public AutenticacaoUsuario(){
+	public AutenticacaoUsuario() throws IOException{
     	cadastros = new HashMap<String, Usuario>();
     	listaDeErros = new LinkedList<ErroAutenticacaoUsuario>();
     	listaDeBloqueios = new LinkedList<BloqueioSistema>();
     	
     	// Recupera usuarios cadastrados do banco de dados cadastrosUsuarios.txt.
+    	ObjectInputStream inCadastrosUsuarios = null;
         try{
-        	ObjectInputStream in = new ObjectInputStream(
+        	inCadastrosUsuarios = new ObjectInputStream(
                     new FileInputStream("cadastros_usuarios.dat"));
         	
-        	cadastros = (HashMap<String, Usuario>) in.readObject();
+        	cadastros = (HashMap<String, Usuario>) inCadastrosUsuarios.readObject();
             
         }catch(Exception e1){
-        	
+        	ObjectOutputStream out = null;
         	try {
             	Usuario admin = new Usuario("admin", "admin", Prioridade.ADMINISTRADOR);
             	cadastros.put("admin", admin);
-            	ObjectOutputStream out = new ObjectOutputStream(
+            	out = new ObjectOutputStream(
                         new FileOutputStream("cadastros_usuarios.dat"));
             	out.writeObject(cadastros);
     			out.close();
         	} catch (Exception e2) {
         		e2.printStackTrace();
+			}finally{
+				out.close();
 			}
-        	
-
+        }finally{
+        	inCadastrosUsuarios.close();
         }
         
         // Recupera a lista de erros de autenticacao.
+        ObjectInputStream inErrosAutenticacao = null;
         try{
-        	ObjectInputStream in = new ObjectInputStream(
+        	inErrosAutenticacao = new ObjectInputStream(
                     new FileInputStream("erros_autenticacao.dat"));
         	
-        	listaDeErros = (LinkedList<ErroAutenticacaoUsuario>) in.readObject();
+        	listaDeErros = (LinkedList<ErroAutenticacaoUsuario>) inErrosAutenticacao.readObject();
             
         }catch(Exception e1){
-        	
+        	ObjectOutputStream out = null;
         	try {
-            	ObjectOutputStream out = new ObjectOutputStream(
+            	 out = new ObjectOutputStream(
                         new FileOutputStream("erros_autenticacao.dat"));
             	out.writeObject(listaDeErros);
     			out.close();
         	} catch (Exception e2) {
         		e2.printStackTrace();
+			}finally{
+				
 			}
-
+        }finally{
+        	inErrosAutenticacao.close();
         }
         
         // Recupera a lista de erros de bloqueio de sistema.
+        ObjectInputStream inBloqueioSistema = null;
         try{
-        	ObjectInputStream in = new ObjectInputStream(
+        	inBloqueioSistema = new ObjectInputStream(
                     new FileInputStream("bloqueios_sistema.dat"));
         	
-        	listaDeBloqueios = (LinkedList<BloqueioSistema>) in.readObject();
+        	listaDeBloqueios = (LinkedList<BloqueioSistema>) inBloqueioSistema.readObject();
             
         }catch(Exception e1){
-        	
+        	ObjectOutputStream out = null;
         	try {
-            	ObjectOutputStream out = new ObjectOutputStream(
+            	out = new ObjectOutputStream(
                         new FileOutputStream("bloqueios_sistema.dat"));
             	out.writeObject(listaDeBloqueios);
     			out.close();
         	} catch (Exception e2) {
         		e2.printStackTrace();
+			}finally{
+				out.close();
 			}
-
+        }finally{
+        	inBloqueioSistema.close();
         }
         
         // Recupera a lista de erros de bloqueio de sistema.
@@ -317,13 +329,26 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
      * 		True - Se o erro de autenticacao for gerado e adicionada na lista de erros
      *             de autenticacao.
      *      False - Se não o erro nao for gerado.
+     * @throws IOException
+     * 		Em caso de haver erros ao manipular arquivos.
      */
-    public boolean geraErroAutenticacao(String login){
+    public boolean geraErroAutenticacao(String login) throws IOException{
     	if( login == null ){
     		login = "";
     	}
     	if( listaDeErros != null ){
     		listaDeErros.addLast(new ErroAutenticacaoUsuario(login));
+    		ObjectOutputStream out = null;
+    		try {
+            	out = new ObjectOutputStream(
+                        new FileOutputStream("erros_autenticacao.dat"));
+            	out.writeObject(listaDeErros);
+    			
+        	}catch (Exception e) {
+        		e.printStackTrace();
+			}finally{
+				out.close();
+			}
     		return true;
     	}
     	return false;
@@ -338,9 +363,14 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     }
     
     public static void main(String[] args) {
-		AutenticacaoUsuario a = new AutenticacaoUsuario();
+    	try{
+    		AutenticacaoUsuario a = new AutenticacaoUsuario();
 
-		System.out.println(a.logaNoSistema("admin", "admin"));
+    		System.out.println(a.logaNoSistema("admin", "admin"));
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}
+		
 	}
 }
 
