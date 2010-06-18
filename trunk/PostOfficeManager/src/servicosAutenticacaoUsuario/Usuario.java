@@ -1,6 +1,8 @@
 
 package servicosAutenticacaoUsuario;
 
+import java.io.Serializable;
+
 
 /**
  *
@@ -10,9 +12,14 @@ package servicosAutenticacaoUsuario;
  * @Definição:
  *      Exceções para esta classe devem ser chamadas por AutenticacaoUsuario.
  */
-public class Usuario {
+public class Usuario implements Serializable{
 	
-    public enum Prioridade{
+    /**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public enum Prioridade{
     /**
      * Prioridadr de Administrador de Sistema.
      */
