@@ -1,6 +1,7 @@
 
 package servicosAutenticacaoUsuario;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -15,9 +16,13 @@ import java.util.GregorianCalendar;
  *      Bloqueia o sistema por 30 minutos para a seguran�a dos dados do sistema.
  *
  */
-public class BloqueioSistema {
+public class BloqueioSistema implements Serializable{
 
-    private String id = "";
+    /**
+	 * serialVersionUID
+	 */
+	private static final long serialVersionUID = 1L;
+	private String id = "";
     private ErroAutenticacaoUsuario erroAutenticacaoUsuario = null;
     private GregorianCalendar previsaoDesbloqueio = null;
     private boolean desbloqueado = false;
