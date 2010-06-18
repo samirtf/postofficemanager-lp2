@@ -164,6 +164,16 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     public BloqueioSistema getBloqueiosSistema(){
     	return this.bloqueioSistema;
     }// fim do metodo getBloqueioSistema.
+    
+    /**
+     * Recupera o estado de acesso ao sistema.
+     * @return
+     * 		True - Se o sistema estiver desbloqueado.
+     * 		False - Se o sistema não estiver desbloqueado.
+     */
+    public boolean getSistemaDesbloqueado(){
+    	return this.sistemaDesbloqueado;
+    }// fim do metodo getSistemaDesbloqueado.
 
     /**
      * Verifica se Login do Usuario eh valido.
