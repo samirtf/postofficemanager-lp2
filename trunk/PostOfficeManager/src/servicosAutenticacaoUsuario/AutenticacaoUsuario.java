@@ -1,17 +1,15 @@
 
 package servicosAutenticacaoUsuario;
 
-//TODO COLOCAR FINALLY
-import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.LinkedList;
 
 import servicosAutenticacaoUsuario.Usuario.Prioridade;
+
 
 /**
  *
@@ -20,12 +18,12 @@ import servicosAutenticacaoUsuario.Usuario.Prioridade;
  * @since 11/06/2010
  */
 public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
-
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	//Mapa de usuarios cadastrados.
     private HashMap<String, Usuario> cadastros;
     
@@ -41,60 +39,73 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     private Integer contadorFalhasAutenticacao = 0;
 
     
-    public AutenticacaoUsuario(){
+    @SuppressWarnings("unchecked")
+	public AutenticacaoUsuario(){
+    	cadastros = new HashMap<String, Usuario>();
+    	listaDeErros = new LinkedList<ErroAutenticacaoUsuario>();
+    	listaDeBloqueios = new LinkedList<BloqueioSistema>();
     	
     	// Recupera usuarios cadastrados do banco de dados cadastrosUsuarios.txt.
         try{
-            ObjectInputStream objectIn = new ObjectInputStream(
-                    new BufferedInputStream(new FileInputStream("cadastros_usuarios.dat")));
-            HashMap<String, Usuario> readObject = (HashMap<String, Usuario>)objectIn.readObject();
-			cadastros = readObject;
-            objectIn.close();
-
+        	ObjectInputStream in = new ObjectInputStream(
+                    new FileInputStream("cadastros_usuarios.dat"));
+        	
+        	cadastros = (HashMap<String, Usuario>) in.readObject();
             
-        }catch(Exception e){
+        }catch(Exception e1){
         	
         	try {
-            	cadastros = new HashMap<String, Usuario>();
             	Usuario admin = new Usuario("admin", "admin", Prioridade.ADMINISTRADOR);
             	cadastros.put("admin", admin);
-            	FileOutputStream arquivo = new FileOutputStream("cadastros_usuarios.dat");
-    			ObjectOutputStream usuarios = new ObjectOutputStream(arquivo);
-    			usuarios.writeObject(cadastros);
-    			usuarios.close();
-        	} catch (Exception f) {
-        		//Nunca vai dar erro
+            	ObjectOutputStream out = new ObjectOutputStream(
+                        new FileOutputStream("cadastros_usuarios.dat"));
+            	out.writeObject(cadastros);
+    			out.close();
+        	} catch (Exception e2) {
+        		e2.printStackTrace();
 			}
         	
 
         }
-        /*
+        
         // Recupera a lista de erros de autenticacao.
         try{
-            ObjectInputStream objectIn = new ObjectInputStream(
-                    new BufferedInputStream(new FileInputStream("lista_erros_autenticacao.txt")));
-            LinkedList<ErroAutenticacaoUsuario> readObject = 
-            	   (LinkedList<ErroAutenticacaoUsuario>)objectIn.readObject();
-            listaDeErros = readObject;
-            objectIn.close();
+        	ObjectInputStream in = new ObjectInputStream(
+                    new FileInputStream("erros_autenticacao.dat"));
+        	
+        	listaDeErros = (LinkedList<ErroAutenticacaoUsuario>) in.readObject();
             
-        }catch(Exception e){
-            System.err.println("Erro: " + e.getMessage() + e);
-            e.printStackTrace();
+        }catch(Exception e1){
+        	
+        	try {
+            	ObjectOutputStream out = new ObjectOutputStream(
+                        new FileOutputStream("erros_autenticacao.dat"));
+            	out.writeObject(listaDeErros);
+    			out.close();
+        	} catch (Exception e2) {
+        		e2.printStackTrace();
+			}
+
         }
         
         // Recupera a lista de erros de bloqueio de sistema.
         try{
-            ObjectInputStream objectIn = new ObjectInputStream(
-                    new BufferedInputStream(new FileInputStream("lista_bloqueios.txt")));
-            LinkedList<BloqueioSistema> readObject = 
-            	   (LinkedList<BloqueioSistema>)objectIn.readObject();
-            listaDeBloqueios = readObject;
-            objectIn.close();
+        	ObjectInputStream in = new ObjectInputStream(
+                    new FileInputStream("bloqueios_sistema.dat"));
+        	
+        	listaDeBloqueios = (LinkedList<BloqueioSistema>) in.readObject();
             
-        }catch(Exception e){
-            System.err.println("Erro: " + e.getMessage() + e);
-            e.printStackTrace();
+        }catch(Exception e1){
+        	
+        	try {
+            	ObjectOutputStream out = new ObjectOutputStream(
+                        new FileOutputStream("bloqueios_sistema.dat"));
+            	out.writeObject(listaDeBloqueios);
+    			out.close();
+        	} catch (Exception e2) {
+        		e2.printStackTrace();
+			}
+
         }
         
         // Recupera a lista de erros de bloqueio de sistema.
@@ -103,23 +114,58 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
         	sistemaDesbloqueado = bloqueioSistema.getDesbloqueado();
         }
         
-*/
-    }
 
+    }// fim do construtor.
 
     /**
-     * Verifica se Login do Usu�rio � v�lido.
-     * @param login
-     *      O login do usu�rio.
+     * Recupera o mapa de registros dos usuarios.
      * @return
-     *      True - Se o login for v�lido.
-     *      False - Se o login n�o for v�lido.
+     * 		O mapa de registros dos usuarios.
+     */
+    public HashMap<String, Usuario> getCadastrosUsuarios(){
+    	return this.cadastros;
+    }// fim do metodo getCadastrosUsuarios.
+    
+    /**
+     * Recupera a lista de erros de autenticacao.
+     * @return
+     * 		A lista de erros de autenticacao.
+     */
+    public LinkedList<ErroAutenticacaoUsuario> getListaErros(){
+    	return this.listaDeErros;
+    }// fim do metodo getListaErros.
+    
+    /**
+     * Recupera a lista de Bloqueios de Sistema.
+     * @return
+     * 		Lista de bloqueios do sistema.
+     */
+    public LinkedList<BloqueioSistema> getListaBloqueios(){
+    	return this.listaDeBloqueios;
+    }// fim do metodo getListaBloqueios.
+    
+    /**
+     * Recupera o bloqueio de sistema atual.
+     * @return
+     * 		O bloqueio de sistema atual.
+     */
+    public BloqueioSistema getBloqueiosSistema(){
+    	return this.bloqueioSistema;
+    }// fim do metodo getBloqueioSistema.
+
+    /**
+     * Verifica se Login do Usuario eh valido.
+     * @param login
+     *      O login do usuario.
+     * @return
+     *      True - Se o login for valido.
+     *      False - Se o login nao for valido.
      * @throws AutenticacaoUsuarioExcecao
-     *      Se houver problemas na autentica��o do login.
+     *      Se houver problemas na autenticacao do login.
      */
     public boolean validaLogin(String login) throws AutenticacaoUsuarioExcecao{
-        final int MIN_LENGTH_PASS = 8;// Tamanho m�nimo do login.
-        final int MAX_LENGTH_PASS = 12;// Tamanho m�ximo do login.
+        final int MIN_LENGTH_PASS = 8;// Tamanho minimo do login.
+        final int MAX_LENGTH_PASS = 12;// Tamanho maximo do login.
 
         // Se login for nulo, retorna false.
         if( login == null ){
@@ -129,7 +175,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
         else if( login.equals("")){
             throw new AutenticacaoUsuarioExcecao(2);
         }
-        // Se login n�o for formado apenas por caracteres alfanum�ricos,
+        // Se login nao for formado apenas por caracteres alfanumericos,
         // retorna false.
         else if( !(login.matches("^[a-zA-Z0-9]*$") )){
             throw new AutenticacaoUsuarioExcecao(3);
@@ -148,16 +194,16 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     
 
     /**
-     * Verifica se Senha do Usu�rio � v�lida.
+     * Verifica se Senha do Usuario eh valida.
      * @param login
      *      O login do usu�rio.
      * @param senha
      *      A senha do usu�rio.
      * @return
-     *      True - Se a senha for v�lida.
-     *      False - Se a senha n�o for v�lida.
+     *      True - Se a senha for valida.
+     *      False - Se a senha nao for valida.
      * @throws AutenticacaoUsuarioExcecao
-     *      Se houver problemas na autentica��o do login.
+     *      Se houver problemas na autenticacao do login.
      */
     public boolean validaSenha(String login, String senha) 
             throws AutenticacaoUsuarioExcecao{
@@ -186,7 +232,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
 
     /**
      * Cadastra um usu�rio no sistema a partir de um login e uma senha. O cadastro
-     * de usu�rios s� deve ser realizado por um usu�rio Administrador.
+     * de usuarios s� deve ser realizado por um usuario Administrador.
      * @param login
      *      O login do usu�rio.
      * @param senha
@@ -231,8 +277,8 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
      */
     public boolean logaNoSistema(String login, String senha) {
         if ( cadastros != null && cadastros.size()!= 0 &&
-                contadorFalhasAutenticacao < 8 ){
-            if( cadastros.get(login).getSenha().equals(senha) ){
+                contadorFalhasAutenticacao < 10 ){
+            if( cadastros.get(login).getSenha().equals(Criptografia.criptografa(login, senha)) ){
                 return true;
             }
 
@@ -293,7 +339,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     
     public static void main(String[] args) {
 		AutenticacaoUsuario a = new AutenticacaoUsuario();
-		System.out.println(a.cadastros.values().toString());
+
 		System.out.println(a.logaNoSistema("admin", "admin"));
 	}
 }
