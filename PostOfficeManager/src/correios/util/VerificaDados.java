@@ -19,9 +19,9 @@ public class VerificaDados {
 	 * @throws NumberFormatException
 	 */
 	
-	public static  boolean verificaSoNumeros(String numero) throws NumberFormatException{
+	public static  boolean verificaSoNumeros(String numero) {
 		if(!numero.matches("^[0-9]*$"))
-		       	throw new NumberFormatException("Deve conter apenas numeros");
+		       	return false;
 		    		    
 	  return true;  
 	  	
@@ -36,11 +36,11 @@ public class VerificaDados {
 	 * @throws IndexOutOfBoundsException
 	 */
 	
-	public static boolean verificaOitoDigitos(String num)throws IndexOutOfBoundsException{
+	public static boolean verificaOitoDigitos(String num){
 		verificaSoNumeros(num);
 		
 		if(num.length() != 8 )
-			throw new IndexOutOfBoundsException("Deve conter 8 digitos");
+			return false;
 					
 		return true;
 	}
@@ -52,13 +52,12 @@ public class VerificaDados {
 	 * @return boolean
 	 * @throws Exception
 	 */
-	public static boolean verificaNome(String nome) throws Exception{
+	public static boolean verificaNome(String nome) {
 				
 	    if(nome.equals(null) || nome.trim().equals("")
 	    	||!nome.matches("^[a-zA-z àáâãéêíóôõúüçÁÚÍÉÓ]*$") )
 	    	
-	    	throw new Exception("Informe um nome valido");
-	    	
+	    		return false;	    	
 	    
 	    return true;  
 		
@@ -81,12 +80,12 @@ public class VerificaDados {
 	 * @param data
 	 * @return boolean
 	 */
-	public static boolean verificaData(String data)throws Exception{
+	public static boolean verificaData(String data){
 		verificaOitoDigitos(data);
 		
 		int dataHoje = Integer.parseInt(data)/10000;
 		if((dataHoje % 100) < 1 || (dataHoje % 100) > 12 || (dataHoje / 100) < 1 || (dataHoje / 100) > 31){
-			throw new Exception("A data fornecida eh invalida");
+			return false;
 		}	
 		return true;
 			
@@ -98,18 +97,18 @@ public class VerificaDados {
 	 * @return boolean
 	 * @throws IndexOutOfBoundsException
 	 */
-	public static boolean verificaCpf(String cpf)throws IndexOutOfBoundsException{
+	public static boolean verificaCpf(String cpf){
 		verificaSoNumeros(cpf);
 		
 		if(cpf.length() != 11 )
-			throw new IndexOutOfBoundsException("Deve conter 11 digitos");
+			return false;
 			
 		return true;
 		
 		
 	}
 	
-	public static boolean verificaEstado(String estado) throws Exception{
+	public static boolean verificaEstado(String estado){
 		return verificaNome(estado);
 		
 	}
