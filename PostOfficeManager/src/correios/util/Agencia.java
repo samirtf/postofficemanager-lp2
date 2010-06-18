@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -11,7 +12,7 @@ import java.util.ArrayList;
  * @author Vinícius Souza
  * @version 1.6
  */
-public class Agencia {
+public class Agencia implements Serializable {
 	
 	private String atendenteAtivo;
 	private ArrayList<Encomenda> listaDeEncomendas;
@@ -26,13 +27,14 @@ public class Agencia {
 		
 		//LEITURA		
 		try {
-			FileInputStream fis = new FileInputStream("t.tmp");
+			FileInputStream fis = new FileInputStream("encomendas_file.dat");
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			
 			listaDeEncomendas = (ArrayList<Encomenda>) ois.readObject();
 			ois.close();
 		//caso algum erro ocorra uma nova lista de encomendas é criada
 		} catch (Exception e) {
+			e.printStackTrace();
 			listaDeEncomendas = new ArrayList<Encomenda>();
 		}
 		salvarEmDisco();
@@ -49,6 +51,9 @@ public class Agencia {
 	 * @return List<Encomenda> - lista das encomendas.
 	 */
 	public ArrayList<Encomenda> getEncomendas() {
+		for (Encomenda i: listaDeEncomendas) {
+			System.out.println(i.id);
+		}
 		return listaDeEncomendas;
 	}
 	/**
@@ -146,11 +151,9 @@ public class Agencia {
 	 */
 	public boolean addEncomenda(Encomenda encomenda) { 
 		listaDeEncomendas.add(encomenda);
-		if (salvarEmDisco()) {
-			return true;
-		}
-		listaDeEncomendas.remove(encomenda);
-		return false;
+		return salvarEmDisco();
+		
+
 	}
 	
 	/**
@@ -346,7 +349,7 @@ public class Agencia {
 	 */
 	public boolean salvarEmDisco() {
 		try {
-			FileOutputStream arquivo = new FileOutputStream("t.tmp");
+			FileOutputStream arquivo = new FileOutputStream("encomendas_file.dat");
 			ObjectOutputStream encomendas = new ObjectOutputStream(arquivo);
 
 			encomendas.writeObject(listaDeEncomendas);
