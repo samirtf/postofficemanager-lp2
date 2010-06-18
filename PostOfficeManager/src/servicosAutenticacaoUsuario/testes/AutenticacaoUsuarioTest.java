@@ -1,6 +1,8 @@
 
 package servicosAutenticacaoUsuario.testes;
 
+import java.io.IOException;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -86,9 +88,10 @@ public class AutenticacaoUsuarioTest {
 
     /**
      * Test of logaNoSistema method, of class AutenticacaoUsuario.
+     * @throws IOException 
      */
     @Test
-    public void testLogaNoSistema() {
+    public void testLogaNoSistema() throws IOException {
         System.out.println("logaNoSistema");
         String login = "";
         String senha = "";
@@ -102,9 +105,10 @@ public class AutenticacaoUsuarioTest {
 
     /**
      * Test of contadorFalhaAutenticacao method, of class AutenticacaoUsuario.
+     * @throws IOException 
      */
     @Test
-    public void testContadorFalhaAutenticacao() {
+    public void testContadorFalhaAutenticacao() throws IOException {
         System.out.println("contadorFalhaAutenticacao");
         AutenticacaoUsuario instance = new AutenticacaoUsuario();
         instance.contadorFalhaAutenticacao();
@@ -114,9 +118,10 @@ public class AutenticacaoUsuarioTest {
 
     /**
      * Test of bloquearSistema method, of class AutenticacaoUsuario.
+     * @throws IOException 
      */
     @Test
-    public void testBloquearSistema() {
+    public void testBloquearSistema() throws IOException {
         System.out.println("bloquearSistema");
         AutenticacaoUsuario instance = new AutenticacaoUsuario();
         instance.bloquearSistema();
