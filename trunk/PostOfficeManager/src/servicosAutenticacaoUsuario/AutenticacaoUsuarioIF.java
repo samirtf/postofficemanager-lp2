@@ -76,13 +76,20 @@ public interface AutenticacaoUsuarioIF extends Serializable{
      * Apos esse tempo, o contador sera zerado e o usuario podera realizar
      * outras tentativas de autenticacao.
      */
-    public void contadorFalhaAutenticacao();
+    public void incrementaContadorFalhaAutenticacao();
+    
+    //TODO JAVADOC
+    public boolean geraErroAutenticacao() throws IOException;
+    
+  //TODO JAVADOC
+    public boolean geraErroAutenticacao(String login) throws IOException;
 
     /**
      * Bloqueia sistema por 30 minutos. O bloqueio eh realizado por motivos
      * de seguranca.
      */
-    public void bloquearSistema();
+    public boolean bloquearSistema(ErroAutenticacaoUsuario erroAutenticacaoUsuario) 
+        throws IOException;
 
 }
 

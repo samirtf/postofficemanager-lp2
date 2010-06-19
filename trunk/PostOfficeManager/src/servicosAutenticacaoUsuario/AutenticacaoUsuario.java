@@ -6,11 +6,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.LinkedList;
 
 import servicosAutenticacaoUsuario.Usuario.Prioridade;
-
 
 /**
  *
@@ -123,7 +123,6 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
         	bloqueioSistema = listaDeBloqueios.getLast();
         	sistemaDesbloqueado = bloqueioSistema.getDesbloqueado();
         }
-        
 
     }// fim do construtor.
 
@@ -155,11 +154,20 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     }// fim do metodo getListaBloqueios.
     
     /**
+     * Configura o Bloqueio de Sistema.
+     * @param bloqueioSistema
+     * 		O bloqueio de Sistema.
+     */
+    public void setBloqueioSistema(BloqueioSistema bloqueioSistema){
+    	this.bloqueioSistema = bloqueioSistema;
+    }// fim do metodo setBloqueioSistema.
+    
+    /**
      * Recupera o bloqueio de sistema atual.
      * @return
      * 		O bloqueio de sistema atual.
      */
-    public BloqueioSistema getBloqueiosSistema(){
+    public BloqueioSistema getBloqueioSistema(){
     	return this.bloqueioSistema;
     }// fim do metodo getBloqueioSistema.
     
@@ -172,6 +180,22 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     public boolean getSistemaDesbloqueado(){
     	return this.sistemaDesbloqueado;
     }// fim do metodo getSistemaDesbloqueado.
+    
+    /**
+     * Zera o contador de falhas de autenticacao.
+     */
+    public void zerarContadorFalhasAutenticacao(){
+    	this.contadorFalhasAutenticacao = 0;
+    }// fim do metodo zerarContadorFalhasAutenticacao.
+    
+    /**
+     * Recupera o valor do contador de falhas de autenticacao.
+     * @return
+     * 		O valor do contador de falhas de autenticacao.
+     */
+    public Integer getContadorFalhasAutenticacao(){
+    	return this.contadorFalhasAutenticacao;
+    }// fim do metodo getContadorFalhasAutenticacao.
 
     /**
      * Verifica se Login do Usuario eh valido.
@@ -210,7 +234,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
         }
 
         return false;
-    }
+    }// fim do metodo validaLogin.
     
 
     /**
@@ -248,7 +272,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
         }
 
         return false;
-    }
+    }// fim do metodo validaSenha.
 
     /**
      * Cadastra um usuario no sistema a partir de um login e uma senha. O cadastro
@@ -298,7 +322,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
         
 		return true;
 
-    }
+    }// fim do metodo cadastraUsuario.
 
     /**
      * Loga usuario no sistema a partir de um login e uma senha.
@@ -311,23 +335,29 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
      *      False - Se o Login no sistema nao for realizado.
      */
     public boolean logaNoSistema(String login, String senha) {
-        if ( cadastros != null && cadastros.size()!= 0 &&
-                contadorFalhasAutenticacao < 10 ){
-            if( cadastros.get(login).getSenha().equals(Criptografia.criptografa(login, senha)) ){
-                return true;
-            }
-
-            return false;
-        }
-        return false;
-    }
+        return cadastros != null && cadastros.size()!= 0 && 
+            contadorFalhasAutenticacao < 10 && 
+            cadastros.get(login).getSenha().
+                      equals(Criptografia.criptografa(login, senha));
+            
+    }// fim do metodo logaNoSistema.
 
     /**
      * Incrementa contador de falha na autenticacao de 1.
      */
-    public void contadorFalhaAutenticacao() {
+    public void incrementaContadorFalhaAutenticacao() {
         this.contadorFalhasAutenticacao++;
-    }
+    }// fim do contadorFalhaAutenticacao.
+    
+    /**
+     * Configura o estado do sistema. Se está bloqueado ou desbloqueado.
+     * @param desbloqueado
+     * 		True - Para desbloquear sistema.
+     * 		False - Para bloquear sistema.
+     */
+    public void setSistemaDesbloqueado(boolean desbloqueado){
+    	this.sistemaDesbloqueado = desbloqueado;
+    }// fim do metodo setSistemaDesbloqueado.
 
     /**
      * Gera um erro de autenticacao.
@@ -335,32 +365,15 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
      * 		True - Se o erro de autenticacao for gerado e adicionada na lista de erros
      *             de autenticacao.
      *      False - Se nao o erro nao for gerado.
+     * @throws IOException 
      */
-    public boolean geraErroAutenticacao(){
+    public boolean geraErroAutenticacao() throws IOException{
+    	if( this.getContadorFalhasAutenticacao() >= 10){
+    		return false;
+    	}
     	if( listaDeErros != null ){
     		listaDeErros.addLast(new ErroAutenticacaoUsuario());
-    		return true;
-    	}
-    	return false;
-    }// fim do metodo geraErroAutenticacao.
-    
-    /**
-     * Gera um erro de autenticacao a partir de um login de usuario.
-     * @param login
-     * 		O login do usuario.
-     * @return
-     * 		True - Se o erro de autenticacao for gerado e adicionada na lista de erros
-     *             de autenticacao.
-     *      False - Se nÃ£o o erro nao for gerado.
-     * @throws IOException
-     * 		Em caso de haver erros ao manipular arquivos.
-     */
-    public boolean geraErroAutenticacao(String login) throws IOException{
-    	if( login == null ){
-    		login = "";
-    	}
-    	if( listaDeErros != null ){
-    		listaDeErros.addLast(new ErroAutenticacaoUsuario(login));
+    		this.incrementaContadorFalhaAutenticacao();
     		ObjectOutputStream out = null;
     		try {
             	out = new ObjectOutputStream(
@@ -375,15 +388,89 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     		return true;
     	}
     	return false;
-    }
+    }// fim do metodo geraErroAutenticacao.
+    
+    /**
+     * Gera um erro de autenticacao a partir de um login de usuario.
+     * @param login
+     * 		O login do usuario.
+     * @return
+     * 		True - Se o erro de autenticacao for gerado e adicionada na lista de erros
+     *             de autenticacao.
+     *      False - Se nao o erro nao for gerado.
+     * @throws IOException
+     * 		Em caso de haver erros ao manipular arquivos.
+     */
+    public boolean geraErroAutenticacao(String login) throws IOException{
+    	if( this.getContadorFalhasAutenticacao() >= 10){
+    		return false;
+    	}
+    	if( login == null ){
+    		login = "";
+    	}
+    	if( listaDeErros != null ){
+    		listaDeErros.addLast(new ErroAutenticacaoUsuario(login));
+    		this.incrementaContadorFalhaAutenticacao();
+    		ObjectOutputStream out = null;
+    		try {
+            	out = new ObjectOutputStream(
+                        new FileOutputStream("erros_autenticacao.dat"));
+            	out.writeObject(listaDeErros);
+    			
+        	}catch (Exception e) {
+        		e.printStackTrace();
+			}finally{
+				out.close();
+			}
+    		return true;
+    	}
+    	
+    	return false;
+    }// fim do metodo geraErroAutenticacao.
     
     /**
      *  Metodo criado com o intuito de evitar a entrada no sistema por Forca-Bruta.
      *  Bloqueia o sistema por 30 minutos.
+     * @throws IOException 
      */
-    public void bloquearSistema() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public boolean bloquearSistema(ErroAutenticacaoUsuario erroAutenticacaoUsuario) throws IOException {
+    	if( this.getContadorFalhasAutenticacao() != 9 ){
+    		return false;
+    	}
+        if(listaDeBloqueios != null){
+        	listaDeBloqueios.addLast(new BloqueioSistema(listaDeErros.getLast()));
+        	setBloqueioSistema(listaDeBloqueios.getLast());
+        	this.zerarContadorFalhasAutenticacao();
+        	this.setSistemaDesbloqueado(false);
+    		ObjectOutputStream out = null;
+    		try {
+            	out = new ObjectOutputStream(
+                        new FileOutputStream("bloqueios_sistema.dat"));
+            	out.writeObject(listaDeBloqueios);
+            	
+    			
+        	}catch (Exception e) {
+        		e.printStackTrace();
+			}finally{
+				out.close();
+			}
+    		return true;
+        }
+		return false;
+    }// fim do metodo bloquearSistema.
+    
+    public boolean desbloquearSistema(){
+    	if( this.getSistemaDesbloqueado() == true ){
+    		return false;
+    	}
+    	if ( this.getBloqueioSistema().getPrevisaoDesbloqueio().before(Calendar.getInstance()) ){
+    		this.setSistemaDesbloqueado(true);
+    		this.setBloqueioSistema(null);
+    		return true;
+    	}
+    	
+    	return false;
     }
     
-}
+}// fim da classe AutenticacaoUsuario.
 
