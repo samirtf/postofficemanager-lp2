@@ -4,7 +4,7 @@ package webServicos;
 *
 * @author Samir Trajano Feitosa 20921299
 * @version 1.0
-* @Descricao A classe Cep, representacao por objeto do Codigo de Enderecamento Postal, foi criada para uso e também cadastro de CEP's <br>
+* @Descricao A classe Cep, representacao por objeto do Codigo de Enderecamento Postal, foi criada para uso e tambem cadastro de CEP's <br>
 * no banco de dados.
 * 
 */
@@ -32,7 +32,7 @@ public class Cep {
     * 		Nome da Unidade Federativa.
     * @param chave
     * 		String de valor booleano. Sera aceito apenas a string "true" ou "false". Apesar de no construtor ser
-    *       passado uma string como argumento de chave, o atributo chave é um valor booleano.
+    *       passado uma string como argumento de chave, o atributo chave eh um valor booleano.
     * @throws Exception
     * 		Lanca excecao se o construtor receber algum argumento invalido.
     */
