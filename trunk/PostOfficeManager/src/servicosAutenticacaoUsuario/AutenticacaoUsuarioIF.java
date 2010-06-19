@@ -16,26 +16,26 @@ public interface AutenticacaoUsuarioIF extends Serializable{
 
 
     /**
-     * Valida login do usuário.
-     * Verifica se o login é nulo.
-     * Verifica se o login é vazio.
+     * Valida login do usuario.
+     * Verifica se o login e nulo.
+     * Verifica se o login e vazio.
      * Verifica se o login possui menos de 8 caracteres.
      * Verifica se o login possui mais de 12 caracteres.
-     * Verifica se alguma substring do login não é alphanumérico.
+     * Verifica se alguma substring do login nao eh alphanumerico.
      * @param login
-     *      O login do usuário.
+     *      O login do usuario.
      * @return
-     *      True - Se o login é válido.
-     *      False - Se o login não for válido.
+     *      True - Se o login eh valido.
+     *      False - Se o login nao for valido.
      */
     public boolean validaLogin(String login)throws AutenticacaoUsuarioExcecao;
 
     /**
-     * Valida a senha do usuário.
+     * Valida a senha do usuario.
      * Verifica a validade do login.
-     * Verifica se o login os 3 primeiros caracteres do login são os 3
+     * Verifica se o login os 3 primeiros caracteres do login sao os 3
      * primeiros caracteres da senha.
-     * Verifica se o login é substring da senha.
+     * Verifica se o login eh substring da senha.
      * Verifica se a senha possui menos de 8 caracteres.
      * @param login
      * @param senha
@@ -45,41 +45,41 @@ public interface AutenticacaoUsuarioIF extends Serializable{
             throws AutenticacaoUsuarioExcecao;
 
     /**
-     * Cadastra usuário no sistema.
+     * Cadastra usuario no sistema.
      * @param login
-     *      O login do novo usuário.
+     *      O login do novo usuario.
      * @param senha
-     *      A senha do novo usuário.
+     *      A senha do novo usuario.
      * @return
      *      True - Em caso do cadastro ser efetuado com sucesso.
-     *      False - Em caso do cadastro não ser efetuado..
+     *      False - Em caso do cadastro nao ser efetuado..
      */
     public boolean cadastraUsuario(String login, String senha, Prioridade prioridade)
             throws AutenticacaoUsuarioExcecao;
 
     /**
-     * Loga no sistema a partir de um login e senha válidos.
+     * Loga no sistema a partir de um login e senha validos.
      * @param login
-     *      O login do usuário já cadastrado.
+     *      O login do usuario ja cadastrado.
      * @param senha
-     *      A senha do usuário já cadastrado.
+     *      A senha do usuario ja cadastrado.
      * @return
      */
     public boolean logaNoSistema(String login, String senha);
 
     /**
-     * Incrementa contador de falhas da autenticação.
-     * OBS.: O contador de falhas da autenticação deve ser um atributo da classe
+     * Incrementa contador de falhas da autenticacao.
+     * OBS.: O contador de falhas da autenticacao deve ser um atributo da classe
      * a implementar esta interface.
      * Se o contador chegar a 10, o sistema fica bloqueado por 30 minutos.
-     * Após esse tempo, o contador será zerado e o usuário poderá realizar
-     * outras tentativas de autenticação.
+     * Apos esse tempo, o contador sera zerado e o usuario podera realizar
+     * outras tentativas de autenticacao.
      */
     public void contadorFalhaAutenticacao();
 
     /**
-     * Bloqueia sistema por 30 minutos. O bloqueio é realizado por motivos
-     * de segurança.
+     * Bloqueia sistema por 30 minutos. O bloqueio eh realizado por motivos
+     * de seguranca.
      */
     public void bloquearSistema();
 
