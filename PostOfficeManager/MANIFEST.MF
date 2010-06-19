@@ -1,2 +1,2 @@
-Main-Class: graphic/Main
+Main-Class: Main
 
