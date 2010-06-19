@@ -1,6 +1,6 @@
 package graphic;
 
-import servicosAutenticacaoUsuario.AutenticacaoUsuario;
+import servicosAutenticacaoGerencUsuario.AutenticacaoUsuario;
 
 /**
  * @author Vinícius Souza
