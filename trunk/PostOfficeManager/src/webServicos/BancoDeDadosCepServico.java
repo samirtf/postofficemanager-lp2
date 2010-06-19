@@ -142,7 +142,7 @@ public class BancoDeDadosCepServico implements BancoDeDadosCepServicoIF{
      * 
      * @return
      * 		True - Em caso do Cep ser removido.
-     * 		False - Em caso do Cep não ser removido.
+     * 		False - Em caso do Cep nao ser removido.
      */
     public boolean delCepDoBancoDeDados(Cep CEP) {
         
@@ -219,7 +219,7 @@ public class BancoDeDadosCepServico implements BancoDeDadosCepServicoIF{
      * Verifica se o endereco http://www.republicavirtual.com.br/cep esta acessivel.
      * 
      * @exception
-     * 		Em caso de problemas na conexão ou na acessibilidade ao endereco eletronico.
+     * 		Em caso de problemas na conexao ou na acessibilidade ao endereco eletronico.
      */
     public boolean testaConexaoInternet() throws IOException {
     	
