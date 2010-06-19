@@ -77,7 +77,7 @@ public class Usuario implements Serializable{
      */
     public String getLogin(){
         return this.login;
-    }// fim do metado getLogin.
+    }// fim do metodo getLogin.
 
     /**
      * Configura a senha do usuario. A nova senha sera criptografada antes de ser armazenada.
