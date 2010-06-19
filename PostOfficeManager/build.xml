@@ -1,68 +1,69 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- WARNING: Eclipse auto-generated file.
-              Any modifications will be overwritten.
-              To include a user specific buildfile here, simply create one in the same
-              directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. -->
-<project basedir="." default="build" name="PostOfficeManager">
-    <property environment="env"/>
-    <property name="ECLIPSE_HOME" value="../../../../Program Files/Eclipse"/>
-    <property name="debuglevel" value="source,lines,vars"/>
-    <property name="target" value="1.6"/>
-    <property name="source" value="1.6"/>
-	<!--
-	        Aqui deve ser definido quais JAR´s devem ser incluídos para que
-        o projeto compile com sucesso.
-	 -->
-    <path id="JUnit 4.libraryclasspath">
-        <pathelement location="${ECLIPSE_HOME}/plugins/org.junit4_4.5.0.v20090824/junit.jar"/>
-        <pathelement location="${ECLIPSE_HOME}/plugins/org.hamcrest.core_1.1.0.v20090501071000.jar"/>
-    </path>
-    <path id="PostOfficeManager.classpath">
-        <pathelement location="bin"/>
-        <pathelement location="../../Downloads/dom4j-1.6.1.jar"/>
-        <path refid="JUnit 4.libraryclasspath"/>
-    </path>
-	<!--
-	-->
-    <target name="init">
-        <mkdir dir="bin"/>
-        <copy includeemptydirs="false" todir="bin">
-            <fileset dir="src">
-                <exclude name="**/*.launch"/>
-                <exclude name="**/*.java"/>
-            </fileset>
-        </copy>
-    </target>
-	
-	
-    <target name="clean">
-        <delete dir="bin"/>
-    </target>
-    <target depends="clean" name="cleanall"/>
-    <target depends="build-subprojects,build-project" name="build"/>
-    <target name="build-subprojects"/>
-    <target depends="init" name="build-project">
-        <echo message="${ant.project.name}: ${ant.file}"/>
-        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
-            <src path="src"/>
-            <classpath refid="PostOfficeManager.classpath"/>
-        </javac>
-    </target>
-	
-    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
-    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
-        <copy todir="${ant.library.dir}">
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
-        </copy>
-        <unzip dest="${ant.library.dir}">
-            <patternset includes="jdtCompilerAdapter.jar"/>
-            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
-        </unzip>
-    </target>
-	
-    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
-        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
-        <antcall target="build"/>
-    </target>
+<project name="PostOfficeManager" default="roda" basedir=".">
+
+<description>
+	PostOfficeManager  
+	Marcus Vinicius  -- 20921043
+	Werton Guimaraes -- 20921063
+	Samir Trajano    -- 
+	Rafael Oliveira  -- 
+</description>
+	<echo message="Gerando a documentacao..."/>
+<property name="src" value="src"/>
+<property name="bin" value="bin"/>
+<property name="dist" value="dist"/>
+
+
+<path id="classpath">
+
+<fileset dir="./lib">
+<include name="**.jar"/>
+</fileset>
+
+<pathelement location="${bin}"/>
+</path>
+
+
+<target name="limpa">
+<echo message="Limpando informacoes antigas..."/>
+
+<delete dir="${bin}"/>
+<delete dir="${dist}"/>
+
+</target>
+
+<target name="build" depends="limpa">
+<echo message="Compilando o código..."/>
+
+<mkdir dir="${bin}"/>
+
+<javac srcdir="${src}" destdir="${bin}">
+
+<classpath refid="classpath"/>
+</javac>
+</target>
+
+<target name="testa" description="Executará os testes de unidade">
+<echo message="Executando os testes..."/>
+
+<junit printsummary="yes" fork="no" haltonfailure="yes">
+<classpath refid="classpath"/>
+
+<formatter type="brief"/>
+
+<test name="testes.MyTest"/>
+</junit>
+</target>
+
+<target name="dist" depends="build" description="Criará um arquivo JAR para distribuição">
+
+<mkdir dir="${dist}"/>
+<echo message="Criando JAR da aplicação..."/>
+
+<jar jarfile="${dist}/PostOfficeManager.jar" basedir="${bin}" manifest="MANIFEST.MF"/>
+</target>
+
+<target name="roda" depends="dist" description="Executará o JAR automaticamente">
+
+<java jar="dist/PostOfficeManager.jar" fork="true"/>
+</target>
 </project>
