@@ -67,7 +67,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
             }
     	}else{
     		try {
-            	Usuario admin = new Usuario("admin", "admin", Prioridade.ADMINISTRADOR);
+            	Usuario admin = new Usuario("administrador", "administrador", Prioridade.ADMINISTRADOR);
             	cadastros.put("admin", admin);
             	outCadastrosUsuarios = new ObjectOutputStream(
                         new FileOutputStream("cadastros_usuarios.dat"));
@@ -233,7 +233,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
      */
     public boolean validaLogin(String login) throws AutenticacaoUsuarioExcecao{
         final int MIN_LENGTH_PASS = 8;// Tamanho minimo do login.
-        final int MAX_LENGTH_PASS = 12;// Tamanho maximo do login.
+        final int MAX_LENGTH_PASS = 13;// Tamanho maximo do login.
 
         // Se login for nulo, retorna false.
         if( login == null ){
@@ -276,7 +276,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     public boolean validaSenha(String login, String senha) 
             throws AutenticacaoUsuarioExcecao{
         final int MIN_LENGTH_PASS = 8;// Tamanho m�nimo do login.
-        final int MAX_LENGTH_PASS = 12;// Tamanho m�ximo do login.
+        final int MAX_LENGTH_PASS = 13;// Tamanho m�ximo do login.
 
         // Se senha for nulo, retorna false.
         if( senha == null ){
@@ -600,6 +600,11 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     		
     		System.out.println(ab.getBloqueioSistema().getPrevisaoDesbloqueio());
     		System.out.println(GregorianCalendar.getInstance());
+    		System.out.println(ab.getCadastrosUsuarios().size());
+    		System.out.println(ab.validaLogin("patriciaweck"));
+    		GerenciamentoUsuario.cadastraUsuario(ab, "patriciaweck", "patriciaweck", null);
+    		GerenciamentoUsuario.cadastraUsuario(ab, "patriciaweck1", "patriciaweck1", null);
+    		System.out.println(ab.getCadastrosUsuarios().size());
     		
     	}catch(Exception e){
     		System.out.println(e);

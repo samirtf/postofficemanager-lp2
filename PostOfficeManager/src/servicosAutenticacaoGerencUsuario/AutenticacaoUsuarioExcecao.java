@@ -37,11 +37,11 @@ public class AutenticacaoUsuarioExcecao extends Exception{
      *      2 -  Login : vazio
      *      3 -  Login : caractere(s) invalido(s) - Nao alfanumerico
      *      4 -  Login : tamanho inferior ao minimo(8)
-     *      5 -  Login : tamanho superior ao maximo(12)
+     *      5 -  Login : tamanho superior ao maximo(13)
      *      6 -  Senha : nulo
      *      7 -  Senha : vazio
      *      8 -  Senha : tamanho inferior ao minimo(8)
-     *      9 -  Senha : tamanho superior ao maximo(12)
+     *      9 -  Senha : tamanho superior ao maximo(13)
      *      10 - Login : Login incorreto
      *      11 - Senha : Senha incorreta
      *      12 - Cadastro : Usuario ja cadastrado
@@ -99,7 +99,7 @@ public class AutenticacaoUsuarioExcecao extends Exception{
               case 4:
                   return "Login : tamanho inferior ao minimo(8)";
               case 5:
-                  return "Login : tamanho superior ao maximo(12)";
+                  return "Login : tamanho superior ao maximo(13)";
               case 6:
                   return "Senha : nulo";
               case 7:
@@ -107,7 +107,7 @@ public class AutenticacaoUsuarioExcecao extends Exception{
               case 8:
                   return "Senha : tamanho inferior ao minimo(8)";
               case 9:
-                  return "Senha : tamanho superior ao maximo(12)";
+                  return "Senha : tamanho superior ao maximo(13)";
               case 10:
                   return "Login : Login incorreto";
               case 11:
