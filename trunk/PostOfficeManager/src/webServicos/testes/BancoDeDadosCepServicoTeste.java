@@ -128,7 +128,7 @@ public class BancoDeDadosCepServicoTeste {
     	
 		Assert.assertEquals("13345325", recupCep.getCep());
 		Assert.assertEquals("Cinco", recupCep.getLogradouro());
-		Assert.assertEquals("Jardim Rêmulo Zoppi", recupCep.getBairro());
+		Assert.assertEquals("Jardim Remulo Zoppi", recupCep.getBairro());
 		Assert.assertEquals("Indaiatuba", recupCep.getCidade());
 		Assert.assertEquals("SP", recupCep.getUf());
 		Assert.assertEquals(true, recupCep.getChave());
