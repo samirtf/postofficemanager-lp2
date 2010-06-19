@@ -116,12 +116,12 @@ public class FuncDados {
 	}
 	
 	/**
-	 * Compara se um objeto FuncDados é igual a outro.
+	 * Compara se um objeto FuncDados eh igual a outro.
 	 * 
 	 * @return
 	 * 		True - Se os 2 objetos FuncDados forem iguais.
-	 * 		False - Se os 2 objetos forem de instâncias diferentes 
-	 *      ou se não forem objetos iguais.
+	 * 		False - Se os 2 objetos forem de instancias diferentes 
+	 *      ou se nao forem objetos iguais.
 	 */
 	@Override
 	public boolean equals(Object objeto){
