@@ -10,6 +10,7 @@ import java.io.ObjectOutputStream;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import servicosAutenticacaoUsuario.Usuario.Prioridade;
@@ -34,7 +35,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
 	
 	private LinkedList<BloqueioSistema> listaDeBloqueios;
 	
-	private BloqueioSistema bloqueioSistema = null;
+	private BloqueioSistema bloqueioSistema = new BloqueioSistema();
 	
 	private boolean sistemaDesbloqueado = true;
 
@@ -138,20 +139,12 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
 				outBloqueioSistema.close();
 			}
     	}
-            
+        
+        // Recupera erros do dia.
+        this.recuperaErrosDoDia();
+        
         // Recupera bloqueio de sistema.
-        if ( listaDeBloqueios != null && !listaDeBloqueios.isEmpty() ){
-        	if( listaDeBloqueios.getLast().getPrevisaoDesbloqueio().before(new GregorianCalendar()) ){
-        		System.out.println("nulo");
-        		bloqueioSistema = listaDeBloqueios.getLast();
-            	sistemaDesbloqueado = bloqueioSistema.getDesbloqueado();
-        	}
-        	else{
-        		bloqueioSistema = null;
-        		listaDeBloqueios.getLast().setDesbloqueado(true);
-        		this.sistemaDesbloqueado = true;
-        	}
-        }// fim de recupera bloqueio de sistema
+        this.recuperaBloqueioSistema();
                    
 
     }// fim do construtor.
@@ -198,6 +191,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
      * 		O bloqueio de sistema atual.
      */
     public BloqueioSistema getBloqueioSistema(){
+    	
     	return this.bloqueioSistema;
     }// fim do metodo getBloqueioSistema.
     
@@ -481,7 +475,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
      * @throws IOException 
      */
     public boolean bloquearSistema(ErroAutenticacaoUsuario erroAutenticacaoUsuario) throws IOException {
-    	if( this.getContadorFalhasAutenticacao() == 10 ){
+    	if( this.getContadorFalhasAutenticacao() != 10 ){
     		return false;
     	}
         if(listaDeBloqueios != null){
@@ -519,15 +513,54 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     	return false;
     }
     
+    public boolean recuperaErrosDoDia(){
+    	if ( listaDeErros == null || listaDeErros.isEmpty() ){
+    		return false;
+    	}
+    	Integer cont = 0;
+    	GregorianCalendar instante = new GregorianCalendar();
+        String anoInit = String.format("%1$tY", instante);
+        String diaDoAnoInit = String.format("%d", instante.get(Calendar.DAY_OF_YEAR));
+        String idParcialInit = anoInit + "/" + diaDoAnoInit;
+        
+        Iterator<ErroAutenticacaoUsuario> iteraNaListaDeErros =  listaDeErros.iterator();
+        while(iteraNaListaDeErros.hasNext()){
+        	ErroAutenticacaoUsuario erro = (ErroAutenticacaoUsuario) iteraNaListaDeErros.next(); 
+        	if( idParcialInit.equals(erro.getIdParcial())){
+        		cont++;
+        	}
+        }
+        this.contadorFalhasAutenticacao = cont%10;
+        return true;
+        
+    }
+    
+    public void recuperaBloqueioSistema(){
+    	if ( listaDeBloqueios != null && !listaDeBloqueios.isEmpty() ){
+        	if( listaDeBloqueios.getLast().getPrevisaoDesbloqueio().after(new GregorianCalendar()) ){
+        		bloqueioSistema = listaDeBloqueios.getLast();
+            	sistemaDesbloqueado = bloqueioSistema.getDesbloqueado();
+        	}
+        	else{
+        		bloqueioSistema = null;
+        		listaDeBloqueios.getLast().setDesbloqueado(true);
+        		this.sistemaDesbloqueado = true;
+        	}
+        }// fim de recupera bloqueio de sistema
+    }
+    
     
     
     public static void main(String[] args){
     	try{
+    		System.out.println(44%10);
     		AutenticacaoUsuario ab = new AutenticacaoUsuario();
     		System.out.println(ab.logaNoSistema("admin", "admin"));
     		System.out.println(ab.logaNoSistema("joao", "admin"));
-    		ab.listaDeErros.clear();
-    		ab.listaDeBloqueios.clear();
+    		//ab.listaDeErros.clear();
+    		//ab.listaDeBloqueios.clear();
+    		System.out.println(ab.getListaErros().size());
+    		System.out.println(ab.getListaBloqueios().size());
     		System.out.println();
     		ab.geraErroAutenticacao();
     		System.out.println(ab.getListaErros().size());
@@ -538,12 +571,12 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     		ab.geraErroAutenticacao();
     		ab.geraErroAutenticacao();
     		ab.geraErroAutenticacao();
+    		/*ab.geraErroAutenticacao();
     		ab.geraErroAutenticacao();
     		ab.geraErroAutenticacao();
     		ab.geraErroAutenticacao();
     		ab.geraErroAutenticacao();
-    		ab.geraErroAutenticacao();
-    		
+    		*/
     		System.out.println(ab.getListaErros().size());
     		System.out.println(ab.getListaBloqueios().size());
     		
@@ -558,6 +591,16 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     		System.out.println("oifinal");
     		
     		System.out.println("oi");
+    		System.out.println();
+    		//mudar novamente para 30 minutos
+    		System.out.println(ab.contadorFalhasAutenticacao);
+    		System.out.println(ab.getBloqueioSistema().getPrevisaoDesbloqueio());
+    		ab.getCadastrosUsuarios();
+    		
+    		
+    		System.out.println(ab.getBloqueioSistema().getPrevisaoDesbloqueio());
+    		System.out.println(GregorianCalendar.getInstance());
+    		
     	}catch(Exception e){
     		System.out.println(e);
     		e.printStackTrace();
