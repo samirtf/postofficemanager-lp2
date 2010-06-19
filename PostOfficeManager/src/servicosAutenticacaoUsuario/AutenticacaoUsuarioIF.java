@@ -2,6 +2,7 @@
 package servicosAutenticacaoUsuario;
 
 
+import java.io.IOException;
 import java.io.Serializable;
 
 import servicosAutenticacaoUsuario.Usuario.Prioridade;
@@ -55,7 +56,7 @@ public interface AutenticacaoUsuarioIF extends Serializable{
      *      False - Em caso do cadastro nao ser efetuado..
      */
     public boolean cadastraUsuario(String login, String senha, Prioridade prioridade)
-            throws AutenticacaoUsuarioExcecao;
+            throws AutenticacaoUsuarioExcecao, IOException;
 
     /**
      * Loga no sistema a partir de um login e senha validos.
