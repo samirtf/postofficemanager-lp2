@@ -374,6 +374,10 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     	if( listaDeErros != null ){
     		listaDeErros.addLast(new ErroAutenticacaoUsuario());
     		this.incrementaContadorFalhaAutenticacao();
+    		
+    		// so bloqueia o sistema se o contador for igual a 10.
+			this.bloquearSistema(listaDeErros.getLast());
+			
     		ObjectOutputStream out = null;
     		try {
             	out = new ObjectOutputStream(
@@ -385,6 +389,8 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
 			}finally{
 				out.close();
 			}
+			
+
     		return true;
     	}
     	return false;
@@ -411,6 +417,10 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     	if( listaDeErros != null ){
     		listaDeErros.addLast(new ErroAutenticacaoUsuario(login));
     		this.incrementaContadorFalhaAutenticacao();
+    		
+    		// so bloqueia o sistema se o contador for igual a 10.
+			this.bloquearSistema(listaDeErros.getLast());
+    		
     		ObjectOutputStream out = null;
     		try {
             	out = new ObjectOutputStream(
@@ -434,13 +444,12 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
      * @throws IOException 
      */
     public boolean bloquearSistema(ErroAutenticacaoUsuario erroAutenticacaoUsuario) throws IOException {
-    	if( this.getContadorFalhasAutenticacao() != 9 ){
+    	if( this.getContadorFalhasAutenticacao() == 10 ){
     		return false;
     	}
         if(listaDeBloqueios != null){
         	listaDeBloqueios.addLast(new BloqueioSistema(listaDeErros.getLast()));
         	setBloqueioSistema(listaDeBloqueios.getLast());
-        	this.zerarContadorFalhasAutenticacao();
         	this.setSistemaDesbloqueado(false);
     		ObjectOutputStream out = null;
     		try {
@@ -466,6 +475,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     	if ( this.getBloqueioSistema().getPrevisaoDesbloqueio().before(Calendar.getInstance()) ){
     		this.setSistemaDesbloqueado(true);
     		this.setBloqueioSistema(null);
+    		this.zerarContadorFalhasAutenticacao();
     		return true;
     	}
     	
