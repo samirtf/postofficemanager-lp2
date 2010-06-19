@@ -218,9 +218,9 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     /**
      * Verifica se Senha do Usuario eh valida.
      * @param login
-     *      O login do usu�rio.
+     *      O login do usuario.
      * @param senha
-     *      A senha do usu�rio.
+     *      A senha do usuario.
      * @return
      *      True - Se a senha for valida.
      *      False - Se a senha nao for valida.
@@ -253,26 +253,26 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     }
 
     /**
-     * Cadastra um usu�rio no sistema a partir de um login e uma senha. O cadastro
-     * de usuarios s� deve ser realizado por um usuario Administrador.
+     * Cadastra um usuario no sistema a partir de um login e uma senha. O cadastro
+     * de usuarios soh deve ser realizado por um usuario Administrador.
      * @param login
-     *      O login do usu�rio.
+     *      O login do usuario.
      * @param senha
-     *      A senha do usu�rio.
+     *      A senha do usuario.
      * @return
-     *      True - Se o usu�rio for cadastrado.
-     *      False - Se o usu�rio n�o for cadastrado.
+     *      True - Se o usuario for cadastrado.
+     *      False - Se o usuario nao for cadastrado.
      */
     public boolean cadastraUsuario(String login, String senha, Prioridade prioridade)
               throws AutenticacaoUsuarioExcecao{
         try{
-            // Se prioridade for null, um usu�rio default ser� cadastrado
+            // Se prioridade for null, um usuario default serie cadastrado
             if ( validaLogin(login) && validaSenha(login, senha) && prioridade == null){
                 cadastros.put(login, new Usuario(login, senha));
                 return true;
             }
-            // Se prioridade for instancia de Prioridade, ser� criado um usu�rio
-            // com prioridade pr�-definida.
+            // Se prioridade for instancia de Prioridade, serie criado um usuario
+            // com prioridade pre-definida.
             else if( validaLogin(login) && validaSenha(login, senha) &&
                     prioridade.getClass() == Prioridade.class ){
                 cadastros.put(login, new Usuario(login, senha, prioridade));
@@ -288,14 +288,14 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     }
 
     /**
-     * Loga usu�rio no sistema a partir de um login e uma senha.
+     * Loga usuario no sistema a partir de um login e uma senha.
      * @param login
-     *      O login do usu�rio.
+     *      O login do usuario.
      * @param senha
-     *      A senha do usu�rio.
+     *      A senha do usuario.
      * @return
      *      True - Se o Login no sistema for realizado.
-     *      False - Se o Login no sistema n�o for realizado.
+     *      False - Se o Login no sistema nao for realizado.
      */
     public boolean logaNoSistema(String login, String senha) {
         if ( cadastros != null && cadastros.size()!= 0 &&
@@ -310,7 +310,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     }
 
     /**
-     * Incrementa contador de falha na autentica��o de 1.
+     * Incrementa contador de falha na autenticacao de 1.
      */
     public void contadorFalhaAutenticacao() {
         this.contadorFalhasAutenticacao++;
@@ -321,7 +321,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
      * @return
      * 		True - Se o erro de autenticacao for gerado e adicionada na lista de erros
      *             de autenticacao.
-     *      False - Se não o erro nao for gerado.
+     *      False - Se nao o erro nao for gerado.
      */
     public boolean geraErroAutenticacao(){
     	if( listaDeErros != null ){
@@ -332,9 +332,9 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     }// fim do metodo geraErroAutenticacao.
     
     /**
-     * Gera um erro de autenticacao a partir de um login de usuário.
+     * Gera um erro de autenticacao a partir de um login de usuario.
      * @param login
-     * 		O login do usuário.
+     * 		O login do usuario.
      * @return
      * 		True - Se o erro de autenticacao for gerado e adicionada na lista de erros
      *             de autenticacao.
@@ -365,7 +365,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     }
     
     /**
-     *  M�todo criado com o intuito de evitar a entrada no sistema por For�a-Bruta.
+     *  Metodo criado com o intuito de evitar a entrada no sistema por Forca-Bruta.
      *  Bloqueia o sistema por 30 minutos.
      */
     public void bloquearSistema() {
