@@ -372,15 +372,5 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
-    public static void main(String[] args) {
-    	try{
-    		AutenticacaoUsuario a = new AutenticacaoUsuario();
-
-    		System.out.println(a.logaNoSistema("admin", "admin"));
-    	}catch(Exception e){
-    		e.printStackTrace();
-    	}
-		
-	}
 }
 
