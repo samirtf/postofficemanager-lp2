@@ -34,12 +34,12 @@ public class SelecionarGerenciamento extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(254, 254, 132));
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 18));
         jLabel1.setForeground(new java.awt.Color(30, 30, 104));
-        jLabel1.setIcon(new javax.swing.ImageIcon("/home/marcusvso/workspace/PostOfficeManager/files/pomTransparentIcon.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("files/pomTransparentIcon.png")); // NOI18N
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel1.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
         jButton6.setBackground(new java.awt.Color(253, 243, 67));
-        jButton6.setIcon(new javax.swing.ImageIcon("/home/marcusvso/workspace/PostOfficeManager/files/blueArrowIcon.png")); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon("files/blueArrowIcon.png")); // NOI18N
         jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,9 +67,9 @@ public class SelecionarGerenciamento extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("/home/marcusvso/workspace/PostOfficeManager/files/peopleIcon.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("files/peopleIcon.png")); // NOI18N
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("/home/marcusvso/workspace/PostOfficeManager/files/orderIcon.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("files/orderIcon.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

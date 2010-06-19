@@ -72,14 +72,14 @@ public class MenuEncomenda extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 14));
         jLabel2.setForeground(new java.awt.Color(20, 37, 121));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon("/home/marcusvso/workspace/PostOfficeManager/files/pomTransparentIcon.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("files/pomTransparentIcon.png")); // NOI18N
         jLabel2.setText("seja bem-vindo");
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel2.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
         jButton5.setBackground(new java.awt.Color(253, 243, 67));
-        jButton5.setIcon(new javax.swing.ImageIcon("/home/marcusvso/workspace/PostOfficeManager/files/blueArrowIcon.png")); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon("files/blueArrowIcon.png")); // NOI18N
         jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
