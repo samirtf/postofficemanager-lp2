@@ -17,11 +17,11 @@ public class Criptografia implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	/**
-     * Criptografa senha do usuário a partir do login e da senha do usuário.
+     * Criptografa senha do usuario a partir do login e da senha do usuario.
      * @param login
-     *      O login do usuário.
+     *      O login do usuario.
      * @param senha
-     *      A senha do usuário.
+     *      A senha do usuario.
      * @return
      *      Um valor criptografado.
      */
@@ -48,7 +48,7 @@ public class Criptografia implements Serializable{
             nsae.printStackTrace();
         }
         return codificado;
-    }// fim do método estático criptografia.
+    }// fim do metodo estatico criptografia.
     
 }// fim da classe Criptografia.
 
