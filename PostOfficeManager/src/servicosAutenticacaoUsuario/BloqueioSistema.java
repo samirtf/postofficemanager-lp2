@@ -12,8 +12,8 @@ import java.util.GregorianCalendar;
  * @version 1.0
  * @since 11/06/2010
  *
- * @Defini��o:
- *      Bloqueia o sistema por 30 minutos para a seguran�a dos dados do sistema.
+ * @Definicao:
+ *      Bloqueia o sistema por 30 minutos para a seguranca dos dados do sistema.
  *
  */
 public class BloqueioSistema implements Serializable{
@@ -28,9 +28,9 @@ public class BloqueioSistema implements Serializable{
     private boolean desbloqueado = false;
 
     /**
-     * Constroi um bloqueio de sistema a partir de um Erro de Autentica��o do Usu�rio.
+     * Constroi um bloqueio de sistema a partir de um Erro de Autenticacao do Usuario.
      * @param erroAutenticacaoUsuario
-     *      O erro de autentica��o do usu�rio.
+     *      O erro de autenticacao do usuario.
      */
     public BloqueioSistema(ErroAutenticacaoUsuario erroAutenticacaoUsuario){
         this.erroAutenticacaoUsuario = erroAutenticacaoUsuario;
@@ -50,32 +50,32 @@ public class BloqueioSistema implements Serializable{
     }// fim do metodo getId.
 
     /**
-     * Recupera o erro de autencita��o do usu�rio.
+     * Recupera o erro de autenticacao do usuario.
      * @return
-     *      O erro de autentica��o do usu�rio.
+     *      O erro de autenticacao do usuario.
      */
     public ErroAutenticacaoUsuario getErroAutenticacaoUsuario(){
         return this.erroAutenticacaoUsuario;
     }// fim do metodo getErroAutenticacaoUsuario
 
     /**
-     * Recupera a previs�o de desbloqueio do sistema.
+     * Recupera a previsao de desbloqueio do sistema.
      * @return
-     *      A previs�o de desbloqueio do sistema.
+     *      A previsao de desbloqueio do sistema.
      */
     public GregorianCalendar getPrevisaoDesbloqueio(){
         return this.previsaoDesbloqueio;
-    }// fim do m�todo getPrevisaoDesbloqueado
+    }// fim do metodo getPrevisaoDesbloqueado
 
     /**
      * Recupera o estado do sistema.
      * @return
      *      True - Se o sistema estiver desbloqueado.
-     *      False - Se o sistema n�o estiver desbloqueado.
+     *      False - Se o sistema nao estiver desbloqueado.
      */
     public boolean getDesbloqueado(){
         return this.desbloqueado;
-    }// fim do m�todo getDesbloqueado.
+    }// fim do metodo getDesbloqueado.
 
     /**
      * Configura o estado do sistema.
@@ -85,18 +85,18 @@ public class BloqueioSistema implements Serializable{
      */
     public void setDesbloqueado(boolean desbloquear){
         this.desbloqueado = desbloquear;
-    }// fim do m�todo setDesbloqueio.
+    }// fim do metodo setDesbloqueio.
 
     /**
      * Compara a igualdade de dois objetos. Supoe-se que o outro objeto seja
-     * inst�ncia de BloqueioSistema.
+     * instancia de BloqueioSistema.
      * @param obj
      *      O outro objeto a ser comparado.
      * @return
      *      True - Se os dois bloqueios de sistema forem iguais.
-     *      False - Se o segundo objeto a se comparar n�o for uma inst�ncia
+     *      False - Se o segundo objeto a se comparar nao for uma instancia
      *              de BloqueioSistema.
-     *      False - Se os dois bloqueios n�o forem iguais.
+     *      False - Se os dois bloqueios nao forem iguais.
      */
     @Override
     public boolean equals(Object obj) {
@@ -111,7 +111,7 @@ public class BloqueioSistema implements Serializable{
             return false;
         }
         return true;
-    }// fim do m�todo equals.
+    }// fim do metodo equals.
 
     /**
      * Gera o hashCode do bloqueio de sistema.
@@ -123,7 +123,7 @@ public class BloqueioSistema implements Serializable{
         int hash = 7;
         hash = 37 * hash + (this.id != null ? this.id.hashCode() : 0);
         return hash;
-    }// fim do m�todo hashCode.
+    }// fim do metodo hashCode.
 
 }// fim da classe BloqueioSistema
 
