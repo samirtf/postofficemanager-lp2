@@ -104,7 +104,28 @@ public class EncomendaTest {
 	}
 	
 	@Test
-	public void testaEntrega() {
+	public void testaEntrega() throws Exception {
+		encomenda = new Encomenda("58000000", "58999999", "11062010", "Fulano", "Campina Grande", "Paraiba", 300, 300);
+		Assert.assertEquals("Numero de tentativas errado - 1", 3, encomenda.getTentativasDeEntrega());
+		encomenda.falhouNaEntrega();
+		Assert.assertEquals("Numero de tentativas errado - 2", 2, encomenda.getTentativasDeEntrega());
+		encomenda.falhouNaEntrega();
+		Assert.assertEquals("Numero de tentativas errado - 3", 1, encomenda.getTentativasDeEntrega());
+		Assert.assertEquals("A encomenda foi entregue - 1", "", encomenda.getDataRecebimento());
+		encomenda.entregouComSucesso();
+		Assert.assertFalse("A encomenda nao foi entregue - 1", encomenda.getDataRecebimento().equals(""));
 		
+	}
+	
+	@Test
+	public void testaValorSimples() throws Exception {
+		encomenda = new Encomenda("58000000", "58999999", "11062010", "Fulano", "Campina Grande", "Paraiba", 300);
+		Assert.assertEquals("valor da encomenda errado - 1", 6.75, encomenda.valorDaEncomenda(), 0);
+	}
+	
+	@Test
+	public void testaValorDeclarado() throws Exception {
+		encomenda = new Encomenda("58000000", "58999999", "11062010", "Fulano", "Campina Grande", "Paraiba", 300, 300);
+		Assert.assertEquals("valor da encomenda errado - 2", 9.75, encomenda.valorDaEncomenda(), 0);
 	}
 }
