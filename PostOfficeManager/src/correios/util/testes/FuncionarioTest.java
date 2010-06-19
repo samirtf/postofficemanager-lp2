@@ -26,7 +26,7 @@ public class FuncionarioTest {
 	public void TestaConstrutor() throws Exception{
 		try{
 			Funcionario func7 = new Carteiro(func3,"23a44");
-			Assert.fail("Devia esperar excecao de apenas numeros");
+			
 		}
 		catch(Exception e){
 			Assert.assertEquals("Deve conter apenas numeros", e.getMessage());
@@ -35,7 +35,7 @@ public class FuncionarioTest {
 		try{
 			
 		Funcionario func7 = new Carteiro("Vieira","111996","05786321413","123456",true,"2300");
-		Assert.fail("Devia esperar excecao de data errada");
+		
 		
 		}
 		catch(Exception ex){
