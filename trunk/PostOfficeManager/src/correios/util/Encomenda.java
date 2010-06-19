@@ -38,12 +38,12 @@ public class Encomenda implements Serializable{
 					 String cidade, String estado,
 					 double peso) throws Exception {
 		
-		if ((!VerificaDados.verificaCep(cepRemetente)) ||
-			(!VerificaDados.verificaCep(cepDestinatario)) ||
-			(peso <= 0) ||
-			(!VerificaDados.verificaNome(atendente)) ||
-			(!VerificaDados.verificaData(dataEnvio)) ||
-			(!VerificaDados.verificaEstado(estado)) ||
+		if ((!VerificaDados.verificaCep(cepRemetente)) &&
+			(!VerificaDados.verificaCep(cepDestinatario)) &&
+			(peso <= 0) &&
+			(!VerificaDados.verificaNome(atendente)) &&
+			(!VerificaDados.verificaData(dataEnvio)) &&
+			(!VerificaDados.verificaEstado(estado)) &&
 			(!VerificaDados.verificaNome(cidade))) {
 			
 			throw new IllegalArgumentException("algum(ns) parametro(s) inválido(s)");
@@ -90,13 +90,13 @@ public class Encomenda implements Serializable{
 			 String cidade, String estado,
 			 double peso, double valorDeclarado) throws Exception {
 		
-		if ((!correios.util.VerificaDados.verificaCep(cepRemetente)) ||
-			(!correios.util.VerificaDados.verificaCep(cepDestinatario)) ||
-			(peso <= 0) ||
-			(!correios.util.VerificaDados.verificaNome(atendente)) ||
-			(!correios.util.VerificaDados.verificaData(dataEnvio)) ||
-			(valorDeclarado<0) ||
-			(!VerificaDados.verificaEstado(estado)) ||
+		if ((!correios.util.VerificaDados.verificaCep(cepRemetente)) &&
+			(!correios.util.VerificaDados.verificaCep(cepDestinatario)) &&
+			(peso <= 0) &&
+			(!correios.util.VerificaDados.verificaNome(atendente)) &&
+			(!correios.util.VerificaDados.verificaData(dataEnvio)) &&
+			(valorDeclarado<0) &&
+			(!VerificaDados.verificaEstado(estado)) &&
 			(!VerificaDados.verificaNome(cidade))) {
 				
 			throw new IllegalArgumentException("algum(ns) parametro(s) inválido(s)");
