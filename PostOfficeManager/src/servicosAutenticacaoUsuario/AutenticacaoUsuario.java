@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -118,11 +119,19 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
         	inBloqueioSistema.close();
         }
         
-        // Recupera a lista de erros de bloqueio de sistema.
+        // Recupera bloqueio de sistema.
         if ( listaDeBloqueios != null && !listaDeBloqueios.isEmpty() ){
-        	bloqueioSistema = listaDeBloqueios.getLast();
-        	sistemaDesbloqueado = bloqueioSistema.getDesbloqueado();
-        }
+        	if( listaDeBloqueios.getLast().getPrevisaoDesbloqueio().before(new GregorianCalendar()) ){
+        		bloqueioSistema = listaDeBloqueios.getLast();
+            	sistemaDesbloqueado = bloqueioSistema.getDesbloqueado();
+        	}
+        	else{
+        		bloqueioSistema = null;
+        		listaDeBloqueios.getLast().setDesbloqueado(true);
+        		this.sistemaDesbloqueado = true;
+        	}
+        }// fim de recupera bloqueio de sistema
+                   
 
     }// fim do construtor.
 
