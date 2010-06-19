@@ -542,7 +542,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
             	sistemaDesbloqueado = bloqueioSistema.getDesbloqueado();
         	}
         	else{
-        		bloqueioSistema = null;
+        		//bloqueioSistema = null;
         		listaDeBloqueios.getLast().setDesbloqueado(true);
         		this.sistemaDesbloqueado = true;
         	}
