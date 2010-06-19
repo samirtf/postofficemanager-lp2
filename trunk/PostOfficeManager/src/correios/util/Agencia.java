@@ -18,16 +18,16 @@ public class Agencia implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String atendenteAtivo;
+	private String nomeDoAtendente;
 	private ArrayList<Encomenda> listaDeEncomendas;
 	
 	
 	/**
-	 * Construtor da classe. O usuário passado como parâmetro tem que estar ativo no momento.
+	 * Construtor da classe. O usuario passado como parametro tem que estar ativo no momento.
 	 * @param Atendente - atendente ativo no momento.
 	 */
-	public Agencia(String atendenteAtivo) {
-		this.atendenteAtivo = atendenteAtivo;
+	public Agencia(String nomeDoAtendente) {
+		this.nomeDoAtendente = nomeDoAtendente;
 		
 		//LEITURA		
 		try {
@@ -48,8 +48,8 @@ public class Agencia implements Serializable {
 	 * Retorna o atendente ativo no momento.
 	 * @return Atendente - atendente ativo
 	 */
-	public String getAtendenteAtivo() {
-		return atendenteAtivo;
+	public String getnomeDoAtendente() {
+		return nomeDoAtendente;
 	}
 	/**
 	 * Retorna uma lista com todas as encomendas
