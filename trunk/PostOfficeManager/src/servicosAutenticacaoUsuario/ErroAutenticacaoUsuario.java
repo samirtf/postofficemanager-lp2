@@ -23,7 +23,7 @@ public class ErroAutenticacaoUsuario implements Serializable{
     private String dataHora = "";
 
     /**
-     * Constroi um erro de autenticação de usuario.
+     * Constroi um erro de autenticacao de usuario.
      */
     public ErroAutenticacaoUsuario(){
         this.instanteErro = new GregorianCalendar();
@@ -34,12 +34,12 @@ public class ErroAutenticacaoUsuario implements Serializable{
         this.idParcial = ano + "/" + diaDoAno;
         this.dataHora = String.format("%tc", instanteErro);
         
-    }// fim do construtor padrão.
+    }// fim do construtor padrao.
 
     /**
-     * Constroi um erro de autenticação de usuário a partir de um login.
+     * Constroi um erro de autenticacao de usuario a partir de um login.
      * @param login
-     *      O login do usuário.
+     *      O login do usuario.
      */
     public ErroAutenticacaoUsuario(String login){
         this();
@@ -47,13 +47,13 @@ public class ErroAutenticacaoUsuario implements Serializable{
     }// fim do construtor a partir de uma String login.
 
     /**
-     * Recupera o ID do erro de autenticação do usuário.
+     * Recupera o ID do erro de autenticacao do usuario.
      * @return
-     *      O ID do erro de autenticação do usuário.
+     *      O ID do erro de autenticacao do usuario.
      */
     public String getId(){
         return this.id;
-    }// fim do método getId.
+    }// fim do metodo getId.
 
     /**
      * Recupera dados do instante em que o erro foi gerado.
@@ -62,16 +62,16 @@ public class ErroAutenticacaoUsuario implements Serializable{
      */
     public GregorianCalendar getInstanteErro(){
         return this.instanteErro;
-    }// fim do método getInstanteErro.
+    }// fim do metodo getInstanteErro.
 
     /**
      * Recupera o login que estava sendo usado para logar no sistema.
      * @return
-     *      O login do usuário.
+     *      O login do usuario.
      */
     public String getLogin(){
         return this.login;
-    }// fim do método getLogin.
+    }// fim do metodo getLogin.
 
     /**
      * Recupera a data e a hora do erro.
@@ -80,7 +80,7 @@ public class ErroAutenticacaoUsuario implements Serializable{
      */
     public String getDataHora(){
         return this.dataHora;
-    }// fim do método getDataHora.
+    }// fim do metodo getDataHora.
 
     /**
      * Recupera o ID Parcial. O ID Parcial serve usar como filtro dos erros do dia.
@@ -89,18 +89,18 @@ public class ErroAutenticacaoUsuario implements Serializable{
      */
     public String getIdParcial(){
         return this.idParcial;
-    }// fim do método getIdParcial.
+    }// fim do metodo getIdParcial.
 
     /**
      * Compara a igualdade de dois erros.
      * @param obj
-     *      O objeto a ser passado. Supoe-se que seja uma instância de
+     *      O objeto a ser passado. Supoe-se que seja uma instancia de
      *      ErroAutenticacaoUsuario.
      * @return
      *      True - Se os dois erros forem iguais.
-     *      False - Se o segundo objeto a se comparar não for uma instância de
+     *      False - Se o segundo objeto a se comparar nao for uma instancia de
      *              ErroAutenticacaoUsuario.
-     *      False - Se os dois erros não forem iguais.
+     *      False - Se os dois erros nao forem iguais.
      */
     @Override
     public boolean equals(Object obj) {
@@ -115,14 +115,14 @@ public class ErroAutenticacaoUsuario implements Serializable{
             return false;
         }
         return true;
-    }// fim do método equals.
+    }// fim do metodo equals.
 
     @Override
     public int hashCode() {
         int hash = 7;
         hash = 79 * hash + (this.id != null ? this.id.hashCode() : 0);
         return hash;
-    }// fim do método hashCode.
+    }// fim do metodo hashCode.
 
 }// fim da classe ErroAutenticacaoUsuario.
 
