@@ -1,6 +1,7 @@
 
 package servicosAutenticacaoUsuario;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -49,79 +50,99 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     	
     	// Recupera usuarios cadastrados do banco de dados cadastrosUsuarios.txt.
     	ObjectInputStream inCadastrosUsuarios = null;
-        try{
-        	inCadastrosUsuarios = new ObjectInputStream(
-                    new FileInputStream("cadastros_usuarios.dat"));
-        	
-        	cadastros = (HashMap<String, Usuario>) inCadastrosUsuarios.readObject();
-            
-        }catch(Exception e1){
-        	ObjectOutputStream out = null;
-        	try {
+    	ObjectOutputStream outCadastrosUsuarios = null;
+
+    	if( new File("cadastros_usuarios.dat").exists() ){
+    		try{
+            	inCadastrosUsuarios = new ObjectInputStream(
+                        new FileInputStream("cadastros_usuarios.dat"));
+            	
+            	cadastros = (HashMap<String, Usuario>) inCadastrosUsuarios.readObject();
+                
+            }catch(Exception e){
+            	e.printStackTrace();
+            }finally{
+            	inCadastrosUsuarios.close();
+            }
+    	}else{
+    		try {
             	Usuario admin = new Usuario("admin", "admin", Prioridade.ADMINISTRADOR);
             	cadastros.put("admin", admin);
-            	out = new ObjectOutputStream(
+            	outCadastrosUsuarios = new ObjectOutputStream(
                         new FileOutputStream("cadastros_usuarios.dat"));
-            	out.writeObject(cadastros);
-    			out.close();
-        	} catch (Exception e2) {
-        		e2.printStackTrace();
+            	outCadastrosUsuarios.writeObject(cadastros);
+    			
+        	}catch (Exception e) {
+        		e.printStackTrace();
 			}finally{
-				out.close();
+				outCadastrosUsuarios.close();
 			}
-        }finally{
-        	inCadastrosUsuarios.close();
-        }
+    	}
+        
         
         // Recupera a lista de erros de autenticacao.
         ObjectInputStream inErrosAutenticacao = null;
-        try{
-        	inErrosAutenticacao = new ObjectInputStream(
-                    new FileInputStream("erros_autenticacao.dat"));
-        	
-        	listaDeErros = (LinkedList<ErroAutenticacaoUsuario>) inErrosAutenticacao.readObject();
-            
-        }catch(Exception e1){
-        	ObjectOutputStream out = null;
-        	try {
-            	 out = new ObjectOutputStream(
+        ObjectOutputStream outErrosAutenticacao = null;
+        
+        if( new File("erros_autenticacao.dat").exists() ){
+    		try{
+    			inErrosAutenticacao = new ObjectInputStream(
+                        new FileInputStream("erros_autenticacao.dat"));
+            	
+            	listaDeErros = (LinkedList<ErroAutenticacaoUsuario>) inErrosAutenticacao.readObject();
+                
+            }catch(Exception e){
+            	e.printStackTrace();
+            }finally{
+            	inErrosAutenticacao.close();
+            }
+    	}else{
+    		try {
+    			outErrosAutenticacao = new ObjectOutputStream(
                         new FileOutputStream("erros_autenticacao.dat"));
-            	out.writeObject(listaDeErros);
-        	} catch (Exception e2) {
-        		e2.printStackTrace();
+        		outErrosAutenticacao.writeObject(listaDeErros);
+    			
+        	}catch (Exception e) {
+        		e.printStackTrace();
 			}finally{
-				out.close();
+				outErrosAutenticacao.close();
 			}
-        }finally{
-        	inErrosAutenticacao.close();
-        }
+    	}
+        
         
         // Recupera a lista de erros de bloqueio de sistema.
         ObjectInputStream inBloqueioSistema = null;
-        try{
-        	inBloqueioSistema = new ObjectInputStream(
-                    new FileInputStream("bloqueios_sistema.dat"));
-        	
-        	listaDeBloqueios = (LinkedList<BloqueioSistema>) inBloqueioSistema.readObject();
-            
-        }catch(Exception e1){
-        	ObjectOutputStream out = null;
-        	try {
-            	out = new ObjectOutputStream(
-                        new FileOutputStream("bloqueios_sistema.dat"));
-            	out.writeObject(listaDeBloqueios);
-        	} catch (Exception e2) {
-        		e2.printStackTrace();
-			}finally{
-				out.close();
-			}
-        }finally{
-        	inBloqueioSistema.close();
-        }
+        ObjectOutputStream outBloqueioSistema = null;
         
+        if( new File("bloqueios_sistema.dat").exists() ){
+    		try{
+    			inBloqueioSistema = new ObjectInputStream(
+                        new FileInputStream("bloqueios_sistema.dat"));
+            	
+            	listaDeBloqueios = (LinkedList<BloqueioSistema>) inBloqueioSistema.readObject();
+                
+            }catch(Exception e){
+            	e.printStackTrace();
+            }finally{
+            	inBloqueioSistema.close();
+            }
+    	}else{
+    		try {
+    			outBloqueioSistema = new ObjectOutputStream(
+                        new FileOutputStream("bloqueios_sistema.dat"));
+        		outBloqueioSistema.writeObject(listaDeBloqueios);
+    			
+        	}catch (Exception e) {
+        		e.printStackTrace();
+			}finally{
+				outBloqueioSistema.close();
+			}
+    	}
+            
         // Recupera bloqueio de sistema.
         if ( listaDeBloqueios != null && !listaDeBloqueios.isEmpty() ){
         	if( listaDeBloqueios.getLast().getPrevisaoDesbloqueio().before(new GregorianCalendar()) ){
+        		System.out.println("nulo");
         		bloqueioSistema = listaDeBloqueios.getLast();
             	sistemaDesbloqueado = bloqueioSistema.getDesbloqueado();
         	}
@@ -346,6 +367,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     public boolean logaNoSistema(String login, String senha) {
         return cadastros != null && cadastros.size()!= 0 && 
             contadorFalhasAutenticacao < 10 && 
+            cadastros.containsKey(login) &&
             cadastros.get(login).getSenha().
                       equals(Criptografia.criptografa(login, senha));
             
@@ -378,6 +400,9 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
      */
     public boolean geraErroAutenticacao() throws IOException{
     	if( this.getContadorFalhasAutenticacao() >= 10){
+    		return false;
+    	}
+    	if( this.getSistemaDesbloqueado() == false){
     		return false;
     	}
     	if( listaDeErros != null ){
@@ -418,6 +443,9 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
      */
     public boolean geraErroAutenticacao(String login) throws IOException{
     	if( this.getContadorFalhasAutenticacao() >= 10){
+    		return false;
+    	}
+    	if( this.getSistemaDesbloqueado() == false){
     		return false;
     	}
     	if( login == null ){
@@ -489,6 +517,52 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     	}
     	
     	return false;
+    }
+    
+    
+    
+    public static void main(String[] args){
+    	try{
+    		AutenticacaoUsuario ab = new AutenticacaoUsuario();
+    		System.out.println(ab.logaNoSistema("admin", "admin"));
+    		System.out.println(ab.logaNoSistema("joao", "admin"));
+    		ab.listaDeErros.clear();
+    		ab.listaDeBloqueios.clear();
+    		System.out.println();
+    		ab.geraErroAutenticacao();
+    		System.out.println(ab.getListaErros().size());
+    		System.out.println(ab.getListaBloqueios().size());
+    		System.out.println(ab.sistemaDesbloqueado);
+    		System.out.println();
+    		
+    		ab.geraErroAutenticacao();
+    		ab.geraErroAutenticacao();
+    		ab.geraErroAutenticacao();
+    		ab.geraErroAutenticacao();
+    		ab.geraErroAutenticacao();
+    		ab.geraErroAutenticacao();
+    		ab.geraErroAutenticacao();
+    		ab.geraErroAutenticacao();
+    		
+    		System.out.println(ab.getListaErros().size());
+    		System.out.println(ab.getListaBloqueios().size());
+    		
+    		ab.geraErroAutenticacao();
+    		System.out.println(ab.getListaErros().size());
+    		System.out.println(ab.getListaBloqueios().size());
+    		
+    		ab.geraErroAutenticacao();
+    		System.out.println(ab.getListaErros().size());
+    		System.out.println(ab.getListaBloqueios().size());
+    		
+    		System.out.println("oifinal");
+    		
+    		System.out.println("oi");
+    	}catch(Exception e){
+    		System.out.println(e);
+    		e.printStackTrace();
+    	}
+    	
     }
     
 }// fim da classe AutenticacaoUsuario.
