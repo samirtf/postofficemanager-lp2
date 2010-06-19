@@ -45,6 +45,9 @@ public class AutenticacaoUsuarioExcecao extends Exception{
      *      10 - Login : Login incorreto
      *      11 - Senha : Senha incorreta
      *      12 - Cadastro : Usuario ja cadastrado
+     *      13 - Cadastro : Lista de cadastros null
+     *      14 - ListaErros : Lista de erros null
+     *      15 - ListaBloqueios : Lista de bloqueios null
      *      
      *
      * @param codigoExcecao
@@ -111,6 +114,12 @@ public class AutenticacaoUsuarioExcecao extends Exception{
                   return "Senha : Senha incorreta";
               case 12:
                   return "Cadastro : Usuario ja cadastrado";
+              case 13:
+                  return "Cadastro : Lista de cadastros null";
+              case 14:
+                  return "ListaErros : Lista de erros null";
+              case 15:
+                  return "ListaBloqueios : Lista de bloqueios null";
               default:
                   return super.getMessage();
             }
