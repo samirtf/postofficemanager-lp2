@@ -20,7 +20,7 @@ public class VerificaDados {
 	 */
 	
 	public static  boolean verificaSoNumeros(String numero) {
-		if(!numero.matches("^[0-9]*$"))
+		if(!numero.matches("^[0-9]*$") || (numero.equals(null)))
 		       	return false;
 		    		    
 	  return true;  
