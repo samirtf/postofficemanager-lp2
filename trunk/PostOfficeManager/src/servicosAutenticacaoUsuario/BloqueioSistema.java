@@ -27,6 +27,12 @@ public class BloqueioSistema implements Serializable{
     private GregorianCalendar previsaoDesbloqueio = null;
     private boolean desbloqueado = false;
 
+    public BloqueioSistema(){
+    	this.erroAutenticacaoUsuario = new ErroAutenticacaoUsuario();
+        this.id = this.erroAutenticacaoUsuario.getId();
+        this.previsaoDesbloqueio = this.erroAutenticacaoUsuario.getInstanteErro();
+    }
+    
     /**
      * Constroi um bloqueio de sistema a partir de um Erro de Autenticacao do Usuario.
      * @param erroAutenticacaoUsuario
@@ -37,7 +43,7 @@ public class BloqueioSistema implements Serializable{
         this.id = this.erroAutenticacaoUsuario.getId();
         this.previsaoDesbloqueio = this.erroAutenticacaoUsuario.getInstanteErro();
         this.previsaoDesbloqueio.set(Calendar.MINUTE,
-                this.previsaoDesbloqueio.get(Calendar.MINUTE) + 30);
+                this.previsaoDesbloqueio.get(Calendar.MINUTE) + 1);
     }// fim do construtor.
 
     /**
@@ -64,6 +70,9 @@ public class BloqueioSistema implements Serializable{
      *      A previsao de desbloqueio do sistema.
      */
     public GregorianCalendar getPrevisaoDesbloqueio(){
+    	if( this.previsaoDesbloqueio == null ){
+    		return null;
+    	}
         return this.previsaoDesbloqueio;
     }// fim do metodo getPrevisaoDesbloqueado
 
