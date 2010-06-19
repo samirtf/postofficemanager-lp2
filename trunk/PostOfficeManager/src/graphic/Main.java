@@ -1,5 +1,9 @@
 package graphic;
 
+/**
+ * @author Vinícius Souza
+ * Script que inicia o programa a partir da tela de login.
+ */
 public class Main {
 	
 	public static void main(String[] args) {
