@@ -128,7 +128,7 @@ public class CepTeste {
     }
 
     /**
-     * Teste do método getCep, da classe Cep.
+     * Teste do metodo getCep, da classe Cep.
      */
     @Test
     public void testGetCep() throws Exception {
@@ -141,7 +141,7 @@ public class CepTeste {
     }
 
     /**
-     * Teste do método getLogradouro, da classe Cep.
+     * Teste do metodo getLogradouro, da classe Cep.
      */
     @Test
     public void testGetLogradouro() throws Exception {
@@ -154,7 +154,7 @@ public class CepTeste {
     }
 
     /**
-     * Teste do método getBairro, da classe Cep.
+     * Teste do metodo getBairro, da classe Cep.
      */
     @Test
     public void testGetBairro() throws Exception {
@@ -166,7 +166,7 @@ public class CepTeste {
     }
 
     /**
-     * Teste do método getCidade, da classe Cep.
+     * Teste do metodo getCidade, da classe Cep.
      */
     @Test
     public void testGetCidade() throws Exception {
@@ -178,7 +178,7 @@ public class CepTeste {
     }
 
     /**
-     * Teste do método getUf, da classe Cep.
+     * Teste do metodo getUf, da classe Cep.
      */
     @Test
     public void testGetUf() throws Exception {
@@ -190,7 +190,7 @@ public class CepTeste {
     }
 
     /**
-     * Teste de método getChave, da classe Cep.
+     * Teste de metodo getChave, da classe Cep.
      */
     @Test
     public void testGetChave() throws Exception {
@@ -202,7 +202,7 @@ public class CepTeste {
     }
 
     /**
-     * Teste do método setCep, da classe Cep.
+     * Teste do metodo setCep, da classe Cep.
      */
     @Test
     public void testSetCep() throws Exception {
@@ -213,7 +213,7 @@ public class CepTeste {
     }
 
     /**
-     * Teste do método setLogradouro, da classe Cep.
+     * Teste do metodo setLogradouro, da classe Cep.
      * @throws Exception 
      */
     @Test
@@ -226,7 +226,7 @@ public class CepTeste {
     }
 
     /**
-     * Teste do método setBairro, da classe Cep.
+     * Teste do metodo setBairro, da classe Cep.
      * @throws Exception 
      */
     @Test
