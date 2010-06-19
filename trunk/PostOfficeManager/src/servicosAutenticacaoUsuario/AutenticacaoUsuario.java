@@ -15,13 +15,13 @@ import servicosAutenticacaoUsuario.Usuario.Prioridade;
 /**
  *
  * @author Samir Trajano Feitosa
- * @version 1.0
+ * @version 2.1
  * @since 11/06/2010
  */
 public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
 	
 	/**
-	 * 
+	 * serialVersionUID
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -86,11 +86,10 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
             	 out = new ObjectOutputStream(
                         new FileOutputStream("erros_autenticacao.dat"));
             	out.writeObject(listaDeErros);
-    			out.close();
         	} catch (Exception e2) {
         		e2.printStackTrace();
 			}finally{
-				
+				out.close();
 			}
         }finally{
         	inErrosAutenticacao.close();
@@ -110,7 +109,6 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
             	out = new ObjectOutputStream(
                         new FileOutputStream("bloqueios_sistema.dat"));
             	out.writeObject(listaDeBloqueios);
-    			out.close();
         	} catch (Exception e2) {
         		e2.printStackTrace();
 			}finally{
@@ -262,28 +260,43 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
      * @return
      *      True - Se o usuario for cadastrado.
      *      False - Se o usuario nao for cadastrado.
+     * @throws IOException 
      */
     public boolean cadastraUsuario(String login, String senha, Prioridade prioridade)
-              throws AutenticacaoUsuarioExcecao{
+              throws AutenticacaoUsuarioExcecao, IOException{
+    	
+    	// observar a possibilidade de ter sido armazenado apenas na memoria, situacao
+    	// na qual o novo cadastro nao tera sido armazenado em arquivo.
         try{
-            // Se prioridade for null, um usuario default serie cadastrado
+            // Se prioridade for null, um usuario default sera cadastrado
             if ( validaLogin(login) && validaSenha(login, senha) && prioridade == null){
                 cadastros.put(login, new Usuario(login, senha));
-                return true;
             }
             // Se prioridade for instancia de Prioridade, serie criado um usuario
             // com prioridade pre-definida.
             else if( validaLogin(login) && validaSenha(login, senha) &&
                     prioridade.getClass() == Prioridade.class ){
                 cadastros.put(login, new Usuario(login, senha, prioridade));
-                return true;
             }
         }
         catch(AutenticacaoUsuarioExcecao autenticacaoUsuarioExcecao){
-            System.out.println("Erro: " + autenticacaoUsuarioExcecao.getMessage() +
-                    autenticacaoUsuarioExcecao);
+            autenticacaoUsuarioExcecao.printStackTrace();
+            return false;
         }
-        return false;
+        
+        ObjectOutputStream out = null;
+    	try {
+        	out = new ObjectOutputStream(
+                    new FileOutputStream("cadastros_usuarios.dat"));
+        	out.writeObject(cadastros);
+    	}catch (Exception e) {
+    		e.printStackTrace();
+    		// se a excecao for chamada, o novo cadastro nao tera sido persistido.
+		}finally{
+			out.close();
+		}
+        
+		return true;
 
     }
 
