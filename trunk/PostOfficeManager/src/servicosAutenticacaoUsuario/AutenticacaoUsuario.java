@@ -169,7 +169,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
      * Recupera o estado de acesso ao sistema.
      * @return
      * 		True - Se o sistema estiver desbloqueado.
-     * 		False - Se o sistema não estiver desbloqueado.
+     * 		False - Se o sistema nao estiver desbloqueado.
      */
     public boolean getSistemaDesbloqueado(){
     	return this.sistemaDesbloqueado;
