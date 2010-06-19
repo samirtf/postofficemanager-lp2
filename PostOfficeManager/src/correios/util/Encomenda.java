@@ -12,14 +12,12 @@ import java.util.GregorianCalendar;
  * @version 2.0
  */
 public class Encomenda implements Serializable{
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	protected String cepRemetente, cepDestinatario, dataEnvio, dataRecebimento, id, atendente, cidade, estado;
+
+	protected static final long serialVersionUID = 1L;
+	protected String cepRemetente, cepDestinatario, dataEnvio, id, atendente, cidade, estado;
 	protected double peso, valorDeclarado;
 	protected int tentativasDeEntrega=3;
+	protected String dataRecebimento = "";
 	
 	/**
 	 * Construtor que não recebe valor declarado como parâmetro (Encomendas simples). 
@@ -159,7 +157,7 @@ public class Encomenda implements Serializable{
 		if (dataRecebimento.length()>0) {
 			return dataRecebimento;			
 		}
-		return null;
+		return "";
 		
 	}
 	/**Se a encomenda possuir um valor declarado, será retornado
