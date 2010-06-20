@@ -123,6 +123,21 @@ public class ErroAutenticacaoUsuario implements Serializable{
         hash = 79 * hash + (this.id != null ? this.id.hashCode() : 0);
         return hash;
     }// fim do metodo hashCode.
+    
+    @Override
+    public String toString(){
+    	final String EOL = System.getProperty("line.separator");
+    	String toString = "##################################################" + EOL +
+    	                  "# ERRO DE AUTENTICACAO DE USUARIO                #" + EOL +
+    	                  "#" + EOL +
+    	                  "# id: " + this.getId() + EOL +
+    	                  "# id parcial: " + this.getIdParcial() + EOL +
+    	                  "# login: " + this.getLogin() + EOL +
+    	                  "# data/hora: " + this.getDataHora() + EOL +
+    	                  "#                                                #" + EOL +
+    	                  "##################################################" + EOL;
+	return toString;
+    }
 
 }// fim da classe ErroAutenticacaoUsuario.
 
