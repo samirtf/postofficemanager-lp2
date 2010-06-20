@@ -1,9 +1,15 @@
 package servicosAutenticacaoGerencUsuario;
 
+import java.io.BufferedWriter;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import servicosAutenticacaoGerencUsuario.Usuario.Prioridade;
@@ -176,6 +182,65 @@ public class GerenciamentoUsuario {
 		
 		return true;
 	}// fim do metodo alteraSenhaUsuario.
+	
+	public static boolean gerarRelatorioErrosAutenticacaoDiario(AutenticacaoUsuario autentUsuario, String login){
+		HashMap<String, Usuario> listaUsuarios = autentUsuario.getCadastrosUsuarios();
+		
+		if( listaUsuarios != null && listaUsuarios.containsKey(login) && 
+			listaUsuarios.get(login).getPrioridade() == Prioridade.ADMINISTRADOR){
+			
+			GregorianCalendar instante = new GregorianCalendar();
+			String nome_arquivo = String.format("reaud_%1$td_%1$tm_%1$tY.txt", instante);
+			PrintWriter out = null;
+			try{
+				out = new PrintWriter(new BufferedWriter(new FileWriter(nome_arquivo) ) );  
+				out.write(gerarStringRelatorioErrosAutentDiario(autentUsuario));
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				out.close();
+			}
+			
+		}
+		return false;
+	}// fim do metodo gerarRelatorioErrosAutenticacao.
+	
+	private static String gerarStringRelatorioErrosAutentDiario(AutenticacaoUsuario autentUsuario){
+		final String EOL = System.getProperty("line.separator");
+		GregorianCalendar instanteErro = new GregorianCalendar();
+        String ano = String.format("%1$tY", instanteErro);
+        String diaDoAno = String.format("%d", instanteErro.get(Calendar.DAY_OF_YEAR));
+        String idParcial = ano + "/" + diaDoAno;
+        
+        String relatorio = "######################################################" + EOL +
+                           "#                                                    #" + EOL +
+                           "#      RELATORIO DIARIO DE ERROS DE AUTENTICACAO     #" + EOL +
+                           "#                                                    #" + EOL +
+                           "######################################################" + EOL + EOL;
+        
+        LinkedList<ErroAutenticacaoUsuario> listaErros = autentUsuario.getListaErros();
+        
+        if( listaErros != null && !listaErros.isEmpty() ){
+        	Iterator<ErroAutenticacaoUsuario> iteraListaErros = listaErros.iterator();
+        	while(iteraListaErros.hasNext()){
+        		ErroAutenticacaoUsuario erro = iteraListaErros.next();
+        		if( erro.getIdParcial().equals(idParcial) ){
+        			relatorio += erro.toString() + EOL + EOL;
+        		}
+        		
+        	}
+        }else{
+        	relatorio += "######################################################" + EOL +
+                         "#                                                    #" + EOL +
+                         "#       NAO OCORRERAM ERROS DE AUTENTICACAO HOJE     #" + EOL +
+                         "#                                                    #" + EOL +
+                         "######################################################" + EOL;
+        }
+        
+		
+		
+		return relatorio;
+	}
 	
 	
 }
