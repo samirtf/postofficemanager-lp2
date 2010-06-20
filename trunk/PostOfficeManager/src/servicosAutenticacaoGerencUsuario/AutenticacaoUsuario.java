@@ -68,7 +68,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     	}else{
     		try {
             	Usuario admin = new Usuario("administrador", "administrador", Prioridade.ADMINISTRADOR);
-            	cadastros.put("admin", admin);
+            	cadastros.put("administrador", admin);
             	outCadastrosUsuarios = new ObjectOutputStream(
                         new FileOutputStream("cadastros_usuarios.dat"));
             	outCadastrosUsuarios.writeObject(cadastros);
@@ -606,6 +606,10 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     		//GerenciamentoUsuario.cadastraUsuarioPadrao(ab, "Deusehamor", "Deusehfiel");
     		GerenciamentoUsuario.removeUsuario(ab, "Deusehamor");
     		System.out.println(ab.getCadastrosUsuarios().size());
+    		//System.out.println(ab.getListaErros().getLast());
+    		System.out.println(ab.getCadastrosUsuarios().get("administrador"));
+    		System.out.println(ab.getCadastrosUsuarios().entrySet());
+    		GerenciamentoUsuario.gerarRelatorioErrosAutenticacaoDiario(ab, "administrador");
     		
     	}catch(Exception e){
     		System.out.println(e);
