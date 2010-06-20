@@ -257,7 +257,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
             throw new AutenticacaoUsuarioExcecao(5);
         }
 
-        return false;
+        return true;
     }// fim do metodo validaLogin.
     
 
@@ -295,7 +295,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
             throw new AutenticacaoUsuarioExcecao(9);
         }
 
-        return false;
+        return true;
     }// fim do metodo validaSenha.
 
     /**
@@ -601,9 +601,10 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     		System.out.println(ab.getBloqueioSistema().getPrevisaoDesbloqueio());
     		System.out.println(GregorianCalendar.getInstance());
     		System.out.println(ab.getCadastrosUsuarios().size());
-    		System.out.println(ab.validaLogin("patriciaweck"));
-    		GerenciamentoUsuario.cadastraUsuario(ab, "patriciaweck", "patriciaweck", null);
-    		GerenciamentoUsuario.cadastraUsuario(ab, "patriciaweck1", "patriciaweck1", null);
+    		System.out.println(ab.validaLogin("Deusehfiel"));
+    		GerenciamentoUsuario.cadastraUsuarioPadrao(ab, "Deusehfiel", "Deusehfiel");
+    		//GerenciamentoUsuario.cadastraUsuarioPadrao(ab, "Deusehamor", "Deusehfiel");
+    		GerenciamentoUsuario.removeUsuario(ab, "Deusehamor");
     		System.out.println(ab.getCadastrosUsuarios().size());
     		
     	}catch(Exception e){
