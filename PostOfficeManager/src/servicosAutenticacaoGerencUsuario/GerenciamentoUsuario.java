@@ -242,6 +242,168 @@ public class GerenciamentoUsuario {
 		return relatorio;
 	}
 	
+	public static boolean gerarRelatorioErrosAutenticacaoTotal(AutenticacaoUsuario autentUsuario, String login){
+		HashMap<String, Usuario> listaUsuarios = autentUsuario.getCadastrosUsuarios();
+		
+		if( listaUsuarios != null && listaUsuarios.containsKey(login) && 
+			listaUsuarios.get(login).getPrioridade() == Prioridade.ADMINISTRADOR){
+			
+			GregorianCalendar instante = new GregorianCalendar();
+			String nome_arquivo = String.format("reaut_%1$td_%1$tm_%1$tY.txt", instante);
+			PrintWriter out = null;
+			try{
+				out = new PrintWriter(new BufferedWriter(new FileWriter(nome_arquivo) ) );  
+				out.write(gerarStringRelatorioErrosAutentTotal(autentUsuario));
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				out.close();
+			}
+			
+		}
+		return false;
+	}// fim do metodo gerarRelatorioErrosAutenticacao.
 	
-}
+	private static String gerarStringRelatorioErrosAutentTotal(AutenticacaoUsuario autentUsuario){
+		final String EOL = System.getProperty("line.separator");
+        
+        String relatorio = "######################################################" + EOL +
+                           "#                                                    #" + EOL +
+                           "#       RELATORIO TOTAL DE ERROS DE AUTENTICACAO     #" + EOL +
+                           "#                                                    #" + EOL +
+                           "######################################################" + EOL + EOL;
+        
+        LinkedList<ErroAutenticacaoUsuario> listaErros = autentUsuario.getListaErros();
+        
+        if( listaErros != null && !listaErros.isEmpty() ){
+        	Iterator<ErroAutenticacaoUsuario> iteraListaErros = listaErros.iterator();
+        	while(iteraListaErros.hasNext()){
+        		ErroAutenticacaoUsuario erro = iteraListaErros.next();
+        			relatorio += erro.toString() + EOL + EOL;
+        		
+        	}
+        }else{
+        	relatorio += "######################################################" + EOL +
+                         "#                                                    #" + EOL +
+                         "#         NAO OCORRERAM ERROS DE AUTENTICACAO        #" + EOL +
+                         "#                                                    #" + EOL +
+                         "######################################################" + EOL;
+        }
+        
+		return relatorio;
+	}
+	
+	
+	public static boolean gerarRelatorioBloqueioSistemaDiario(AutenticacaoUsuario autentUsuario, String login){
+		HashMap<String, Usuario> listaUsuarios = autentUsuario.getCadastrosUsuarios();
+		
+		if( listaUsuarios != null && listaUsuarios.containsKey(login) && 
+			listaUsuarios.get(login).getPrioridade() == Prioridade.ADMINISTRADOR){
+			
+			GregorianCalendar instante = new GregorianCalendar();
+			String nome_arquivo = String.format("rbsd_%1$td_%1$tm_%1$tY.txt", instante);
+			PrintWriter out = null;
+			try{
+				out = new PrintWriter(new BufferedWriter(new FileWriter(nome_arquivo) ) );  
+				out.write(gerarStringRelatorioBloqueioSistemaDiario(autentUsuario));
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				out.close();
+			}
+			
+		}
+		return false;
+	}// fim do metodo gerarRelatorioBloqueioSistemaDiario.
+	
+	private static String gerarStringRelatorioBloqueioSistemaDiario(AutenticacaoUsuario autentUsuario){
+		final String EOL = System.getProperty("line.separator");
+		GregorianCalendar instanteErro = new GregorianCalendar();
+        String ano = String.format("%1$tY", instanteErro);
+        String diaDoAno = String.format("%d", instanteErro.get(Calendar.DAY_OF_YEAR));
+        String idParcial = ano + "/" + diaDoAno;
+        
+        String relatorio = "######################################################" + EOL +
+                           "#                                                    #" + EOL +
+                           "#      RELATORIO DIARIO DE BLOQUEIOS DE SISTEMA      #" + EOL +
+                           "#                                                    #" + EOL +
+                           "######################################################" + EOL + EOL;
+        
+        LinkedList<BloqueioSistema> listaBloqueios = autentUsuario.getListaBloqueios();
+        
+        if( listaBloqueios != null && !listaBloqueios.isEmpty() ){
+        	Iterator<BloqueioSistema> iteraListaBloqueios = listaBloqueios.iterator();
+        	while(iteraListaBloqueios.hasNext()){
+        		BloqueioSistema bloqueio = iteraListaBloqueios.next();
+        		if( bloqueio.getErroAutenticacaoUsuario().getIdParcial().equals(idParcial) ){
+        			relatorio += bloqueio.toString() + EOL + EOL;
+        		}
+        		
+        	}
+        }else{
+        	relatorio += "######################################################" + EOL +
+                         "#                                                    #" + EOL +
+                         "#       NAO OCORRERAM BLOQUEIOS DE SISTEMA HOJE      #" + EOL +
+                         "#                                                    #" + EOL +
+                         "######################################################" + EOL;
+        }
+        
+		
+		
+		return relatorio;
+	} // fim do metodo gerarStringRelatorioBloqueioSistemaDiario.
+	
+	
+	public static boolean gerarRelatorioBloqueioSistemaTotal(AutenticacaoUsuario autentUsuario, String login){
+		HashMap<String, Usuario> listaUsuarios = autentUsuario.getCadastrosUsuarios();
+		
+		if( listaUsuarios != null && listaUsuarios.containsKey(login) && 
+			listaUsuarios.get(login).getPrioridade() == Prioridade.ADMINISTRADOR){
+			
+			GregorianCalendar instante = new GregorianCalendar();
+			String nome_arquivo = String.format("rbst_%1$td_%1$tm_%1$tY.txt", instante);
+			PrintWriter out = null;
+			try{
+				out = new PrintWriter(new BufferedWriter(new FileWriter(nome_arquivo) ) );  
+				out.write(gerarStringRelatorioBloqueiosSistemTotal(autentUsuario));
+			}catch(Exception e){
+				e.printStackTrace();
+			}finally{
+				out.close();
+			}
+			
+		}
+		return false;
+	}// fim do metodo gerarRelatorioBloqueioSistemaTotal.
+	
+	private static String gerarStringRelatorioBloqueiosSistemTotal(AutenticacaoUsuario autentUsuario){
+		final String EOL = System.getProperty("line.separator");
+        
+        String relatorio = "######################################################" + EOL +
+                           "#                                                    #" + EOL +
+                           "#       RELATORIO TOTAL DE BLOQUEIOS DE SISTEMA      #" + EOL +
+                           "#                                                    #" + EOL +
+                           "######################################################" + EOL + EOL;
+        
+        LinkedList<BloqueioSistema> listaBloqueios = autentUsuario.getListaBloqueios();
+        
+        if( listaBloqueios != null && !listaBloqueios.isEmpty() ){
+        	Iterator<BloqueioSistema> iteraListaBloqueios = listaBloqueios.iterator();
+        	while(iteraListaBloqueios.hasNext()){
+        		BloqueioSistema bloqueio = iteraListaBloqueios.next();
+        			relatorio += bloqueio.toString() + EOL + EOL;
+        		
+        	}
+        }else{
+        	relatorio += "######################################################" + EOL +
+                         "#                                                    #" + EOL +
+                         "#         NAO OCORRERAM BLOQUEIOS DE SISTEMA         #" + EOL +
+                         "#                                                    #" + EOL +
+                         "######################################################" + EOL;
+        }
+        
+		return relatorio;
+	}// fim do metodo gerarStringRelatorioBloqueiosSistemTotal.
+	
+}// fim da classe gerenciamentoUsuario.
 

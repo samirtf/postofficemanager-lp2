@@ -133,6 +133,29 @@ public class BloqueioSistema implements Serializable{
         hash = 37 * hash + (this.id != null ? this.id.hashCode() : 0);
         return hash;
     }// fim do metodo hashCode.
+    
+    public String toString(){
+    	final String EOL = System.getProperty("line.separator");
+    	String prevDesbloqueio = String.format("%tc", this.getPrevisaoDesbloqueio());
+    	String desbloqueado = "";
+    	if( this.getDesbloqueado() ){
+    		desbloqueado = "SIM";
+    	}else{
+    		desbloqueado = "NAO";
+    	}
+    	String toString = "######################################################" + EOL +
+    	                  "#              BLOQUEIO DE SISTEMA                   #" + EOL +
+    	                  "#" + EOL +
+    	                  "# id: " + this.getId() + EOL +
+    	                  "# id parcial: " + this.getErroAutenticacaoUsuario().getIdParcial() + EOL +
+    	                  "# login: " + this.getErroAutenticacaoUsuario().getLogin() + EOL +
+    	                  "# data/hora: " + this.getErroAutenticacaoUsuario().getDataHora() + EOL +
+    	                  "# prev. desbloq.: " + prevDesbloqueio + EOL +
+    	                  "# desbloqueado: " + desbloqueado + EOL +
+    	                  "#                                                    #" + EOL +
+    	                  "######################################################" + EOL;
+    	return toString;
+    }
 
 }// fim da classe BloqueioSistema
 
