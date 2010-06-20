@@ -610,6 +610,9 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     		System.out.println(ab.getCadastrosUsuarios().get("administrador"));
     		System.out.println(ab.getCadastrosUsuarios().entrySet());
     		GerenciamentoUsuario.gerarRelatorioErrosAutenticacaoDiario(ab, "administrador");
+    		GerenciamentoUsuario.gerarRelatorioErrosAutenticacaoTotal(ab, "administrador");
+    		GerenciamentoUsuario.gerarRelatorioBloqueioSistemaDiario(ab, "administrador");
+    		GerenciamentoUsuario.gerarRelatorioBloqueioSistemaTotal(ab, "administrador");
     		
     	}catch(Exception e){
     		System.out.println(e);
