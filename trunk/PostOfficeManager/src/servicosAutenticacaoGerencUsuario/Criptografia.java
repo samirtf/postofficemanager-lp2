@@ -24,8 +24,15 @@ public class Criptografia implements Serializable{
      *      A senha do usuario.
      * @return
      *      Um valor criptografado.
+	 * @throws Exception 
      */
-    public static String criptografa(String login, String senha) {
+    public static String criptografa(String login, String senha) throws Exception {
+    	if(login == null || login.trim().equals("")){
+    		throw new Exception("Login inválido!");
+    	}
+    	if(senha == null || senha.trim().equals("")){
+    		throw new Exception("Senha inválido!");
+    	}
     	
         String codificado = login + senha;
 
