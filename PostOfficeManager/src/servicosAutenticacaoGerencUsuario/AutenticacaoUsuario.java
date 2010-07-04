@@ -238,7 +238,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
             return false;
         }
         // Se login for vazio, retorna false.
-        else if( login.equals("")){
+        else if( login.trim().equals("")){
         	return false;
         }
         // Se login nao for formado apenas por caracteres alfanumericos,
@@ -278,7 +278,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
         	return false;
         }
         // Se senha for vazio, retorna false.
-        else if( senha.equals("")){
+        else if( senha.trim().equals("")){
         	return false;
         }
         // Se tamanho do senha for menor que MIN_LENGTH_PASS, retorna false.
@@ -306,6 +306,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
      * @throws IOException 
      */
     public boolean cadastraUsuario(String login, String senha, Prioridade prioridade)throws IOException{
+    	
     	
     	// observar a possibilidade de ter sido armazenado apenas na memoria, situacao
     	// na qual o novo cadastro nao tera sido armazenado em arquivo.
