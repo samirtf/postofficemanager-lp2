@@ -40,8 +40,15 @@ public class Usuario implements Serializable{
      * 		O login do usuario.
      * @param senha
      * 		A senha do usuario.
+     * @throws Exception 
      */
-    public Usuario(String login, String senha){
+    public Usuario(String login, String senha) throws Exception{
+    	if( login == null || login.trim().equals("")){
+    		throw new Exception("Login inválido!");
+    	}
+    	else if( senha == null || senha.trim().equals("")){
+    		throw new Exception("Login inválido!");
+    	}
         this.login = login;
         this.senha = Criptografia.criptografa(login, senha);// senha sera armazenada 
                                                             //no atributo ja criptografada.
@@ -55,8 +62,9 @@ public class Usuario implements Serializable{
      * 		A senha do novo usuario.
      * @param prioridade
      * 		A prioridade do novo usuario.
+     * @throws Exception 
      */
-    public Usuario(String login, String senha, Prioridade prioridade){
+    public Usuario(String login, String senha, Prioridade prioridade) throws Exception{
         this(login, senha);
         this.prioridade = prioridade;
     }// fim do construtor a partir de um login, uma senha e uma prioridade do usuario.
@@ -83,8 +91,9 @@ public class Usuario implements Serializable{
      * Configura a senha do usuario. A nova senha sera criptografada antes de ser armazenada.
      * @param NovaSenha
      * 		A nova senha do usuario.
+     * @throws Exception 
      */
-    public void setSenha(String NovaSenha){
+    public void setSenha(String NovaSenha) throws Exception{
         this.senha = Criptografia.criptografa(this.login, NovaSenha);
     }// fim do metado setSenha.
 
