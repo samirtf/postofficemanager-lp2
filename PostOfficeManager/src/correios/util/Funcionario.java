@@ -16,7 +16,7 @@ public class Funcionario {
 	private double salario = 0.0;
 
 	/**
-	 * Contrutor Funcion√°rio
+	 * Contrutor Funcionario
 	 * @param nome
 	 * @param dataNascimento
 	 * @param cpf
@@ -53,81 +53,152 @@ public class Funcionario {
 	}//fim do construtor padrao
 	
 	/**
-	 * Busca Nome do Funcionario
-	 * @return nome do funcionario
+	 * Recupera o nome do funcionario.
+	 * @return
+	 * 		O nome do funcionario.
 	 */
 	public String getNome(){
 		return this.nome;
-	}
+	}//fim do metodo getNome
 	
 	/**
-	 * Busca a data de nascimento
-	 * @return data de nascimento do funcionario
+	 * Recupera a data de nascimento do funcionario.
+	 * @return
+	 * 		Data de nascimento do funcionario.
 	 */
 	public String getDataNascimento(){
 		return this.dataNascimento;
-	}
+	}//fim do metodo getDataNascimento
 	
 	/**
-	 * Busca cpf
-	 * @return o cpf do funcionario
+	 * Recupera o CPF do funcionario.
+	 * @return
+	 * 		O CPF do funcionario.
 	 */
 	public String getCpf(){
 		return this.cpf;
-	}
+	}//fim do metodo getCpf
 	
+	/**
+	 * Recupera o salario do funcionario.
+	 * @return
+	 * 		O salario do funcionario.
+	 */
 	public double getSalario(){
 		return this.salario;
-	}
+	}//fim de metodo getSalario
 	
+	/**
+	 * Recupera o login do funcionario.
+	 * @return
+	 * 		O login do funcionario.
+	 */
 	public String getLogin(){
 		return this.login;
-	}
+	}//fim do metodo getLogin
 	
+	/**
+	 * Recupera a chave do funcionario.
+	 * @return
+	 * 		A chave do funcionario.
+	 */
 	public boolean getChave(){
 		return this.chave;
-	}
+	}//fim do metodo getChave
 
+	/**
+	 * Configura o nome do funcionario.
+	 * @param nome
+	 * 		O nome do funcionario.
+	 * @return
+	 * 		True - Se o nome do funcionario for modificado.
+	 * 		False - Se o nome do funcionario nao for modificado.
+	 */
 	public boolean setNome(String nome){
 		if( VerificaDados.verificaNome(nome) ){
 			this.nome = nome;
 			return true;
 		}
 		return false;
-	}
+	}//fim do metodo setNome
 	
-	public boolean setDataNasc(String data){
+	/**
+	 * Configura a data de nascimento do funcionario.
+	 * @param data
+	 * 		A data de nascimento do funcionario.
+	 * @return
+	 * 		True - Se a data de nascimento for modificada.
+	 * 		False - Se a data de nascimento nao for modificada.
+	 */
+	public boolean setDataNascimento(String data){
 		if( VerificaDados.verificaData(data) ){
 			this.dataNascimento = data;
 			return true;
 		}
 		return false;
-	}
+	}//fim do metodo setDataNascimento
 	
+	/**
+	 * Configura o CPF do funcionario.
+	 * 
+	 * @param cpf
+	 * 		O CPF do funcionario.
+	 * @return
+	 * 		True - Se o CPF for alterado.
+	 *      False - Se o CPF n„ for alterado.
+	 */
 	public boolean setCpf(String cpf){
 		if( VerificaDados.verificaCpf(cpf) ){
 			this.cpf = cpf;
 			return true;
 		}
 		return false;
-	}
+	}//fim do metodo setCpf
 	
+	/**
+	 * Cofigura o salario do funcionario.
+	 * 
+	 * @param salario
+	 * 		O salario do fncionario.
+	 */
 	public void setSalario(double salario){
 		this.salario = salario;
-	}
+	}//fim do metodo setSalario
 	
+	/**
+	 * Configura a chave(funcionario ativo ou inativo) do funcionario.
+	 * @param chave
+	 * 		A chave do funcionario.
+	 */
 	public void setChave(boolean chave){
 		this.chave = chave;
-	}
+	}//fim do metodo setChave
 	
+	/**
+	 * Configura o login do funcionario. Deve ser usado em conjunto com 
+	 *     alteraLoginUsuario(GerenciamentoUsuario).
+	 * @param login
+	 *     O login do funcionario(login do usuario).
+	 * @return
+	 *     True - Se o login do funcionario(usuario) for trocado.
+	 *     False - Se o login do funcionario(usuario) n„o for trocado.
+	 */
 	public boolean setLogin(String login){
 		if(login != null && !login.trim().equals("")){
 			this.login = login;
 			return true;
 		}
 		return false;
-	}
+	}//fim metodo setLogin
 	
+	/**
+	 * Verifica a igualdade de dois funcionarios.
+	 * 
+	 * @return
+	 * 		True - Se a igualdade dos funcionarios for verdadeira.
+	 * 		False - Se o segundo objeto a ser comparado nao for um funcionario 
+	 *              ou se os funcionarios comparados nao forem iguais. 
+	 */
 	public boolean equals(Object objeto){
 		if( !(objeto instanceof Funcionario)){
 			return false;
@@ -135,6 +206,6 @@ public class Funcionario {
 		Funcionario outroFuncionario = (Funcionario) objeto;
 		
 		return this.getCpf().hashCode() == outroFuncionario.getCpf().hashCode();
-	}
+	}//fim do metodo equals
 	
-}
+}//fim da classe
