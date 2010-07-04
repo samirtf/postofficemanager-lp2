@@ -10,7 +10,11 @@ package servicosAutenticacaoGerencUsuario;
  */
 public class AutenticacaoUsuarioExcecao extends Exception{
 
-    // Codigo da Excecao.
+    /**
+	 * Numero serialVersionUID.
+	 */
+	private static final long serialVersionUID = 1L;
+	// Codigo da Excecao.
     private Integer codigoExcecao = null;
 
     /**
