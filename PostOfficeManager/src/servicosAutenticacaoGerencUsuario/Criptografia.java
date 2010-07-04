@@ -31,7 +31,7 @@ public class Criptografia implements Serializable{
     		throw new Exception("Login inválido!");
     	}
     	if(senha == null || senha.trim().equals("")){
-    		throw new Exception("Senha inválido!");
+    		throw new Exception("Senha inválida!");
     	}
     	
         String codificado = login + senha;
