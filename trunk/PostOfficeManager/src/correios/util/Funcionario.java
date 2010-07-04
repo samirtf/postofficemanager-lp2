@@ -120,4 +120,21 @@ public class Funcionario {
 		this.chave = chave;
 	}
 	
+	public boolean setLogin(String login){
+		if(login != null && !login.trim().equals("")){
+			this.login = login;
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean equals(Object objeto){
+		if( !(objeto instanceof Funcionario)){
+			return false;
+		}
+		Funcionario outroFuncionario = (Funcionario) objeto;
+		
+		return this.getCpf().hashCode() == outroFuncionario.getCpf().hashCode();
+	}
+	
 }
