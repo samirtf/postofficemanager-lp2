@@ -228,33 +228,31 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
      * @return
      *      True - Se o login for valido.
      *      False - Se o login nao for valido.
-     * @throws AutenticacaoUsuarioExcecao
-     *      Se houver problemas na autenticacao do login.
      */
-    public boolean validaLogin(String login) throws AutenticacaoUsuarioExcecao{
+    public boolean validaLogin(String login){
         final int MIN_LENGTH_PASS = 8;// Tamanho minimo do login.
         final int MAX_LENGTH_PASS = 13;// Tamanho maximo do login.
 
         // Se login for nulo, retorna false.
         if( login == null ){
-            throw new AutenticacaoUsuarioExcecao(1);
+            return false;
         }
         // Se login for vazio, retorna false.
         else if( login.equals("")){
-            throw new AutenticacaoUsuarioExcecao(2);
+        	return false;
         }
         // Se login nao for formado apenas por caracteres alfanumericos,
         // retorna false.
         else if( !(login.matches("^[a-zA-Z0-9]*$") )){
-            throw new AutenticacaoUsuarioExcecao(3);
+        	return false;
         }
         // Se tamanho do login for menor que MIN_LENGTH_PASS, retorna false.
         else if( login.length() < MIN_LENGTH_PASS ){
-            throw new AutenticacaoUsuarioExcecao(4);
+        	return false;
         }
         // Se o tamanho do login for maior que MAX_MIN_PASS, retorna false.
         else if( login.length() > MAX_LENGTH_PASS ){
-            throw new AutenticacaoUsuarioExcecao(5);
+        	return false;
         }
 
         return true;
@@ -270,29 +268,26 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
      * @return
      *      True - Se a senha for valida.
      *      False - Se a senha nao for valida.
-     * @throws AutenticacaoUsuarioExcecao
-     *      Se houver problemas na autenticacao do login.
      */
-    public boolean validaSenha(String login, String senha) 
-            throws AutenticacaoUsuarioExcecao{
+    public boolean validaSenha(String login, String senha){
         final int MIN_LENGTH_PASS = 8;// Tamanho m�nimo do login.
         final int MAX_LENGTH_PASS = 13;// Tamanho m�ximo do login.
 
         // Se senha for nulo, retorna false.
         if( senha == null ){
-            throw new AutenticacaoUsuarioExcecao(6);
+        	return false;
         }
         // Se senha for vazio, retorna false.
         else if( senha.equals("")){
-            throw new AutenticacaoUsuarioExcecao(7);
+        	return false;
         }
         // Se tamanho do senha for menor que MIN_LENGTH_PASS, retorna false.
         else if( senha.length() < MIN_LENGTH_PASS ){
-            throw new AutenticacaoUsuarioExcecao(8);
+        	return false;
         }
         // Se o tamanho do senha for maior que MAX_MIN_PASS, retorna false.
         else if( senha.length() > MAX_LENGTH_PASS ){
-            throw new AutenticacaoUsuarioExcecao(9);
+        	return false;
         }
 
         return true;
@@ -310,26 +305,20 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
      *      False - Se o usuario nao for cadastrado.
      * @throws IOException 
      */
-    public boolean cadastraUsuario(String login, String senha, Prioridade prioridade)
-              throws AutenticacaoUsuarioExcecao, IOException{
+    public boolean cadastraUsuario(String login, String senha, Prioridade prioridade)throws IOException{
     	
     	// observar a possibilidade de ter sido armazenado apenas na memoria, situacao
     	// na qual o novo cadastro nao tera sido armazenado em arquivo.
-        try{
-            // Se prioridade for null, um usuario default sera cadastrado
-            if ( validaLogin(login) && validaSenha(login, senha) && prioridade == null){
-                cadastros.put(login, new Usuario(login, senha));
-            }
-            // Se prioridade for instancia de Prioridade, serie criado um usuario
-            // com prioridade pre-definida.
-            else if( validaLogin(login) && validaSenha(login, senha) &&
-                    prioridade.getClass() == Prioridade.class ){
-                cadastros.put(login, new Usuario(login, senha, prioridade));
-            }
+        
+        // Se prioridade for null, um usuario default sera cadastrado
+        if ( validaLogin(login) && validaSenha(login, senha) && prioridade == null){
+            cadastros.put(login, new Usuario(login, senha));
         }
-        catch(AutenticacaoUsuarioExcecao autenticacaoUsuarioExcecao){
-            autenticacaoUsuarioExcecao.printStackTrace();
-            return false;
+        // Se prioridade for instancia de Prioridade, serie criado um usuario
+        // com prioridade pre-definida.
+        else if( validaLogin(login) && validaSenha(login, senha) &&
+            prioridade.getClass() == Prioridade.class ){
+                cadastros.put(login, new Usuario(login, senha, prioridade));
         }
         
         ObjectOutputStream out = null;
@@ -337,8 +326,8 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
         	out = new ObjectOutputStream(
                     new FileOutputStream("cadastros_usuarios.dat"));
         	out.writeObject(cadastros);
-    	}catch (Exception e) {
-    		e.printStackTrace();
+    	}catch (IOException ioe) {
+    		ioe.printStackTrace();
     		// se a excecao for chamada, o novo cadastro nao tera sido persistido.
 		}finally{
 			out.close();
