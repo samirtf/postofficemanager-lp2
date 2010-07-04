@@ -26,6 +26,7 @@ public class Criptografia implements Serializable{
      *      Um valor criptografado.
      */
     public static String criptografa(String login, String senha) {
+    	
         String codificado = login + senha;
 
         try {
@@ -44,7 +45,6 @@ public class Criptografia implements Serializable{
             codificado = hexString.toString();
         }
         catch (Exception nsae) {
-            System.out.println("Erro: " + nsae.getMessage() + nsae);
             nsae.printStackTrace();
         }
         return codificado;
