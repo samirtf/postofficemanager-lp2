@@ -32,7 +32,7 @@ public class Funcionario {
 		else if( !VerificaDados.verificaData(dataNascimento) ){
 			throw new Exception("Data invalida!");
 		}
-		else if( !VerificaDados.verificaCpf(cpf) ){
+		else if( !VerificaDados.validaCPF(cpf) ){
 			throw new Exception("CPF invalido!");
 		}
 		else if( salario < 0 ){
@@ -148,7 +148,7 @@ public class Funcionario {
 	 *      False - Se o CPF nã for alterado.
 	 */
 	public boolean setCpf(String cpf){
-		if( VerificaDados.verificaCpf(cpf) ){
+		if( VerificaDados.validaCPF(cpf) ){
 			this.cpf = cpf;
 			return true;
 		}
