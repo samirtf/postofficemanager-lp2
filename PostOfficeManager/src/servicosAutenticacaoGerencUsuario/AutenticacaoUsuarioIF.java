@@ -29,7 +29,7 @@ public interface AutenticacaoUsuarioIF extends Serializable{
      *      True - Se o login eh valido.
      *      False - Se o login nao for valido.
      */
-    public abstract boolean validaLogin(String login)throws AutenticacaoUsuarioExcecao;
+    public abstract boolean validaLogin(String login);
 
     /**
      * Valida a senha do usuario.
@@ -42,8 +42,7 @@ public interface AutenticacaoUsuarioIF extends Serializable{
      * @param senha
      * @return
      */
-    public boolean validaSenha(String login, String senha)
-            throws AutenticacaoUsuarioExcecao;
+    public boolean validaSenha(String login, String senha);
 
     /**
      * Cadastra usuario no sistema.
@@ -66,7 +65,7 @@ public interface AutenticacaoUsuarioIF extends Serializable{
      *      A senha do usuario ja cadastrado.
      * @return
      */
-    public boolean logaNoSistema(String login, String senha);
+    public boolean logaNoSistema(String login, String senha) throws Exception;
 
     /**
      * Incrementa contador de falhas da autenticacao.
