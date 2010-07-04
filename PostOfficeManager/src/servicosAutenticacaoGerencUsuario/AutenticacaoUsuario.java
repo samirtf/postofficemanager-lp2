@@ -110,7 +110,6 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
 			}
     	}
         
-        
         // Recupera a lista de erros de bloqueio de sistema.
         ObjectInputStream inBloqueioSistema = null;
         ObjectOutputStream outBloqueioSistema = null;
