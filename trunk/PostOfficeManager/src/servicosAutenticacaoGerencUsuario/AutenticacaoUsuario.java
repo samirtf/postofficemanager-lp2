@@ -310,13 +310,23 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
         
         // Se prioridade for null, um usuario default sera cadastrado
         if ( validaLogin(login) && validaSenha(login, senha) && prioridade == null){
-            cadastros.put(login, new Usuario(login, senha));
+            try {
+				cadastros.put(login, new Usuario(login, senha));
+			} catch (Exception e) {
+				e.printStackTrace();
+				return false;
+			}
         }
         // Se prioridade for instancia de Prioridade, serie criado um usuario
         // com prioridade pre-definida.
         else if( validaLogin(login) && validaSenha(login, senha) &&
             prioridade.getClass() == Prioridade.class ){
-                cadastros.put(login, new Usuario(login, senha, prioridade));
+                try {
+					cadastros.put(login, new Usuario(login, senha, prioridade));
+				} catch (Exception e) {
+					e.printStackTrace();
+					return false;
+				}
         }
         
         ObjectOutputStream out = null;
