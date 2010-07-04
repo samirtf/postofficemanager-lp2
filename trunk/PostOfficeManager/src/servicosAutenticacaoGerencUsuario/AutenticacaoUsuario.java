@@ -146,7 +146,6 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
         // Recupera bloqueio de sistema.
         this.recuperaBloqueioSistema();
                    
-
     }// fim do construtor.
 
     /**
@@ -307,7 +306,6 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
      */
     public boolean cadastraUsuario(String login, String senha, Prioridade prioridade)throws IOException{
     	
-    	
     	// observar a possibilidade de ter sido armazenado apenas na memoria, situacao
     	// na qual o novo cadastro nao tera sido armazenado em arquivo.
         
@@ -409,7 +407,6 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
 			}finally{
 				out.close();
 			}
-			
 
     		return true;
     	}
@@ -480,7 +477,6 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
                         new FileOutputStream("bloqueios_sistema.dat"));
             	out.writeObject(listaDeBloqueios);
             	
-    			
         	}catch (Exception e) {
         		e.printStackTrace();
 			}finally{
@@ -540,8 +536,6 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
         	}
         }// fim de recupera bloqueio de sistema
     }
-    
-    
     
     public static void main(String[] args){
     	try{
