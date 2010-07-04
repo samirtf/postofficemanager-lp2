@@ -26,7 +26,11 @@ public class GerenciamentoUsuario {
 		if( autentUsuario.validaLogin(login) && autentUsuario.validaSenha(login, senha)&& 
 			  listaUsuarios != null && !listaUsuarios.containsKey(login)){
 			
-			listaUsuarios.put(login, new Usuario(login, senha));
+			try {
+				listaUsuarios.put(login, new Usuario(login, senha));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
   
         ObjectOutputStream out = null;
@@ -67,7 +71,11 @@ public class GerenciamentoUsuario {
 		if ( autentUsuario.validaLogin(login) && autentUsuario.validaSenha(login, senha) && 
 				listaUsuarios != null && !listaUsuarios.containsKey(login)){
 			
-			listaUsuarios.put(login, new Usuario(login, senha, prioridade));
+			try {
+				listaUsuarios.put(login, new Usuario(login, senha, prioridade));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
   
         ObjectOutputStream out = null;
