@@ -346,8 +346,9 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
      * @return
      *      True - Se o Login no sistema for realizado.
      *      False - Se o Login no sistema nao for realizado.
+     * @throws Exception 
      */
-    public boolean logaNoSistema(String login, String senha) {
+    public boolean logaNoSistema(String login, String senha) throws Exception {
         return cadastros != null && cadastros.size()!= 0 && 
             contadorFalhasAutenticacao < 10 && 
             cadastros.containsKey(login) &&
