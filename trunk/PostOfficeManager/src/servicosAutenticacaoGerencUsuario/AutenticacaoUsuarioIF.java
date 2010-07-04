@@ -43,7 +43,6 @@ public interface AutenticacaoUsuarioIF extends Serializable{
      * @return
      */
     public boolean validaSenha(String login, String senha);
-
     /**
      * Cadastra usuario no sistema.
      * @param login
