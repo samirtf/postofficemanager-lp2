@@ -17,23 +17,17 @@ import servicosAutenticacaoGerencUsuario.Usuario.Prioridade;
 public class GerenciamentoUsuario {
 
 	public static boolean cadastraUsuarioPadrao(AutenticacaoUsuario autentUsuario, 
-			String login, String senha) throws IOException{
+			String login, String senha) throws IOException, AutenticacaoUsuarioExcecao{
 		
 		// observar a possibilidade de ter sido armazenado apenas na memoria, situacao
 	    // na qual o novo cadastro nao tera sido armazenado em arquivo.
 		HashMap<String, Usuario> listaUsuarios = autentUsuario.getCadastrosUsuarios();
 		
-		try{
-			if( autentUsuario.validaLogin(login) && autentUsuario.validaSenha(login, senha)&& 
-				  listaUsuarios != null && !listaUsuarios.containsKey(login)){
-				
-				listaUsuarios.put(login, new Usuario(login, senha));
-			}
-        }
-        catch(AutenticacaoUsuarioExcecao autenticacaoUsuarioExcecao){
-            autenticacaoUsuarioExcecao.printStackTrace();
-            return false;
-        }
+		if( autentUsuario.validaLogin(login) && autentUsuario.validaSenha(login, senha)&& 
+			  listaUsuarios != null && !listaUsuarios.containsKey(login)){
+			
+			listaUsuarios.put(login, new Usuario(login, senha));
+		}
   
         ObjectOutputStream out = null;
 	    try {
@@ -69,19 +63,12 @@ public class GerenciamentoUsuario {
 	    // observar a possibilidade de ter sido armazenado apenas na memoria, situacao
 	    // na qual o novo cadastro nao tera sido armazenado em arquivo.
 		HashMap<String, Usuario> listaUsuarios = autentUsuario.getCadastrosUsuarios();
-        try{
-	  
-            // Se prioridade for null, um usuario default sera cadastrado
-            if ( autentUsuario.validaLogin(login) && autentUsuario.validaSenha(login, senha) && 
-            		listaUsuarios != null && !listaUsuarios.containsKey(login)){
-            	
-            	listaUsuarios.put(login, new Usuario(login, senha, prioridade));
-            }
-        }
-        catch(AutenticacaoUsuarioExcecao autenticacaoUsuarioExcecao){
-            autenticacaoUsuarioExcecao.printStackTrace();
-            return false;
-        }
+        // Se prioridade for null, um usuario default sera cadastrado
+		if ( autentUsuario.validaLogin(login) && autentUsuario.validaSenha(login, senha) && 
+				listaUsuarios != null && !listaUsuarios.containsKey(login)){
+			
+			listaUsuarios.put(login, new Usuario(login, senha, prioridade));
+		}
   
         ObjectOutputStream out = null;
 	    try {
@@ -121,18 +108,13 @@ public class GerenciamentoUsuario {
 	}// fim do metodo removeUsuario.
 	
 	public static boolean alteraLoginUsuario(AutenticacaoUsuario autentUsuario, 
-			String login, String novoLogin) throws IOException{
+			String login, String novoLogin) throws IOException, AutenticacaoUsuarioExcecao{
 		
 		HashMap<String, Usuario> listaUsuarios = autentUsuario.getCadastrosUsuarios();
-		try{
-			if( listaUsuarios.containsKey(login) &&
-					autentUsuario.validaLogin(novoLogin)){
-				listaUsuarios.get(login).setLogin(novoLogin);
-				
-			}
-		}catch(AutenticacaoUsuarioExcecao aue){
-			aue.printStackTrace();
-			return false;
+		if( listaUsuarios.containsKey(login) &&
+				autentUsuario.validaLogin(novoLogin)){
+			listaUsuarios.get(login).setLogin(novoLogin);
+			
 		}
 		
 		ObjectOutputStream out = null;
@@ -151,7 +133,7 @@ public class GerenciamentoUsuario {
 	}// fim do metodo alteraLoginUsuario.
 	
 	public static boolean alteraSenhaUsuario(AutenticacaoUsuario autentUsuario, 
-			String login, String senha, String novaSenha) throws IOException{
+			String login, String senha, String novaSenha) throws Exception{
 		
 		HashMap<String, Usuario> listaUsuarios = autentUsuario.getCadastrosUsuarios();
 		try{
