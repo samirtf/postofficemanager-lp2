@@ -62,7 +62,6 @@ public class GerenciamentoUsuario {
 	public static boolean cadastraUsuario(AutenticacaoUsuario autentUsuario, 
 			String login, String senha, Prioridade prioridade)
 	             throws AutenticacaoUsuarioExcecao, IOException{
-		
 	
 	    // observar a possibilidade de ter sido armazenado apenas na memoria, situacao
 	    // na qual o novo cadastro nao tera sido armazenado em arquivo.
