@@ -75,6 +75,7 @@ public class GerenciamentoUsuario {
 				listaUsuarios.put(login, new Usuario(login, senha, prioridade));
 			} catch (Exception e) {
 				e.printStackTrace();
+				return false;
 			}
 		}
   
