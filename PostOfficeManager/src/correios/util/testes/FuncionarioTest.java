@@ -1,8 +1,5 @@
 package correios.util.testes;
 import correios.util.Funcionario;
-import correios.util.Atendente;
-import correios.util.Carteiro;
-
 import org.junit.*;
 
 
@@ -12,25 +9,16 @@ public class FuncionarioTest {
 	
 	@Before
 	public void criaFuncionarios() throws Exception{
-		func1 = new Atendente("Rafael", "12111991", "07722185497", "******", true, "1300");
-		func2 = new Carteiro("Oliveira", "23071989", "12345678945", "*****", false,"2500");
-		func3 = new Funcionario("Vieira","25111996","05786321413","123456",true);
-		func4 = new Funcionario("Samir","26051989","98745312697","789456", false);
-		func5 = new Carteiro(func3,"3600");
-		func6 = new Atendente(func4,"1650");
+		func1 = new Funcionario(String nome,String dataNascimento,
+				String cpf, double salario, String login);
+		
 	}
 	
 	
 	@Test 
 	
 	public void TestaConstrutor() throws Exception{
-		try{
-			Funcionario func7 = new Carteiro(func3,"23a44");
-			
-		}
-		catch(Exception e){
-			Assert.assertEquals("Deve conter apenas numeros", e.getMessage());
-		}
+		
 		
 		try{
 			
