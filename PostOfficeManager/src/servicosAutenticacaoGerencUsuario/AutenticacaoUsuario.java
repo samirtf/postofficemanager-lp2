@@ -350,7 +350,8 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
      * @throws Exception 
      */
     public boolean logaNoSistema(String login, String senha) throws Exception {
-        return cadastros != null && cadastros.size()!= 0 && 
+        return (login != null && !login.trim().equals("") && senha !=null && !senha.trim().equals("")) 
+            && cadastros != null && cadastros.size()!= 0 && 
             contadorFalhasAutenticacao < 10 && 
             cadastros.containsKey(login) &&
             cadastros.get(login).getSenha().
