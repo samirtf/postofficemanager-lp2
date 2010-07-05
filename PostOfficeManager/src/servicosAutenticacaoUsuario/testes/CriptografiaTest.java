@@ -1,10 +1,11 @@
 
 package servicosAutenticacaoUsuario.testes;
 
+
+
 import org.junit.After;
-import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import servicosAutenticacaoUsuario.Criptografia;
@@ -16,38 +17,29 @@ import static org.junit.Assert.*;
  */
 public class CriptografiaTest {
 
-    public CriptografiaTest() {
+	public CriptografiaTest() {
     }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
-
     /**
      * Test of criptografa method, of class Criptografia.
      */
     @Test
     public void testCriptografa() {
-        System.out.println("criptografa");
-        String login = "";
-        String senha = "";
-        String expResult = "";
-        String result = Criptografia.criptografa(login, senha);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    	String cript = Criptografia.criptografa(null, "administrador");
+    	
+    	System.out.println(cript);
+        try{
+        	Criptografia.criptografa(null, "administrador");
+        }catch(Exception e){
+        	Assert.assertEquals("Login inválido!!", e.getMessage());
+        }
+        
+        try{
+        	Criptografia.criptografa("", "administrador");
+        	///Assert.fail("Esperava mensagem de login invalido");
+        }catch(Exception e){
+        	Assert.assertEquals("Login inválido!", e.getMessage());
+        }
+        
     }
 
 }
