@@ -47,7 +47,7 @@ public class Usuario implements Serializable{
     		throw new Exception("Login invalido!");
     	}
     	else if( senha == null || senha.trim().equals("")){
-    		throw new Exception("Login invalido!");
+    		throw new Exception("Senha invalida!");
     	}
         this.login = login.trim();
         this.senha = Criptografia.criptografa(login, senha);// senha sera armazenada 
@@ -65,6 +65,7 @@ public class Usuario implements Serializable{
      * @throws Exception 
      */
     public Usuario(String login, String senha, Prioridade prioridade) throws Exception{
+    	
         this(login, senha);
         this.prioridade = prioridade;
     }// fim do construtor a partir de um login, uma senha e uma prioridade do usuario.
