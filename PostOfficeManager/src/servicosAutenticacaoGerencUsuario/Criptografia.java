@@ -24,7 +24,8 @@ public class Criptografia implements Serializable{
      *      A senha do usuario.
      * @return
      *      Um valor criptografado.
-	 * @throws Exception 
+	 * @throws Exception
+	 * 		Se login ou senha nao forem validas.
      */
     public static String criptografa(String login, String senha) throws Exception {
     	if(login == null || login.trim().equals("")){
