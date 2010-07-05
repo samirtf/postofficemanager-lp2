@@ -1,10 +1,8 @@
 
 package servicosAutenticacaoUsuario.testes;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import junit.framework.Assert;
+
 import org.junit.Test;
 
 import servicosAutenticacaoUsuario.Usuario;
@@ -17,27 +15,27 @@ import static org.junit.Assert.*;
  */
 public class UsuarioTest {
 
-    public UsuarioTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
+	@Test
+	public void testConstrutor(){
+		
+		try{
+			Usuario usuario = new Usuario(null, "senha");
+			Assert.fail("Esperava excecao de login invalido.");
+		}catch(Exception e){
+			Assert.assertEquals("Login invalido!", e.getMessage());
+		}
+		
+		try{
+			Usuario usuario = new Usuario(" ", "senha");
+			Assert.fail("Esperava excecao de login invalido.");
+		}catch(Exception e){
+			Assert.assertEquals("Login invalido!", e.getMessage());
+		}
+		
+	}
 
     /**
-     * Test of setLogin method, of class Usuario.
+     * Teste do metodo setLogin.
      */
     @Test
     public void testSetLogin() {
@@ -45,8 +43,7 @@ public class UsuarioTest {
         String login = "";
         Usuario instance = null;
         instance.setLogin(login);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
