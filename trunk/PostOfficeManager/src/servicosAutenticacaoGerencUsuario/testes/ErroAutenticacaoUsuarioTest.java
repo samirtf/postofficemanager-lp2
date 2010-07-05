@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import servicosAutenticacaoUsuario.ErroAutenticacaoUsuario;
+import servicosAutenticacaoGerencUsuario.ErroAutenticacaoUsuario;
 import static org.junit.Assert.*;
 
 /**

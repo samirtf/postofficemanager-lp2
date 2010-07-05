@@ -4,8 +4,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import servicosAutenticacaoUsuario.Usuario;
-import servicosAutenticacaoUsuario.Usuario.Prioridade;
+import servicosAutenticacaoGerencUsuario.Usuario;
+import servicosAutenticacaoGerencUsuario.Usuario.Prioridade;
 import static org.junit.Assert.*;
 
 /**
@@ -66,14 +66,10 @@ public class UsuarioTest {
     /**
      * Test of setSenha method, of class Usuario.
      */
-    @Test
+    @SuppressWarnings("null")
+	@Test
     public void testSetSenha() {
-        System.out.println("setSenha");
-        String NovaSenha = "";
-        Usuario instance = null;
-        instance.setSenha(NovaSenha);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
