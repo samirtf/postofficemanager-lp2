@@ -28,6 +28,7 @@ public class Criptografia implements Serializable{
 	 * 		Se login ou senha nao forem validas.
      */
     public static String criptografa(String login, String senha){
+    	
         String codificado = login + senha;
 
         try {
