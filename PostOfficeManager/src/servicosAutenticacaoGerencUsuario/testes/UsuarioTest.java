@@ -97,7 +97,12 @@ public class UsuarioTest {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		String senha = Criptografia.criptografa("login1", "novaSenha");
+		String senha = null;
+		try {
+			senha = Criptografia.criptografa("login1", "novaSenha");
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 		try {
 			usuario1.setSenha("novaSenha");
 		} catch (Exception e) {
@@ -111,7 +116,11 @@ public class UsuarioTest {
      */
     @Test
     public void testGetSenha() {
-    	assertEquals(Criptografia.criptografa("login", "senha"), usuario.getSenha() );
+    	try {
+			assertEquals(Criptografia.criptografa("login", "senha"), usuario.getSenha() );
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     }
 
     /**
