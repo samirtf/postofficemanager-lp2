@@ -86,12 +86,10 @@ public class VerificaDados {
 			return false;
 		}	
 		return true;
-			
 	}
 	
 	public static boolean verificaEstado(String estado){
 		return verificaNome(estado);
-		
 	}
 	
 	public static boolean validaCPF(String cpf){
