@@ -44,12 +44,12 @@ public class Usuario implements Serializable{
      */
     public Usuario(String login, String senha) throws Exception{
     	if( login == null || login.trim().equals("")){
-    		throw new Exception("Login inválido!");
+    		throw new Exception("Login invalido!");
     	}
     	else if( senha == null || senha.trim().equals("")){
-    		throw new Exception("Login inválido!");
+    		throw new Exception("Login invalido!");
     	}
-        this.login = login;
+        this.login = login.trim();
         this.senha = Criptografia.criptografa(login, senha);// senha sera armazenada 
                                                             //no atributo ja criptografada.
     }// fim do construtor a partir de um login e senha do usuario.
