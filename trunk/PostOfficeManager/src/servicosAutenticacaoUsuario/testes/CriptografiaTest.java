@@ -24,21 +24,21 @@ public class CriptografiaTest {
      */
     @Test
     public void testCriptografa() {
-    	String cript = Criptografia.criptografa(null, "administrador");
     	
-    	System.out.println(cript);
-        try{
-        	Criptografia.criptografa(null, "administrador");
-        }catch(Exception e){
-        	Assert.assertEquals("Login inválido!!", e.getMessage());
-        }
+        String cript1 = Criptografia.criptografa(null, "administrador");
+        Assert.assertEquals("2a3d245e1dcdc912dd49c1a92aa49fa1", cript1);
         
-        try{
-        	Criptografia.criptografa("", "administrador");
-        	///Assert.fail("Esperava mensagem de login invalido");
-        }catch(Exception e){
-        	Assert.assertEquals("Login inválido!", e.getMessage());
-        }
+        String cript2 = Criptografia.criptografa("", "administrador");
+        Assert.assertEquals("91f5167c34c400758115c2a6826ec2e3", cript2);
+        
+        String cript3 = Criptografia.criptografa("administrador", null);
+        Assert.assertEquals("e3a3ac84abf0db988aafe81c448f335e", cript3);
+        
+        String cript4 = Criptografia.criptografa("administrador", "");
+        Assert.assertEquals("91f5167c34c400758115c2a6826ec2e3", cript4);
+        
+        String cript5 = Criptografia.criptografa("administrador", "administrador");
+        Assert.assertEquals("1e450240549a769a41db6cb27c4575a2", cript5);
         
     }
 
