@@ -116,7 +116,7 @@ public class Funcionario {
 	 */
 	public boolean setNome(String nome){
 		if( VerificaDados.verificaNome(nome) ){
-			this.nome = nome;
+			this.nome = nome.trim();
 			return true;
 		}
 		return false;
@@ -132,7 +132,7 @@ public class Funcionario {
 	 */
 	public boolean setDataNascimento(String data){
 		if( VerificaDados.verificaData(data) ){
-			this.dataNascimento = data;
+			this.dataNascimento = data.trim();
 			return true;
 		}
 		return false;
@@ -149,7 +149,7 @@ public class Funcionario {
 	 */
 	public boolean setCpf(String cpf){
 		if( VerificaDados.validaCPF(cpf) ){
-			this.cpf = cpf;
+			this.cpf = cpf.trim();
 			return true;
 		}
 		return false;
@@ -161,8 +161,12 @@ public class Funcionario {
 	 * @param salario
 	 * 		O salario do fncionario.
 	 */
-	public void setSalario(double salario){
-		this.salario = salario;
+	public boolean setSalario(double salario){
+		if( salario >=0 ){
+			this.salario = salario;
+			return true;
+		}
+		return false;
 	}//fim do metodo setSalario
 	
 	/**
@@ -184,8 +188,8 @@ public class Funcionario {
 	 *     False - Se o login do funcionario(usuario) não for trocado.
 	 */
 	public boolean setLogin(String login){
-		if(login != null && !login.trim().equals("")){
-			this.login = login;
+		if(login != null && !login.trim().equals("") && login.matches("^[a-z A-z“]*$")){
+			this.login = login.trim();
 			return true;
 		}
 		return false;
