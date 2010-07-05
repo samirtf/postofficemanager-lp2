@@ -53,7 +53,7 @@ public class VerificaDados {
 	public static boolean verificaNome(String nome) {
 				
 	    if(nome == null || nome.trim().equals("")
-	    	||!nome.matches("^[a-zA-z“]*$") )
+	    	||!nome.matches("^[a-z A-z“]*$") )
 	    	
 	    		return false;	    	
 	    
