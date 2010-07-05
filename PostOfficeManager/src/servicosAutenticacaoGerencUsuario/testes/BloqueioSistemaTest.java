@@ -8,8 +8,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import servicosAutenticacaoUsuario.BloqueioSistema;
-import servicosAutenticacaoUsuario.ErroAutenticacaoUsuario;
+import servicosAutenticacaoGerencUsuario.BloqueioSistema;
+import servicosAutenticacaoGerencUsuario.ErroAutenticacaoUsuario;
 import static org.junit.Assert.*;
 
 /**

@@ -8,7 +8,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import servicosAutenticacaoUsuario.Criptografia;
+import servicosAutenticacaoGerencUsuario.Criptografia;
 import static org.junit.Assert.*;
 
 /**
