@@ -27,7 +27,7 @@ public class Criptografia implements Serializable{
 	 * @throws Exception
 	 * 		Se login ou senha nao forem validas.
      */
-    public static String criptografa(String login, String senha)tthrows Exception {
+    public static String criptografa(String login, String senha) throws Exception {
     	if(login == null){
     		System.out.println("OPAAAAAAAA");
     	}
