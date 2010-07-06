@@ -2,16 +2,23 @@ package webServicos.testes;
 
 import java.io.IOException;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 import webServicos.BancoDeDadosCepServico;
 import webServicos.Cep;
 import webServicos.CepSearchEngineByQueryString;
 import webServicos.WebServiceCep;
 
+/**
+ * 
+ * @author
+ * 	Marcus Vinicius Souza de Oliveira
+ * 	Rafael O. Vieira
+ * 	Samir Trajano Feitosa 20921299
+ * 	Werton Vinícius Guimarães Gomes
+ *
+ */
 public class BancoDeDadosCepServicoTeste {
 	Cep cep1;
 	Cep cep2;

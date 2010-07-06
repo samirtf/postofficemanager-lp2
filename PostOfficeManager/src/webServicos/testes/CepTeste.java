@@ -2,15 +2,18 @@ package webServicos.testes;
 
 import junit.framework.Assert;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import webServicos.Cep;
 
 /**
+ * 
+ * @author
+ * 	Marcus Vinicius Souza de Oliveira
+ * 	Rafael O. Vieira
+ * 	Samir Trajano Feitosa 20921299
+ * 	Werton Vinícius Guimarães Gomes
  *
- * @author Samir Trajano Feitosa 20921299
  */
 public class CepTeste {
 
