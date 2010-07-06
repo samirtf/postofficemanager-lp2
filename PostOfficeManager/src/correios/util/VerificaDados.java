@@ -9,6 +9,15 @@ package correios.util;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * 
+ * @author
+ * 	Marcus Vinicius Souza de Oliveira
+ * 	Rafael O. Vieira
+ * 	Samir Trajano Feitosa
+ * 	Werton Vinícius Guimarães Gomes
+ *
+ */
 public class VerificaDados {
 	
 	
