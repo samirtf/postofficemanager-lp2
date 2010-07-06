@@ -14,7 +14,6 @@ import java.util.Set;
 import correios.util.Funcionario;
 import correios.util.VerificaDados;
 
-
 public class BancoDeDadosFuncServico implements BancoDeDadosFuncServicoIF{
 	
 	private Map<String, Funcionario> cadastros;         
