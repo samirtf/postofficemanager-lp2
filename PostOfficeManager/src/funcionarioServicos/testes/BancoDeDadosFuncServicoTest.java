@@ -180,6 +180,6 @@ public class BancoDeDadosFuncServicoTest {
 		
 		Assert.assertEquals( 0, bdFunc.totalRegistrosBancoDeDados() );
 		
-		
-	}
-}
+	}//fim dos testes.
+	
+}//fim da classe de testes.
