@@ -2,7 +2,12 @@ package webServicos;
 
 /**
 *
-* @author Samir Trajano Feitosa 20921299
+* @author
+* 	Samir Trajano Feitosa 20921299
+* 	Marcus Vinicius Souza de Oliveira
+* 	Rafael O. Vieira
+* 	Werton Vinícius Guimarães Gomes
+* 
 * @version 1.0
 * @Descricao A classe Cep, representacao por objeto do Codigo de Enderecamento Postal, foi criada para uso e tambem cadastro de CEP's <br>
 * no banco de dados.

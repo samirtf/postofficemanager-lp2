@@ -5,7 +5,12 @@ import java.net.UnknownHostException;
 
 /**
 *
-* @author Samir Trajano Feitosa 20921299
+* @author
+* 	Samir Trajano Feitosa 20921299
+* 	Marcus Vinicius Souza de Oliveira
+* 	Rafael O. Vieira
+* 	Werton Vinícius Guimarães Gomes
+* 
 * Esta interface e de propriedade de Samir T. Feitosa. Qualquer novo metodo adi-
 * cionado a interface deve ter comentario de metodo com nome do proprietario do
 * novo metodo criado.
