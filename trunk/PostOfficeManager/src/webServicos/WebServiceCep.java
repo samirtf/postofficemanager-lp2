@@ -20,49 +20,49 @@ package webServicos;
  */
 public interface WebServiceCep {
 	
-	/* PUBLIC m�todos get e is, usado para acessar o objeto ap�s carregado. */
+	/* PUBLIC metodos get e is, usado para acessar o objeto apis carregado. */
 	/**
-	 * {@link SearchEngineResults} contendo o resultado da opera��o, de onde pode-se 
-	 * consultar tanto a msg do resultado, como o seu c�digo. Use os m�todos
+	 * {@link SearchEngineResults} contendo o resultado da operacao, de onde pode-se 
+	 * consultar tanto a msg do resultado, como o seu c�digo. Use os metodos
 	 * {@link SearchEngineResults#getCode()} e {@link SearchEngineResults#getMessage()}
 	 * para a consulta.
-	 * @return {@link SearchEngineResults} contendo o resultado da opera��o.
+	 * @return {@link SearchEngineResults} contendo o resultado da operacao.
 	 */
 	public SearchEngineResults getResult();
 	
 	/**
-	 * Informa o c�digo do resultado da pesquisa.
-	 * <BR>C�digos conhecidos:
-	 * <BR><tt>-1</tt> : busca n�o realizada
-	 * <BR><tt>0</tt> : cep n�o encontrado
+	 * Informa o codigo do resultado da pesquisa.
+	 * <BR>Codigos conhecidos:
+	 * <BR><tt>-1</tt> : busca nao realizada
+	 * <BR><tt>0</tt> : cep nao encontrado
 	 * <BR><tt>1</tt> : cep econtrado
-	 * <BR><tt>-14</tt> : Site n�o encontrado (pode ser por problemas na internet).
-	 * <BR><tt>-15</tt> : N�o foi possivel ler o documento xml
-	 * <BR><tt>-16</tt> : Erro na forma��o da url
+	 * <BR><tt>-14</tt> : Site nao encontrado (pode ser por problemas na internet).
+	 * <BR><tt>-15</tt> : Na foi possivel ler o documento xml
+	 * <BR><tt>-16</tt> : Erro na formalario da url
 	 * <BR><tt>-17</tt> : Erro inesperado
 	 * 
 	 * 
-	 * @return <tt>int</tt> C�digo do resultado.
+	 * @return <tt>int</tt> Codigo do resultado.
 	 */
 	public int getResulCode();
 	
 	/**
-	 * Informa��o textual sobre o resultado da pesquisa
-	 * @return {@link String} contendo a descri��o do resultado da pesquisa.
+	 * Informacao textual sobre o resultado da pesquisa
+	 * @return {@link String} contendo a descricao do resultado da pesquisa.
 	 */
 	public String getResultText();
 	
 	/**
 	 * Informa se o cep foi encontrado com sucesso.
 	 * @return	<tt>true</tt> - caso a pesquisa ache um resultado no banco.
-	 * 			<BR><tt>false</tt> - caso haja falhas, ou o cep enviado n�o esteja 
+	 * 			<BR><tt>false</tt> - caso haja falhas, ou o cep enviado nao esteja 
 	 * 			cadastrado.
 	 */
 	public boolean wasSuccessful();
 	
 	/**
-	 * Informa se n�o existe o cep cadastrado.
-	 * @return	<tt>true</tt> - Caso o cep n�o tenha cido encontrado.
+	 * Informa se nao existe o cep cadastrado.
+	 * @return	<tt>true</tt> - Caso o cep nao tenha cido encontrado.
 	 * 			<BR><tt>false</tt> - Caso haja falhas, ou caso o cep esteja cadastrado.
 	 */
 	public boolean isCepNotFound();
@@ -70,14 +70,14 @@ public interface WebServiceCep {
 	/**
 	 * Informa se houve falhas na busca do cep
 	 * @return	<tt>true</tt> - Caso ocorra falhas
-	 * 			<BR><tt>false</tt> - Caso n�o haja falhas.
+	 * 			<BR><tt>false</tt> - Caso nao haja falhas.
 	 */
 	public boolean hasException();
 	
 	/**
-	 * Pega a exce��o que ocorreu durante a busca, retorna null caso n�o haja exce��es.
+	 * Pega a excecao que ocorreu durante a busca, retorna null caso nao haja excecoes.
 	 * @return	<tt>{@link Exception}</tt> - Caso ocorra falhas
-	 * 			<BR><tt>null</tt> - Caso n�o haja falhas.
+	 * 			<BR><tt>null</tt> - Caso nao haja falhas.
 	 */
 	public Exception getException();
 	
