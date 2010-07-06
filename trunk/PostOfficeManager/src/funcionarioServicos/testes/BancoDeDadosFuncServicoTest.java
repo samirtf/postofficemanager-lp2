@@ -134,6 +134,8 @@ public class BancoDeDadosFuncServicoTest {
 
 		Assert.assertEquals(toStringBdFunc, bdFunc.toString());
 		
+		
+		
 		//Teste 2 de pesquisa de funcionarios
 		
 		//Remove func1
@@ -178,7 +180,6 @@ public class BancoDeDadosFuncServicoTest {
 		
 		Assert.assertEquals( 0, bdFunc.totalRegistrosBancoDeDados() );
 		
-		System.out.println( bdFunc );
 		
 	}
 }
