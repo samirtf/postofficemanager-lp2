@@ -212,4 +212,13 @@ public class Funcionario {
 		return this.getCpf().hashCode() == outroFuncionario.getCpf().hashCode();
 	}//fim do metodo equals
 	
+	/**
+	 * Cria uma representacao do funcionario.
+	 */
+	public String toString(){
+		return "nome: " + this.getNome() + ", data nasc.: " + this.getDataNascimento() +
+		       ", cpf: " + this.getCpf() + ", chave: " + this.getChave() +
+		       ", login: " + this.getLogin() + ", salario: " + this.getSalario();
+	}//fim do metodo toString.
+	
 }//fim da classe
