@@ -4,7 +4,7 @@ import org.junit.*;
 
 
 public class FuncionarioTest {
-	Funcionario func1,func2,func3,func4,func5,func6;
+	Funcionario func1;
 	
 	
 	@Before
