@@ -40,9 +40,14 @@ public class BloqueioSistema implements Serializable{
     public BloqueioSistema(ErroAutenticacaoUsuario erroAutenticacaoUsuario){
         this.erroAutenticacaoUsuario = erroAutenticacaoUsuario;
         this.id = this.erroAutenticacaoUsuario.getId();
-        this.previsaoDesbloqueio = this.erroAutenticacaoUsuario.getInstanteErro();
+        this.previsaoDesbloqueio = (GregorianCalendar) this.erroAutenticacaoUsuario.getInstanteErro().clone();
         this.previsaoDesbloqueio.set(Calendar.MINUTE,
-                this.previsaoDesbloqueio.get(Calendar.MINUTE) + 1);
+                this.getErroAutenticacaoUsuario().getInstanteErro().get(Calendar.MINUTE) + 1);
+        
+        System.out.println("opa1: " + this.getErroAutenticacaoUsuario().getInstanteErro().get(Calendar.MINUTE));
+        System.out.println("opa2: " + this.previsaoDesbloqueio.get(Calendar.MINUTE));
+        
+		//TODO trocar 1 minuto(abaixo) por 30 minutos.
     }// fim do construtor.
 
     /**
