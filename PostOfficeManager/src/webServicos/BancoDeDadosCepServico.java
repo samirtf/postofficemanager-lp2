@@ -14,9 +14,13 @@ import java.util.Map.Entry;
 
 /**
  *
- * @author Samir Trajano Feitosa 20921299
+ * @author
+ * 		Samir Trajano Feitosa 20921299
+ * 		Marcus Vinicius Souza de Oliveira
+ * 		Rafael O. Vieira
+ * 		Werton Vinícius Guimarães Gomes
  * @version 1.0
- * @Descricao Servico de banco de dados de Cep. E criado um arquivo bdcep.dat para o armazenamento<br>
+ * Servico de banco de dados de Cep. E criado um arquivo bdcep.dat para o armazenamento<br>
  * dos Cep's. A classe possui uma diversidade de metodos para interagir com o bdcep.dat.
  *
  */
