@@ -7,8 +7,12 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
+
 import correios.util.Funcionario;
+import correios.util.VerificaDados;
 
 
 public class BancoDeDadosFuncServico implements BancoDeDadosFuncServicoIF{
@@ -130,6 +134,47 @@ public class BancoDeDadosFuncServico implements BancoDeDadosFuncServicoIF{
 		
 	}
 	
-
+	/**
+	 * Pesquisa um funcionario pelo CPF.
+	 * @param cpf
+	 * 		O CPF do funcionario.
+	 * @return
+	 * 		O funcionario procurado.
+	 */
+	public Funcionario pesquisaFuncionarioPorCpf(String cpf){
+		if( cadastros != null && VerificaDados.validaCPF(cpf) &&
+				cadastros.containsKey(cpf)){
+			return cadastros.get(cpf);
+		}
+		
+		return null;
+	}
+	
+	/**
+	 * Recupera os funcionarios cadastrados.
+	 * @return
+	 * 		Os funcionarios cadastrados.
+	 */
+	public Map<String, Funcionario> getCadastros(){
+		return this.cadastros;
+	}
+	
+	/**
+	 * Gera uma representacao dos funcionarios.
+	 * @return
+	 * 		A representacao dos funcionarios.
+	 */
+	public String toString(){
+		final String EOL = System.getProperty("line.separator"); 
+		String toString = "";
+		Set<String> chaves = cadastros.keySet();
+		Iterator<String> iteraCadastros = chaves.iterator();
+		while(iteraCadastros.hasNext()){
+			toString += cadastros.get(iteraCadastros.next()).toString() + EOL;
+		}
+		return toString;
+		
+	}
+	
 }
 
