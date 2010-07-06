@@ -2,11 +2,13 @@ package funcionarioServicos;
 
 import java.io.IOException;
 
+import correios.util.Funcionario;
+
 
 
 public interface BancoDeDadosFuncServicoIF {
 	
-	public boolean adicFuncAoBancoDeDados(FuncDados func) throws IOException;
+	public boolean adicFuncAoBancoDeDados(Funcionario func) throws IOException;
 	/**
 	 * Adiciona um Funcionario no Banco de Dados de Funcionario.
 	 * 
@@ -15,7 +17,7 @@ public interface BancoDeDadosFuncServicoIF {
 	 * 		False - Se o Funcionario nao for adicionado ao Banco de Dados de Funcionario.
 	 */
 	
-	public boolean delFuncDoBancoDeDados(FuncDados func) throws IOException;
+	public boolean delFuncDoBancoDeDados(Funcionario func) throws IOException;
 	/**
 	 * Remove um Funcionario do Banco de Dados de Funcionario.
 	 * 
@@ -32,7 +34,7 @@ public interface BancoDeDadosFuncServicoIF {
 	    *      O numero de registros de Funcionarios no banco de dados.
 	    */
 	
-	public boolean pesquisaFuncionarioNoBancoDeDadosLocal(FuncDados func);
+	public boolean pesquisaFuncionarioNoBancoDeDadosLocal(Funcionario func);
 	   /**
 	    * Pesquisa o Funcionario no banco de dados local.
 	    *
@@ -44,3 +46,4 @@ public interface BancoDeDadosFuncServicoIF {
 	
 
 }
+
