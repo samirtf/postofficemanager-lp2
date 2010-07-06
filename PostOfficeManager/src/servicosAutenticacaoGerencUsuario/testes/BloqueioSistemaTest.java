@@ -1,138 +1,87 @@
 
 package servicosAutenticacaoGerencUsuario.testes;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-
 import servicosAutenticacaoGerencUsuario.BloqueioSistema;
 import servicosAutenticacaoGerencUsuario.ErroAutenticacaoUsuario;
 import static org.junit.Assert.*;
 
 /**
  *
- * @author Samir
+ * @author Samir Trajano Feitosa 20921299
  */
 public class BloqueioSistemaTest {
 
-    public BloqueioSistemaTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
-    }
-
     /**
-     * Test of getId method, of class BloqueioSistema.
+     * Teste de metodo getId.
      */
     @Test
     public void testGetId() {
-        System.out.println("getId");
-        BloqueioSistema instance = null;
-        String expResult = "";
+
+        BloqueioSistema instance = new BloqueioSistema();
+        
+        GregorianCalendar instanteErro = new GregorianCalendar();
+        String ano = String.format("%1$tY", instanteErro);
+        String diaDoAno = String.format("%d", instanteErro.get(Calendar.DAY_OF_YEAR));
+        String horaMinutoSegundoDoDia = String.format("%1$tH/%1$tM/%1$tS", instanteErro);
+        String id = ano + "/" + diaDoAno + "/" + horaMinutoSegundoDoDia;
+        
         String result = instance.getId();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(id, result);
     }
 
     /**
-     * Test of getErroAutenticacaoUsuario method, of class BloqueioSistema.
+     * Teste de metodo getErroAutenticacaoUsuario.
      */
     @Test
     public void testGetErroAutenticacaoUsuario() {
-        System.out.println("getErroAutenticacaoUsuario");
-        BloqueioSistema instance = null;
-        ErroAutenticacaoUsuario expResult = null;
+
+        BloqueioSistema instance = new BloqueioSistema();
+        ErroAutenticacaoUsuario expResult = new ErroAutenticacaoUsuario();
         ErroAutenticacaoUsuario result = instance.getErroAutenticacaoUsuario();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
-     * Test of getPrevisaoDesbloqueio method, of class BloqueioSistema.
+     * Teste de metodo getPrevisaoDesbloqueio.
      */
     @Test
     public void testGetPrevisaoDesbloqueio() {
-        System.out.println("getPrevisaoDesbloqueio");
-        BloqueioSistema instance = null;
-        GregorianCalendar expResult = null;
+
+        ErroAutenticacaoUsuario erro = new ErroAutenticacaoUsuario();
+        BloqueioSistema instance = new BloqueioSistema(erro);
+        GregorianCalendar expResult = new GregorianCalendar();
+        expResult.set(Calendar.MINUTE, expResult.get(Calendar.MINUTE)+1);
+        
+        System.out.println("rum1 : " + instance.getErroAutenticacaoUsuario().getInstanteErro());
+        System.out.println("rum2 : " + instance.getPrevisaoDesbloqueio());
+        System.out.println("rum3 : " + expResult);
+        
         GregorianCalendar result = instance.getPrevisaoDesbloqueio();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        boolean chaveHora = result.get(Calendar.HOUR_OF_DAY)==expResult.get(Calendar.HOUR_OF_DAY);
+        boolean chaveMinuto = result.get(Calendar.MINUTE)==expResult.get(Calendar.MINUTE);
+        boolean chaveSegundo = result.get(Calendar.SECOND)==expResult.get(Calendar.SECOND);
+        assertTrue(chaveHora && chaveMinuto && chaveSegundo);
+
     }
 
     /**
-     * Test of getDesbloqueado method, of class BloqueioSistema.
+     * Teste de metodo getDesbloqueado.
      */
     @Test
-    public void testGetDesbloqueado() {
-        System.out.println("getDesbloqueado");
-        BloqueioSistema instance = null;
-        boolean expResult = false;
-        boolean result = instance.getDesbloqueado();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testDesbloqueado() {
+        
+    	ErroAutenticacaoUsuario erro = new ErroAutenticacaoUsuario();
+        BloqueioSistema instance = new BloqueioSistema(erro);
+        
+        assertEquals(false, instance.getDesbloqueado() );
+        instance.setDesbloqueado(true);
+        assertEquals(true, instance.getDesbloqueado() );
+        
     }
 
-    /**
-     * Test of setDesbloqueado method, of class BloqueioSistema.
-     */
-    @Test
-    public void testSetDesbloqueado() {
-        System.out.println("setDesbloqueado");
-        boolean desbloquear = false;
-        BloqueioSistema instance = null;
-        instance.setDesbloqueado(desbloquear);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of equals method, of class BloqueioSistema.
-     */
-    @Test
-    public void testEquals() {
-        System.out.println("equals");
-        Object obj = null;
-        BloqueioSistema instance = null;
-        boolean expResult = false;
-        boolean result = instance.equals(obj);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of hashCode method, of class BloqueioSistema.
-     */
-    @Test
-    public void testHashCode() {
-        System.out.println("hashCode");
-        BloqueioSistema instance = null;
-        int expResult = 0;
-        int result = instance.hashCode();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-}
+}//fim de classe de teste.
