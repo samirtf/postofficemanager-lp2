@@ -3,7 +3,6 @@ package servicosAutenticacaoGerencUsuario.testes;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import org.junit.Before;
 import org.junit.Test;
 import servicosAutenticacaoGerencUsuario.ErroAutenticacaoUsuario;
 import static org.junit.Assert.*;
@@ -13,11 +12,6 @@ import static org.junit.Assert.*;
  * @author Samir Trajano Feitosa 20921299
  */
 public class ErroAutenticacaoUsuarioTest {
-
-    @Before
-    public void setUp() {
-    }
-
 
     /**
      * Teste de metodo getId.
