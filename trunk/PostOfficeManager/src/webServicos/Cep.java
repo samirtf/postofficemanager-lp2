@@ -9,7 +9,8 @@ package webServicos;
 * 	Werton Vinícius Guimarães Gomes
 * 
 * @version 1.0
-* @Descricao A classe Cep, representacao por objeto do Codigo de Enderecamento Postal, foi criada para uso e tambem cadastro de CEP's <br>
+*
+* A classe Cep, representacao por objeto do Codigo de Enderecamento Postal, foi criada para uso e tambem cadastro de CEP's <br>
 * no banco de dados.
 * 
 */
