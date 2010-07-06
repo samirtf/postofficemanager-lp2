@@ -51,7 +51,7 @@ public class BancoDeDadosCepServico implements BancoDeDadosCepServicoIF{
             }
             
             // Disponibiliza o arquivo bdcep.dat para leitura na memoria.
-            FileReader arquivo = new FileReader("bdcep.dat");
+            FileReader arquivo = new FileReader(arquivoBd);
 
             // Torna possivel uma leitura mais eficiente do banco de dados bdcep.dat.
             BufferedReader leitura = new BufferedReader(arquivo);
@@ -70,13 +70,23 @@ public class BancoDeDadosCepServico implements BancoDeDadosCepServicoIF{
             leitura.close();// Fecha a leitura do arquivo.
         }
         catch(SecurityException securityException){
-        	System.err.println("ERRO: " + securityException.getMessage() + securityException);
         }
         catch (IOException iOException) {
-        	System.err.println("ERRO: " + iOException.getMessage() + iOException);
+        	File arquivoBd = null;
+        	FileWriter arquivo = null;
+        	try{
+        	    arquivoBd = new File("bdcep.dat");
+            	arquivo = new FileWriter(arquivoBd);
+            	
+        	}catch(IOException ioe){
+        		
+        	}finally{
+        		arquivo.close();
+        	}
+        	
+        	
         }
         catch(Exception exception){
-        	System.err.print("Erro: " + exception.getMessage() + exception);
         }
     }// Fim do construtor BancoDeDadosCepServico().
     
