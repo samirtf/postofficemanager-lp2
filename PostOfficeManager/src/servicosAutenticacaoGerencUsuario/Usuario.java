@@ -5,13 +5,18 @@ import java.io.Serializable;
 
 
 /**
- *
- * @author Samir Trajano Feitosa
- * @version 1.0
- * @since 13/06/2010
- * @Definicao:
- *      Excecoes para esta classe devem ser chamadas por AutenticacaoUsuario.
- */
+*
+* @author
+* 	Samir Trajano Feitosa 20921299
+* 	Marcus Vinicius Souza de Oliveira
+* 	Rafael O. Vieira
+* 	Werton Vinícius Guimarães Gomes
+* 
+* @version 1.0
+* @since 13/06/2010
+*
+* Excecoes para esta classe devem ser chamadas por AutenticacaoUsuario.
+*/
 public class Usuario implements Serializable{
 	
     /**

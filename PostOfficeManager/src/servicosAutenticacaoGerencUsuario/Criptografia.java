@@ -4,11 +4,17 @@ package servicosAutenticacaoGerencUsuario;
 import java.io.Serializable;
 
 /**
- *
- * @author Samir Trajano Feitosa
- * @version 1.0
- * @since 13/06/2010
- */
+*
+* @author
+* 	Samir Trajano Feitosa 20921299
+* 	Marcus Vinicius Souza de Oliveira
+* 	Rafael O. Vieira
+* 	Werton Vinícius Guimarães Gomes
+* 
+* @version 1.0
+* @since 13/06/2010
+*
+*/
 public class Criptografia implements Serializable{
 
     /**

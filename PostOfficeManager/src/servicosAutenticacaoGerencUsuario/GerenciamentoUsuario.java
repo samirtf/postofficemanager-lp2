@@ -14,6 +14,18 @@ import java.util.LinkedList;
 
 import servicosAutenticacaoGerencUsuario.Usuario.Prioridade;
 
+/**
+*
+* @author
+* 	Samir Trajano Feitosa 20921299
+* 	Marcus Vinicius Souza de Oliveira
+* 	Rafael O. Vieira
+* 	Werton Vinícius Guimarães Gomes
+* 
+* @version 1.0
+* @since 13/06/2010
+*
+*/
 public class GerenciamentoUsuario {
 
 	public static boolean cadastraUsuarioPadrao(AutenticacaoUsuario autentUsuario, 

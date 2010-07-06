@@ -6,11 +6,17 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 /**
- *
- * @author Samir Trajano Feitosa
- * @version 1.0
- * @since 11/06/2010
- */
+*
+* @author
+* 	Samir Trajano Feitosa 20921299
+* 	Marcus Vinicius Souza de Oliveira
+* 	Rafael O. Vieira
+* 	Werton Vinícius Guimarães Gomes
+* 
+* @version 1.0
+* @since 13/06/2010
+*
+*/
 public class ErroAutenticacaoUsuario implements Serializable{
     /**
 	 * serialVersionUID
