@@ -2,8 +2,13 @@ package correios.util;
 import correios.util.VerificaDados;
 
  /**
-  * Classe m√£e Funcion√°rio
-  * @author Rafael O. Vieira
+  * Classe Funcionario
+  * @author
+  * 	Marcus Vinicius Souza de Oliveira
+  * 	Rafael O. Vieira
+  * 	Samir Trajano Feitosa
+  * 	Werton VinÌcius Guimar„es Gomes
+  * 		
   * @version 1.0
   * 
   */
