@@ -1,138 +1,90 @@
 
 package servicosAutenticacaoGerencUsuario.testes;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-
 import servicosAutenticacaoGerencUsuario.ErroAutenticacaoUsuario;
 import static org.junit.Assert.*;
 
 /**
  *
- * @author Samir
+ * @author Samir Trajano Feitosa 20921299
  */
 public class ErroAutenticacaoUsuarioTest {
-
-    public ErroAutenticacaoUsuarioTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
 
     @Before
     public void setUp() {
     }
 
-    @After
-    public void tearDown() {
-    }
 
     /**
-     * Test of getId method, of class ErroAutenticacaoUsuario.
+     * Teste de metodo getId.
      */
     @Test
     public void testGetId() {
-        System.out.println("getId");
+        
         ErroAutenticacaoUsuario instance = new ErroAutenticacaoUsuario();
-        String expResult = "";
+        
+        GregorianCalendar instanteErro = new GregorianCalendar();
+        String ano = String.format("%1$tY", instanteErro);
+        String diaDoAno = String.format("%d", instanteErro.get(Calendar.DAY_OF_YEAR));
+        String horaMinutoSegundoDoDia = String.format("%1$tH/%1$tM/%1$tS", instanteErro);
+        String id = ano + "/" + diaDoAno + "/" + horaMinutoSegundoDoDia;
+        
         String result = instance.getId();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(id, result);
+        
     }
 
     /**
-     * Test of getInstanteErro method, of class ErroAutenticacaoUsuario.
-     */
-    @Test
-    public void testGetInstanteErro() {
-        System.out.println("getInstanteErro");
-        ErroAutenticacaoUsuario instance = new ErroAutenticacaoUsuario();
-        GregorianCalendar expResult = null;
-        GregorianCalendar result = instance.getInstanteErro();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getLogin method, of class ErroAutenticacaoUsuario.
+     * Teste de metodo getLogin.
      */
     @Test
     public void testGetLogin() {
-        System.out.println("getLogin");
-        ErroAutenticacaoUsuario instance = new ErroAutenticacaoUsuario();
-        String expResult = "";
+        
+        ErroAutenticacaoUsuario instance = new ErroAutenticacaoUsuario("Samir");
+        String expResult = "Samir";
         String result = instance.getLogin();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
-     * Test of getDataHora method, of class ErroAutenticacaoUsuario.
-     */
-    @Test
-    public void testGetDataHora() {
-        System.out.println("getDataHora");
-        ErroAutenticacaoUsuario instance = new ErroAutenticacaoUsuario();
-        String expResult = "";
-        String result = instance.getDataHora();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getIdParcial method, of class ErroAutenticacaoUsuario.
+     * Teste de metodo getIdParcial.
      */
     @Test
     public void testGetIdParcial() {
-        System.out.println("getIdParcial");
+        
         ErroAutenticacaoUsuario instance = new ErroAutenticacaoUsuario();
-        String expResult = "";
+        
+        GregorianCalendar instanteErro = new GregorianCalendar();
+        String ano = String.format("%1$tY", instanteErro);
+        String diaDoAno = String.format("%d", instanteErro.get(Calendar.DAY_OF_YEAR));
+        String idParcial = ano + "/" + diaDoAno;
+        
         String result = instance.getIdParcial();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(idParcial, result);
+        
     }
 
     /**
-     * Test of equals method, of class ErroAutenticacaoUsuario.
+     * Teste de metodo equals.
      */
     @Test
     public void testEquals() {
-        System.out.println("equals");
-        Object obj = null;
+        
         ErroAutenticacaoUsuario instance = new ErroAutenticacaoUsuario();
-        boolean expResult = false;
-        boolean result = instance.equals(obj);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+        ErroAutenticacaoUsuario outroErro = new ErroAutenticacaoUsuario();
+        boolean result = instance.equals(outroErro);
+        assertFalse(result);
     }
 
-    /**
-     * Test of hashCode method, of class ErroAutenticacaoUsuario.
-     */
-    @Test
-    public void testHashCode() {
-        System.out.println("hashCode");
-        ErroAutenticacaoUsuario instance = new ErroAutenticacaoUsuario();
-        int expResult = 0;
-        int result = instance.hashCode();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-}
+}//fim de classe de testes.
