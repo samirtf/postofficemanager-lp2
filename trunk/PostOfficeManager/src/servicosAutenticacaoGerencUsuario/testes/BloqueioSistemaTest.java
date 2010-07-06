@@ -3,7 +3,6 @@ package servicosAutenticacaoGerencUsuario.testes;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import org.junit.Before;
 import org.junit.Test;
 import servicosAutenticacaoGerencUsuario.BloqueioSistema;
 import servicosAutenticacaoGerencUsuario.ErroAutenticacaoUsuario;
@@ -31,6 +30,7 @@ public class BloqueioSistemaTest {
         
         String result = instance.getId();
         assertEquals(id, result);
+        
     }
 
     /**
@@ -56,10 +56,6 @@ public class BloqueioSistemaTest {
         BloqueioSistema instance = new BloqueioSistema(erro);
         GregorianCalendar expResult = new GregorianCalendar();
         expResult.set(Calendar.MINUTE, expResult.get(Calendar.MINUTE)+1);
-        
-        System.out.println("rum1 : " + instance.getErroAutenticacaoUsuario().getInstanteErro());
-        System.out.println("rum2 : " + instance.getPrevisaoDesbloqueio());
-        System.out.println("rum3 : " + expResult);
         
         GregorianCalendar result = instance.getPrevisaoDesbloqueio();
         boolean chaveHora = result.get(Calendar.HOUR_OF_DAY)==expResult.get(Calendar.HOUR_OF_DAY);
