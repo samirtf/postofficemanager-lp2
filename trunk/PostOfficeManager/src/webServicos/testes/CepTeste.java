@@ -14,15 +14,6 @@ import webServicos.Cep;
  */
 public class CepTeste {
 
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
     
     /**
      * Teste de erros no construtor
@@ -132,7 +123,7 @@ public class CepTeste {
      */
     @Test
     public void testGetCep() throws Exception {
-        System.out.println("getCep");
+        
         Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "Monte", "Caninde", "CE", "true");
         String expResult = "62700000";
         String result = instance.getCep();
@@ -145,7 +136,7 @@ public class CepTeste {
      */
     @Test
     public void testGetLogradouro() throws Exception {
-        System.out.println("getLogradouro");
+        
         Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "Monte", "Caninde", "CE", "true");
         String expResult = "Av. Francisco C. Campos";
         String result = instance.getLogradouro();
@@ -158,7 +149,7 @@ public class CepTeste {
      */
     @Test
     public void testGetBairro() throws Exception {
-        System.out.println("getBairro");
+        
         Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "Monte", "Caninde", "CE", "true");
         String expResult = "Monte";
         String result = instance.getBairro();
@@ -170,7 +161,7 @@ public class CepTeste {
      */
     @Test
     public void testGetCidade() throws Exception {
-        System.out.println("getCidade");
+        
         Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "Monte", "Caninde", "CE", "true");
         String expResult = "Caninde";
         String result = instance.getCidade();
@@ -182,7 +173,7 @@ public class CepTeste {
      */
     @Test
     public void testGetUf() throws Exception {
-        System.out.println("getUf");
+        
         Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "Monte", "Caninde", "CE", "true");
         String expResult = "CE";
         String result = instance.getUf();
@@ -194,7 +185,7 @@ public class CepTeste {
      */
     @Test
     public void testGetChave() throws Exception {
-        System.out.println("getChave");
+        
         Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "Monte", "Caninde", "CE", "true");
         boolean expResult = true;
         boolean result = instance.getChave();
@@ -206,7 +197,7 @@ public class CepTeste {
      */
     @Test
     public void testSetCep() throws Exception {
-        System.out.println("setCep");
+        
         String cep = "";
         Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "Monte", "Caninde", "CE", "true");
         instance.setCep(cep);
@@ -218,7 +209,7 @@ public class CepTeste {
      */
     @Test
     public void testSetLogradouro() throws Exception {
-        System.out.println("setLogradouro");
+        
         String logradouro = "Avenida Francisco C. Campos";
         Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "Monte", "Caninde", "CE", "true");
         instance.setLogradouro(logradouro);
@@ -231,7 +222,7 @@ public class CepTeste {
      */
     @Test
     public void testSetBairro() throws Exception {
-        System.out.println("setBairro");
+        
         String bairro = "Monte Carlos";
         Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "Monte", "Caninde", "CE", "true");
         instance.setBairro(bairro);
@@ -244,7 +235,7 @@ public class CepTeste {
      */
     @Test
     public void testSetCidade() throws Exception {
-        System.out.println("setCidade");
+        
         String cidade = "Cannis";
         Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "Monte", "Caninde", "CE", "true");
         instance.setCidade(cidade);
@@ -257,7 +248,7 @@ public class CepTeste {
      */
     @Test
     public void testSetUf() throws Exception {
-        System.out.println("setUf");
+        
         String uf = "";
         Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "Monte", "Caninde", "CE", "true");
         instance.setUf(uf);
@@ -270,7 +261,7 @@ public class CepTeste {
      */
     @Test
     public void testSetChave() throws Exception {
-        System.out.println("setChave");
+        
         boolean chave = false;
         Cep instance = new Cep("62700000", "Av. Francisco C. Campos", "Monte", "Caninde", "CE", "true");
         instance.setChave(chave);
