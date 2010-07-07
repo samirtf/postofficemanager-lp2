@@ -180,11 +180,12 @@ public class MenuUsuario extends javax.swing.JFrame {
     }                            
 
     private void removerUsuario(java.awt.event.ActionEvent evt) {                                
-        // TODO add your handling code here:
+        
     }                               
 
     private void mudarSenha(java.awt.event.ActionEvent evt) {                            
-        // TODO add your handling code here:
+        setVisible(false);
+        (new RedefinirSenha(nomeUsuario)).setVisible(true);
     }                           
 
     /**
