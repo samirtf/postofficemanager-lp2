@@ -229,4 +229,9 @@ public class Encomenda implements Serializable{
 	public double valorDaEncomenda() {
 		return 0.75 + (peso/10)*0.2 + (getValorDeclarado()/100); 
 	}
+	
+	@Override
+	public String toString() {
+		return  id + "\n" + cidade  + "\n" + estado + "\nCEP destinatario: " + cepDestinatario + "\nCEP remetente: " + cepRemetente + "\n" + String.format("%.0f gramas\nValor: %.2f", peso, valorDaEncomenda());
+	}
 }
