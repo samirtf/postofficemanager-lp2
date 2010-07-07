@@ -140,7 +140,8 @@ public class MenuUsuario extends javax.swing.JFrame {
     }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        //Essa ação ainda não foi implementada.
+        setVisible(false);
+        (new NovoUsuario(nomeDoUsuario)).setVisible(true);
     }                                        
 
     private void deslogar(java.awt.event.ActionEvent evt) {
