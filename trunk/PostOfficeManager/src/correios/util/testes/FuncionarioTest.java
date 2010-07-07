@@ -4,11 +4,12 @@ import org.junit.*;
 
 /**
  * 
- * @author
- * 	Marcus Vinicius Souza de Oliveira
- * 	Rafael O. Vieira
- * 	Samir Trajano Feitosa
- * 	Werton Vinícius Guimarães Gomes
+  * @author
+  * 	Marcus Vinicius Souza de Oliveira<br>
+  * 	Rafael O. Vieira<br>
+  * 	Samir Trajano Feitosa<br>
+  * 	Werton Vinicius Guimaraes Gomes
+  * 
  *
  */
 public class FuncionarioTest {
