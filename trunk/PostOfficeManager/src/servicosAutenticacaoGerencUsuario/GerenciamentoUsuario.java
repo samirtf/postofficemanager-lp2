@@ -407,5 +407,28 @@ public class GerenciamentoUsuario {
 		return relatorio;
 	}// fim do metodo gerarStringRelatorioBloqueiosSistemTotal.
 	
+	/**
+	 * Gerar relatorios de erros de autenticacao e bloqueio de sistema.
+	 * Somente administradores podem gerar esse relatorio.
+	 * @param ab
+	 * 		O bd Autenticacao Usuario.
+	 * @param login
+	 * 		O login do usuario.
+	 * @return
+	 * 		
+	 */
+	public static boolean gerarRelatorios(AutenticacaoUsuario ab, String login){
+		if( ab.getCadastrosUsuarios().containsKey(login) && 
+			ab.getCadastrosUsuarios().get(login).getPrioridade()==Prioridade.ADMINISTRADOR ){
+			
+		    GerenciamentoUsuario.gerarRelatorioErrosAutenticacaoDiario(ab, login);
+		    GerenciamentoUsuario.gerarRelatorioErrosAutenticacaoTotal(ab, login);
+		    GerenciamentoUsuario.gerarRelatorioBloqueioSistemaDiario(ab, login);
+		    GerenciamentoUsuario.gerarRelatorioBloqueioSistemaTotal(ab, login);
+		    return true;
+		}
+		return false;
+	}
+	
 }// fim da classe gerenciamentoUsuario.
 
