@@ -152,15 +152,15 @@ public class NovoUsuario extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 12));
         jLabel2.setForeground(new java.awt.Color(63, 60, 142));
-        jLabel2.setText("data de nascimento, só numeros");
+        jLabel2.setText("data de nascimento, so numeros");
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 12));
         jLabel3.setForeground(new java.awt.Color(63, 60, 142));
-        jLabel3.setText("CPF, só números");
+        jLabel3.setText("CPF, so numeros");
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 12));
         jLabel4.setForeground(new java.awt.Color(63, 60, 142));
-        jLabel4.setText("salário, só números separados por vírgula");
+        jLabel4.setText("salario, so numeros separados por virgula");
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 12));
         jLabel5.setForeground(new java.awt.Color(63, 60, 142));
@@ -172,7 +172,7 @@ public class NovoUsuario extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Verdana", 0, 12));
         jLabel7.setForeground(new java.awt.Color(63, 60, 142));
-        jLabel7.setText("Nome de usuário");
+        jLabel7.setText("Nome de usuario");
 
         jButton1.setBackground(new java.awt.Color(254, 238, 83));
         jButton1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
