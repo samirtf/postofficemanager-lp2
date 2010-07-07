@@ -150,7 +150,7 @@ public class Agencia implements Serializable {
 	}
 	
 	/**
-	 * M�todo tilizado para o envio de encomendas.
+	 * Metodo utilizado para o envio de encomendas.
 	 * @param encomenda - encomenda a ser enviada.
 	 * @return boolean - se a operacao realizada.
 	 */
@@ -162,8 +162,8 @@ public class Agencia implements Serializable {
 	}
 	
 	/**
-	 * Tenta criar uma encomenda simples com os atributos passados como parâmetros.
-	 * Caso a encomenda tenha que ser de outro tipo(Expressa) o metodo retornará uma encomenda expressa.
+	 * Tenta criar uma encomenda simples com os atributos passados como parametros.
+	 * Caso a encomenda tenha que ser de outro tipo(Expressa) o metodo retornara uma encomenda expressa.
 	 * Caso haja algum parametros seja invalido, retornara null.
 	 * @param cepRemetente - Recebe um conjunto de oito numeros
 	 * @param cepDestinatario - Recebe um conjunto de oito numeros
@@ -180,14 +180,14 @@ public class Agencia implements Serializable {
 		try {
 			return new Encomenda(cepRemetente, cepDestinatario, dataEnvio, atendente, cidade, estado, peso);
 		} catch (Exception e) {
-			if (e.getMessage()=="algum(ns) parametro(s) inválido(s)") {
+			if (e.getMessage()=="algum(ns) parametro(s) invalido(s)") {
 				return null;
 			}
 			if (e.getMessage()=="tipo errado de encomenda") {
 				try {
 					return new EncomendaExpressa(cepRemetente, cepDestinatario, dataEnvio, atendente, cidade, estado, peso);
 				} catch (Exception exc) {
-					if (exc.getMessage()=="algum(ns) parametro(s) inválido(s)") {
+					if (exc.getMessage()=="algum(ns) parametro(s) invalido(s)") {
 						return null;
 					}
 				}
@@ -197,9 +197,9 @@ public class Agencia implements Serializable {
 	}
 	
 	/**
-	 * Tenta criar uma encomenda simples (com valor declarado) com os atributos passados como parâmetros.
-	 * Caso a encomenda tenha que ser de outro tipo(Expressa) o método retornará uma encomenda expressa.
-	 * Caso haja algum parâmetros seja inválido, retornará null.
+	 * Tenta criar uma encomenda simples (com valor declarado) com os atributos passados como parametros.
+	 * Caso a encomenda tenha que ser de outro tipo(Expressa) o metodo retornara uma encomenda expressa.
+	 * Caso haja algum parametros seja invalido, retornará null.
 	 * @param cepRemetente - Recebe um conjunto de oito numeros
 	 * @param cepDestinatario - Recebe um conjunto de oito numeros
 	 * @param dataEnvio - Recebe um conjunto de oito numeros
