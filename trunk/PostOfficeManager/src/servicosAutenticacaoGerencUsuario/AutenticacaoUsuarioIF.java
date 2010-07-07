@@ -22,33 +22,9 @@ import servicosAutenticacaoGerencUsuario.Usuario.Prioridade;
 public interface AutenticacaoUsuarioIF extends Serializable{
 
 
-    /**
-     * Valida login do usuario.
-     * Verifica se o login e nulo.
-     * Verifica se o login e vazio.
-     * Verifica se o login possui menos de 8 caracteres.
-     * Verifica se o login possui mais de 12 caracteres.
-     * Verifica se alguma substring do login nao eh alphanumerico.
-     * @param login
-     *      O login do usuario.
-     * @return
-     *      True - Se o login eh valido.
-     *      False - Se o login nao for valido.
-     */
-    //public abstract boolean validaLogin(String login);
+    
 
-    /**
-     * Valida a senha do usuario.
-     * Verifica a validade do login.
-     * Verifica se o login os 3 primeiros caracteres do login sao os 3
-     * primeiros caracteres da senha.
-     * Verifica se o login eh substring da senha.
-     * Verifica se a senha possui menos de 8 caracteres.
-     * @param login
-     * @param senha
-     * @return
-     */
-    //public boolean validaSenha(String login, String senha);
+
     /**
      * Cadastra usuario no sistema.
      * @param login

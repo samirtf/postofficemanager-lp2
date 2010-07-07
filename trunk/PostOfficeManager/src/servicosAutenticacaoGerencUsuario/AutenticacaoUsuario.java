@@ -226,11 +226,16 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     }// fim do metodo getContadorFalhasAutenticacao.
 
     /**
-     * Verifica se Login do Usuario eh valido.
+     * Valida login do usuario.
+     * Verifica se o login e nulo.
+     * Verifica se o login e vazio.
+     * Verifica se o login possui menos de 8 caracteres.
+     * Verifica se o login possui mais de 13 caracteres.
+     * Verifica se alguma substring do login nao eh alphanumerico.
      * @param login
      *      O login do usuario.
      * @return
-     *      True - Se o login for valido.
+     *      True - Se o login eh valido.
      *      False - Se o login nao for valido.
      */
     public static boolean validaLogin(String login){
@@ -264,14 +269,15 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     
 
     /**
-     * Verifica se Senha do Usuario eh valida.
+     * Valida a senha do usuario.
+     * Verifica a validade do login.
+     * Verifica se o login os 3 primeiros caracteres do login sao os 3
+     * primeiros caracteres da senha.
+     * Verifica se o login eh substring da senha.
+     * Verifica se a senha possui menos de 8 caracteres.
      * @param login
-     *      O login do usuario.
      * @param senha
-     *      A senha do usuario.
      * @return
-     *      True - Se a senha for valida.
-     *      False - Se a senha nao for valida.
      */
     public static boolean validaSenha(String login, String senha){
         final int MIN_LENGTH_PASS = 8;// Tamanho m�nimo do login.
