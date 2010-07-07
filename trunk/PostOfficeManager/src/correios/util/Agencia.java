@@ -9,7 +9,10 @@ import java.util.ArrayList;
 
 /**
  * Classe que implementa os atributos e comportamentos de uma agencia de Correios.
- * @author Vinícius Souza
+ * @author Marcus Vinicius Souza de Oliveira
+ *         Rafael Oliveira Vieira
+ *         Samir Trajano Feitosa
+ *         Werton Vinicius Guimaraes Gomes
  * @version 1.6
  */
 public class Agencia implements Serializable {
@@ -23,8 +26,8 @@ public class Agencia implements Serializable {
 	
 	
 	/**
-	 * Construtor da classe. O usuario passado como parametro tem que estar ativo no momento.
-	 * @param Atendente - atendente ativo no momento.
+	 * Construtor da classe. Eh passado como parametro um usuario que deverah estar ativo no momento.
+	 * @param nomeDoAtendente - atendente ativo no momento.
 	 */
 	public Agencia(String nomeDoAtendente) {
 		this.nomeDoAtendente = nomeDoAtendente;
@@ -37,7 +40,7 @@ public class Agencia implements Serializable {
 			listaDeEncomendas = (ArrayList<Encomenda>) ois.readObject();
 			fis.close();
 			ois.close();
-		//caso algum erro ocorra uma nova lista de encomendas é criada
+		//caso algum erro ocorra uma nova lista de encomendas eh criada
 		} catch (Exception e) {
 			e.printStackTrace();
 			listaDeEncomendas = new ArrayList<Encomenda>();
@@ -60,7 +63,7 @@ public class Agencia implements Serializable {
 	}
 	/**
 	 * Retorna uma lista com todas as encomendas de uma determinada cidade.
-	 * @param String - cidade
+	 * @param cidade - Nome de uma cidade, para ser feita uma pesquisa
 	 * @return List<Encomenda> - lista das encomendas.
 	 */
 	public ArrayList<Encomenda> getEncomendasCidade(String cidade) {
@@ -74,7 +77,7 @@ public class Agencia implements Serializable {
 	}
 	/**
 	 * Retorna uma lista com todas as encomendas de um determinado estado.
-	 * @param String - estado
+	 * @param estado - Estado para ser feita a pesquisa.
 	 * @return List<Encomenda> - lista das encomendas.
 	 */
 	public ArrayList<Encomenda> getEncomendasEstado(String estado) {
@@ -88,7 +91,7 @@ public class Agencia implements Serializable {
 	}
 	/**
 	 * Retorna uma lista com todas as encomendas, que possuem um determinado CEP destinatário.
-	 * @param String - CEP
+	 * @param CEP - Numero para ser feita a pesquisa.
 	 * @return List<Encomenda> - lista das encomendas.
 	 */
 	public ArrayList<Encomenda> getEncomendasCEPDestinatario(String CEP) {
@@ -102,7 +105,7 @@ public class Agencia implements Serializable {
 	}
 	/**
 	 * Retorna uma lista com todas as encomendas, que possuem um determinado CEP remetente.
-	 * @param String - CEP
+	 * @param CEP - recebe um conjunto de oito numeros, referentes ao CEP, para ser feita uma pesquisa.
 	 * @return List<Encomenda> - lista das encomendas.
 	 */
 	public ArrayList<Encomenda> getEncomendasCEPRemetente(String CEP) {
@@ -117,7 +120,7 @@ public class Agencia implements Serializable {
 	}
 	/**
 	 * Retorna uma lista com todas as encomendas enviadas numa determinada data.
-	 * @param String - data
+	 * @param  data - Recebe um conjunto de oito numeros, para ser feita uma pesquisa.
 	 * @return List<Encomenda> - lista das encomendas.
 	 */
 	public ArrayList<Encomenda> getEncomendasDataEnvio(String data) {
@@ -133,7 +136,7 @@ public class Agencia implements Serializable {
 	
 	/**
 	 * Retorna uma lista com todas as encomendas recebidas numa determinada data.
-	 * @param String - data
+	 * @param data - recebe um conjunto de oito numeros, referentes ao CEP, para ser feita uma pesquisa.
 	 * @return List<Encomenda> - lista das encomendas.
 	 */
 	public ArrayList<Encomenda> getEncomendasDataRecebimento(String data) {
@@ -147,9 +150,9 @@ public class Agencia implements Serializable {
 	}
 	
 	/**
-	 * Método tilizado para o envio de encomendas.
-	 * @param Encomenda - encomenda a ser enviada.
-	 * @return boolean - se a operação realizada.
+	 * M�todo tilizado para o envio de encomendas.
+	 * @param encomenda - encomenda a ser enviada.
+	 * @return boolean - se a operacao realizada.
 	 */
 	public boolean addEncomenda(Encomenda encomenda) { 
 		listaDeEncomendas.add(encomenda);
@@ -160,17 +163,17 @@ public class Agencia implements Serializable {
 	
 	/**
 	 * Tenta criar uma encomenda simples com os atributos passados como parâmetros.
-	 * Caso a encomenda tenha que ser de outro tipo(Expressa) o método retornará uma encomenda expressa.
-	 * Caso haja algum parâmetros seja inválido, retornará null.
-	 * @param String - cepRemetente
-	 * @param String - cepDestinatario
-	 * @param String - dataEnvio
-	 * @param String - atendente
-	 * @param String - cidade
-	 * @param String - estado
-	 * @param double - peso
-	 * @return Encomenda - se a encomendar puder ser criada, ela será retornada,
-	 * caso não retornará <i>null</i>.
+	 * Caso a encomenda tenha que ser de outro tipo(Expressa) o metodo retornará uma encomenda expressa.
+	 * Caso haja algum parametros seja invalido, retornara null.
+	 * @param cepRemetente - Recebe um conjunto de oito numeros
+	 * @param cepDestinatario - Recebe um conjunto de oito numeros
+	 * @param dataEnvio - Recebe um conjunto de oito numeros
+	 * @param atendente - Recebe um nome de um atendente
+	 * @param cidade - Recebe um nome de uma cidade
+	 * @param estado - Recebe um nome de um estado, referente a cidade
+	 * @param peso - o peso da carta
+	 * @return Encomenda - se a encomendar puder ser criada, ela sera retornada,
+	 * caso nao retornara <i>null</i>.
 	 */
 	public Encomenda criaEncomendaSimples(String cepRemetente, String cepDestinatario, String dataEnvio, 
 								   String atendente, String cidade, String estado, double peso) {
@@ -197,16 +200,16 @@ public class Agencia implements Serializable {
 	 * Tenta criar uma encomenda simples (com valor declarado) com os atributos passados como parâmetros.
 	 * Caso a encomenda tenha que ser de outro tipo(Expressa) o método retornará uma encomenda expressa.
 	 * Caso haja algum parâmetros seja inválido, retornará null.
-	 * @param String - cepRemetente
-	 * @param String - cepDestinatario
-	 * @param String - dataEnvio
-	 * @param String - atendente
-	 * @param String - cidade
-	 * @param String - estado
-	 * @param double - peso
-	 * @param double - valorDeclarado
-	 * @return Encomenda - se a encomendar puder ser criada, ela será retornada,
-	 * caso não retornará <i>null</i>.
+	 * @param cepRemetente - Recebe um conjunto de oito numeros
+	 * @param cepDestinatario - Recebe um conjunto de oito numeros
+	 * @param dataEnvio - Recebe um conjunto de oito numeros
+	 * @param atendente - Recebe um nome de um atendente
+	 * @param cidade - Recebe um nome de uma cidade
+	 * @param estado - Recebe um nome de um estado, referente a cidade
+	 * @param peso - O peso da carta
+	 * @param valorDeclarado - Pega um valor declarado
+	 * @return Encomenda - se a encomendar puder ser criada, ela sera retornada,
+	 * caso não retornara <i>null</i>.
 	 */
 	public Encomenda criaEncomendaSimples(String cepRemetente, String cepDestinatario, String dataEnvio, 
 								   String atendente, String cidade, String estado, double peso, double valorDeclarado) {
@@ -231,17 +234,17 @@ public class Agencia implements Serializable {
 	
 	/**
 	 * Tenta criar uma encomenda registrada com os atributos passados como parâmetros.
-	 * Caso a encomenda tenha que ser de outro tipo(Expressa) o método retornará uma encomenda expressa.
-	 * Caso haja algum parâmetro seja inválido, retornará null.
-	 * @param String - cepRemetente
-	 * @param String - cepDestinatario
-	 * @param String - dataEnvio
-	 * @param String - atendente
-	 * @param String - cidade
-	 * @param String - estado
-	 * @param double - peso
-	 * @return Encomenda - se a encomendar puder ser criada, ela será retornada,
-	 * caso não retornará <i>null</i>.
+	 * Caso a encomenda tenha que ser de outro tipo(Expressa) o metodo retornará uma encomenda expressa.
+	 * Caso haja algum parametro seja invalido, retornara null.
+	 * @param cepRemetente - Recebe um conjunto de oito numeros
+	 * @param cepDestinatario - Recebe um conjunto de oito numeros
+	 * @param dataEnvio - Recebe um conjunto de oito numeros
+	 * @param atendente - Recebe um nome de um atendente
+	 * @param cidade - Recebe um nome de uma cidade
+	 * @param estado - Recebe um nome de um estado, referente a cidade
+	 * @param peso - o peso da carta
+	 * @return Encomenda - se a encomendar puder ser criada, ela sera retornada,
+	 * caso nao retornara <i>null</i>.
 	 */
 	public Encomenda criaEncomendaRegistrada(String cepRemetente, String cepDestinatario, String dataEnvio, 
 								   String atendente, String cidade, String estado, double peso) {
@@ -268,16 +271,16 @@ public class Agencia implements Serializable {
 	 * Tenta criar uma encomenda registrada (com valor declarado) com os atributos passados como parâmetros.
 	 * Caso a encomenda tenha que ser de outro tipo(Expressa) o método retornará uma encomenda expressa.
 	 * Caso haja algum parâmetro seja inválido, retornará null.
-	 * @param String - cepRemetente
-	 * @param String - cepDestinatario
-	 * @param String - dataEnvio
-	 * @param String - atendente
-	 * @param String - cidade
-	 * @param String - estado
-	 * @param double - peso
-	 * @param double - valorDeclarado
-	 * @return Encomenda - se a encomendar puder ser criada, ela será retornada,
-	 * caso não retornará <i>null</i>.
+	 * @param cepRemetente - Recebe um conjunto de oito numeros
+	 * @param cepDestinatario - Recebe um conjunto de oito numeros
+	 * @param dataEnvio - Recebe um conjunto de oito numeros
+	 * @param atendente - Recebe um nome de um atendente
+	 * @param cidade - Recebe um nome de uma cidade
+	 * @param estado - Recebe um nome de um estado, referente a cidade
+	 * @param peso - O peso da carta
+	 * @param valorDeclarado - Pega um valor declarado
+	 * @return Encomenda - se a encomendar puder ser criada, ela sera retornada,
+	 * caso não retornara <i>null</i>.
 	 */
 	public Encomenda criaEncomendaRegistrada(String cepRemetente, String cepDestinatario, String dataEnvio, 
 								   String atendente, String cidade, String estado, double peso, double valorDeclarado) {
@@ -303,13 +306,13 @@ public class Agencia implements Serializable {
 	/**
 	 * Tenta criar uma encomenda expressa com os atributos passados como parâmetros.
 	 * Caso haja algum parâmetro seja inválido, retornará null.
-	 * @param String - cepRemetente
-	 * @param String - cepDestinatario
-	 * @param String - dataEnvio
-	 * @param String - atendente
-	 * @param String - cidade
-	 * @param String - estado
-	 * @param double - peso
+	* @param cepRemetente - Recebe um conjunto de oito numeros
+	 * @param cepDestinatario - Recebe um conjunto de oito numeros
+	 * @param dataEnvio - Recebe um conjunto de oito numeros
+	 * @param atendente - Recebe um nome de um atendente
+	 * @param cidade - Recebe um nome de uma cidade
+	 * @param estado - Recebe um nome de um estado, referente a cidade
+	 * @param peso - O peso da carta
 	 * @return Encomenda - tenta retornar uma encomenda expresa, caso não retornará <i>null</i>.
 	 */
 	public Encomenda criaEncomendaExpressa(String cepRemetente, String cepDestinatario, String dataEnvio, 
@@ -324,14 +327,14 @@ public class Agencia implements Serializable {
 	/**
 	 * Tenta criar uma encomenda expressa (com valor declarado) com os atributos passados como parâmetros.
 	 * Caso haja algum parâmetro seja inválido, retornará null.
-	 * @param String - cepRemetente
-	 * @param String - cepDestinatario
-	 * @param String - dataEnvio
-	 * @param String - atendente
-	 * @param String - cidade
-	 * @param String - estado
-	 * @param double - peso
-	 * @param double - valorDeclarado
+	 * @param cepRemetente - Recebe um conjunto de oito numeros
+	 * @param cepDestinatario - Recebe um conjunto de oito numeros
+	 * @param dataEnvio - Recebe um conjunto de oito numeros
+	 * @param atendente - Recebe um nome de um atendente
+	 * @param cidade - Recebe um nome de uma cidade
+	 * @param estado - Recebe um nome de um estado, referente a cidade
+	 * @param peso - O peso da carta
+	 * @param valorDeclarado - Pega um valor declarado
 	 * @return Encomenda - tenta retornar uma encomenda expresa, caso não retornará <i>null</i>.
 	 */
 	public Encomenda criaEncomendaExpressa(String cepRemetente, String cepDestinatario, String dataEnvio, 

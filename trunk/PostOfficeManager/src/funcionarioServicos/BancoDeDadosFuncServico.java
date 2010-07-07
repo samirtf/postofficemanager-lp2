@@ -53,8 +53,7 @@ public class BancoDeDadosFuncServico implements BancoDeDadosFuncServicoIF{
 
 	/**
 	 * Adiciona um funcionario no banco de dados de funcionario.
-	 * @param
-	 * 		Objeto do tipo funcionario.
+	 * @param func - Objeto do tipo funcionario.
 	 * @return
 	 * 		True - Se o funcionario for adicionado ao banco de dados de funcionario.
 	 * 		False - Se o funcionario nao for adicionado ao banco de dados de funcionario.

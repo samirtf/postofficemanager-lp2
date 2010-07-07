@@ -4,13 +4,13 @@ public class EncomendaExpressa extends EncomendaRegistrada{
 	
 	/**
 	 * Encomenda expressa sem valor declarado.
-	 * @param String - cepRemetente
-	 * @param String - cepDestinatario
-	 * @param String - dataEnvio
-	 * @param String - nome da(o) atendente
-	 * @param String - cidade
-	 * @param String - estado
-	 * @param double - peso (em gramas)
+	 * @param cepRemetente - Conjunto de 8 numeros, para formar o CEP do Remetente
+	 * @param cepDestinatario - Conjunto de .8 numeros, para formar o CEP do Destinatario
+	 * @param dataEnvio - Conjunto de 8 numeros, para formar a data.
+	 * @param atendente - nome da(o) atendente.
+	 * @param cidade - Nome de uma cidade.
+	 * @param estado - Nome de um estado.
+	 * @param peso - pega um valor de peso (em gramas).
 	 * @throws IllegalArgumentException - quando algum parâmetro é inválido.
 	 *         TipoDeEncomendaException - Quando o peso ou valor declarado da encomenda, a caracterizam de outro tipo.
 	 */
@@ -21,14 +21,14 @@ public class EncomendaExpressa extends EncomendaRegistrada{
 	}
 	/**
 	 * Encomenda expressa com valor declarado.
-	 * @param String - cepRemetente
-	 * @param String - cepDestinatario
-	 * @param String - dataEnvio
-	 * @param String - nome da(o) atendente
-	 * @param String - cidade
-	 * @param String - estado
-	 * @param double - peso (em gramas)
-	 * @param double - valor declarado
+	 * @param cepRemetente - Conjunto de 8 numeros, para formar o CEP do Remetente
+	 * @param cepDestinatario - Conjunto de .8 numeros, para formar o CEP do Destinatario
+	 * @param dataEnvio - Conjunto de 8 numeros, para formar a data.
+	 * @param atendente - nome da(o) atendente.
+	 * @param cidade - Nome de uma cidade.
+	 * @param estado - Nome de um estado.
+	 * @param peso - pega um valor de peso (em gramas).
+	 * @param valorDeclarado - pega um valor declarado
 	 * @throws IllegalArgumentException - quando algum parâmetro é inválido.
 	 *         TipoDeEncomendaException - Quando o peso ou valor declarado da encomenda, a caracterizam de outro tipo.
 	 */

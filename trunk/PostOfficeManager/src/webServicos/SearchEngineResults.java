@@ -1,18 +1,14 @@
 package webServicos;
 
 /**
- * Resultado da opera��o de busca realizada pelas <i>Search Engine</i> encapsulado junto
- * a interface {@link WebServiceCep}, cont�ndo c�digo e mensagem do resultado.
+ * Resultado da operacao de busca realizada pelas <i>Search Engine</i> encapsulado junto
+ * a interface {@link WebServiceCep}, contendo codigo e mensagem do resultado.
  * <BR>
- * <BR>O {@link SearchEngineResults} pode ser consultado atrav�s da interface via
+ * <BR>O {@link SearchEngineResults} pode ser consultado atraves da interface via
  * {@link WebServiceCep#getResult()}.
- * <BR>
- * <BR>Consulte as <i>Search Engine</i> {@link CepSearchEngineByQueryString} e
- * {@link CepSearchEngineByXML} para informa��es de como realizar a pesquisa.
  * <BR>
  * <BR>Last Revision: 01/10/2009
  * @see CepSearchEngineByQueryString
- * @see CepSearchEngineByXML
  * @see WebServiceCep
  * @author Tomaz Lavieri
  * @version 1.00

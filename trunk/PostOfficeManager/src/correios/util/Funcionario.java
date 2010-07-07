@@ -25,8 +25,8 @@ public class Funcionario {
 	 * @param nome
 	 * @param dataNascimento
 	 * @param cpf
-	 * @param senha
-	 * @param chave
+	 * @param salario
+	 * @param login
 	 * @throws Exception 
 	 */
 	public Funcionario(String nome,String dataNascimento,

@@ -6,13 +6,12 @@ package webServicos;
  * target="_blank">republicavirtual.com.br</a>. 
  * <BR>
  * <BR>Consulte as classes de <i>Search Engine</i> {@link CepSearchEngineByQueryString}
- * e {@link CepSearchEngineByXML}, para saber como recuperar os
+ * , para saber como recuperar os
  * dados do CEP do site.
  * <BR>
  * <BR>Last Revision: 01/10/2009 (US Data)
  * 
  * @see CepSearchEngineByQueryString
- * @see CepSearchEngineByXML
  * @see SearchEngineResults
  * @author Tomaz Lavieri
  * @since 01/10/09
@@ -23,7 +22,7 @@ public interface WebServiceCep {
 	/* PUBLIC metodos get e is, usado para acessar o objeto apis carregado. */
 	/**
 	 * {@link SearchEngineResults} contendo o resultado da operacao, de onde pode-se 
-	 * consultar tanto a msg do resultado, como o seu c�digo. Use os metodos
+	 * consultar tanto a msg do resultado, como o seu codigo. Use os metodos
 	 * {@link SearchEngineResults#getCode()} e {@link SearchEngineResults#getMessage()}
 	 * para a consulta.
 	 * @return {@link SearchEngineResults} contendo o resultado da operacao.

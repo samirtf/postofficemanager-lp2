@@ -7,13 +7,11 @@ import java.util.GregorianCalendar;
 
 
 /**
+ *Bloqueia o sistema por 30 minutos para a seguranca dos dados do sistema.
  *
  * @author Samir Trajano Feitosa
  * @version 1.0
  * @since 11/06/2010
- *
- * @Definicao:
- *      Bloqueia o sistema por 30 minutos para a seguranca dos dados do sistema.
  *
  */
 public class BloqueioSistema implements Serializable{

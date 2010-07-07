@@ -40,7 +40,6 @@ public interface AutenticacaoUsuarioIF extends Serializable{
      * Verifica se a senha possui menos de 8 caracteres.
      * @param login
      * @param senha
-     * @return
      */
     public boolean validaSenha(String login, String senha)
             throws AutenticacaoUsuarioExcecao;
@@ -64,7 +63,6 @@ public interface AutenticacaoUsuarioIF extends Serializable{
      *      O login do usuario ja cadastrado.
      * @param senha
      *      A senha do usuario ja cadastrado.
-     * @return
      */
     public boolean logaNoSistema(String login, String senha);
 
