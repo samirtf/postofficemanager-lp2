@@ -544,18 +544,21 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
         
     }
     
-    public void recuperaBloqueioSistema(){
+    public boolean recuperaBloqueioSistema(){
     	if ( listaDeBloqueios != null && !listaDeBloqueios.isEmpty() ){
         	if( listaDeBloqueios.getLast().getPrevisaoDesbloqueio().after(new GregorianCalendar()) ){
         		bloqueioSistema = listaDeBloqueios.getLast();
             	sistemaDesbloqueado = bloqueioSistema.getDesbloqueado();
+            	return false;
         	}
         	else{
         		//bloqueioSistema = null;
         		listaDeBloqueios.getLast().setDesbloqueado(true);
         		this.sistemaDesbloqueado = true;
+        		return true;
         	}
         }// fim de recupera bloqueio de sistema
+    	return true;
     }
     
     public static void main(String[] args){
@@ -578,12 +581,16 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     		ab.geraErroAutenticacao();
     		ab.geraErroAutenticacao();
     		ab.geraErroAutenticacao();
-    		/*ab.geraErroAutenticacao();
     		ab.geraErroAutenticacao();
     		ab.geraErroAutenticacao();
     		ab.geraErroAutenticacao();
     		ab.geraErroAutenticacao();
-    		*/
+    		ab.geraErroAutenticacao();
+    		ab.geraErroAutenticacao();
+    		ab.geraErroAutenticacao();
+    		ab.geraErroAutenticacao();
+    		ab.geraErroAutenticacao();
+    		
     		System.out.println(ab.getListaErros().size());
     		System.out.println(ab.getListaBloqueios().size());
     		
@@ -596,6 +603,50 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
     		System.out.println(ab.getListaBloqueios().size());
     		
     		System.out.println("oifinal");
+    		System.out.println("ESPERANDO");
+    		Thread.sleep(1500*60);
+    		
+    		System.out.println("BLOQUEANDO DE NOVO");
+    		
+    		System.out.println(ab.logaNoSistema("admin", "admin"));
+    		System.out.println(ab.logaNoSistema("joao", "admin"));
+    		//ab.listaDeErros.clear();
+    		//ab.listaDeBloqueios.clear();
+    		System.out.println(ab.getListaErros().size());
+    		System.out.println(ab.getListaBloqueios().size());
+    		System.out.println();
+    		ab.geraErroAutenticacao();
+    		System.out.println(ab.getListaErros().size());
+    		System.out.println(ab.getListaBloqueios().size());
+    		System.out.println(ab.sistemaDesbloqueado);
+    		System.out.println();
+    		
+    		ab.geraErroAutenticacao();
+    		ab.geraErroAutenticacao();
+    		ab.geraErroAutenticacao();
+    		ab.geraErroAutenticacao();
+    		ab.geraErroAutenticacao();
+    		ab.geraErroAutenticacao();
+    		ab.geraErroAutenticacao();
+    		ab.geraErroAutenticacao();
+    		ab.geraErroAutenticacao();
+    		ab.geraErroAutenticacao();
+    		ab.geraErroAutenticacao();
+    		ab.geraErroAutenticacao();
+    		
+    		System.out.println(ab.getListaErros().size());
+    		System.out.println(ab.getListaBloqueios().size());
+    		
+    		ab.geraErroAutenticacao();
+    		System.out.println(ab.getListaErros().size());
+    		System.out.println(ab.getListaBloqueios().size());
+    		
+    		ab.geraErroAutenticacao();
+    		System.out.println(ab.getListaErros().size());
+    		System.out.println(ab.getListaBloqueios().size());
+    		
+    		System.out.println("oifinal");
+    		
     		
     		System.out.println("oi");
     		System.out.println();
