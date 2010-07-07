@@ -367,6 +367,7 @@ public class Agencia implements Serializable {
 		}
 	}
 	
+	
 	public Encomenda pesquisaId(String id) {
 		for (Encomenda e: listaDeEncomendas) {
 			if (e.getId().equals(id)) {
