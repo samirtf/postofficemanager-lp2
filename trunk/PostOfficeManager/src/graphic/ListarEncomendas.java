@@ -409,8 +409,11 @@ public class ListarEncomendas extends javax.swing.JFrame {
         		s += encomenda.toString() + "\n";
         	}
         	jTextArea1.setText(s);
-        }
-        
+        	s+= "\nRecebidas\n\n";
+        	for (Encomenda encomenda: agencia.getEncomendasDataRecebimento(jTextField1.getText())) {
+        		s += encomenda.toString() + "\n";
+        	}
+        }   
     }
 
     private void listarCep(java.awt.event.ActionEvent evt) {
