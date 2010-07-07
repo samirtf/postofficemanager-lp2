@@ -57,5 +57,10 @@ public class EncomendaExpressa extends EncomendaRegistrada{
 			return ((envio + valorDeclarado)*5)/100;
 		}
 		return envio + valorDeclarado/100;
-	} 
+	}
+	
+	@Override
+	public String toString() {
+		return  id + "\n" + cidade  + "\n" + estado + "\nCEP destinatario: " + cepDestinatario + "\nCEP remetente: " + cepRemetente + "\n" + String.format("%.0f gramas\nValor: %.2f", peso, valorDaEncomenda()) + "\n" + getCodigoDeRegistro();
+	}
 }
