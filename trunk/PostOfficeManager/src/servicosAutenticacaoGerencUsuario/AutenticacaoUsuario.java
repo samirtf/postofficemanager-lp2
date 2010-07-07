@@ -233,7 +233,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
      *      True - Se o login for valido.
      *      False - Se o login nao for valido.
      */
-    public boolean validaLogin(String login){
+    public static boolean validaLogin(String login){
         final int MIN_LENGTH_PASS = 8;// Tamanho minimo do login.
         final int MAX_LENGTH_PASS = 13;// Tamanho maximo do login.
 
@@ -273,7 +273,7 @@ public class AutenticacaoUsuario implements AutenticacaoUsuarioIF{
      *      True - Se a senha for valida.
      *      False - Se a senha nao for valida.
      */
-    public boolean validaSenha(String login, String senha){
+    public static boolean validaSenha(String login, String senha){
         final int MIN_LENGTH_PASS = 8;// Tamanho m�nimo do login.
         final int MAX_LENGTH_PASS = 13;// Tamanho m�ximo do login.
 
