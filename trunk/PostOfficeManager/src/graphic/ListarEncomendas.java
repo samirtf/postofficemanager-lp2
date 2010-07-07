@@ -1,10 +1,18 @@
 package graphic;
 
+import correios.util.Agencia;
+import correios.util.Encomenda;
+import correios.util.VerificaDados;
+
 public class ListarEncomendas extends javax.swing.JFrame {
 
+	private String nomeUsuario;
+	private Agencia agencia;
     /** Creates new form ListarEncomendas */
-    public ListarEncomendas() {
+    public ListarEncomendas(String nomeUsuario) {
         initComponents();
+        agencia = new Agencia(nomeUsuario);
+        this.nomeUsuario = nomeUsuario;
     }
 
     /** This method is called from within the constructor to
@@ -358,26 +366,50 @@ public class ListarEncomendas extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void checarData(java.awt.event.KeyEvent evt) {
-        // TODO add your handling code here:
+    	String check = "";
+        for (String s: jTextField1.getText().split("")) {
+        	if (s.matches("[0-9]") && check.length()<8) {
+        		check+=s;
+        	}
+        }
+        jTextField1.setText(check);
     }
 
     private void dataTexto(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
+    	if (jTextField1.getText().equals("ddMMaaaa")  && jTextField1.isCursorSet()) {
+        	jTextField1.setText("");
+        }
     }
 
     private void checarCep(java.awt.event.KeyEvent evt) {
-        // TODO add your handling code here:
+    	String check = "";
+        for (String s: jTextField2.getText().split("")) {
+        	if (s.matches("[0-9]") && check.length()<11) {
+        		check+=s;
+        	}
+        }
+        jTextField2.setText(check);
     }
 
     private void cepTexto(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
+    	if (jTextField2.getText().equals("XXXXXXXX")  && jTextField2.isCursorSet()) {
+        	jTextField2.setText("");
+        }
     }
 
     private void okVoltar(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        setVisible(false);
+        (new MenuEncomenda(nomeUsuario)).setVisible(true);
     }
 
     private void listarData(java.awt.event.ActionEvent evt) {
+        if (VerificaDados.verificaData(jTextField1.getText())) {
+        	String s = "Enviadas\n\n";
+        	for (Encomenda encomenda: agencia.getEncomendasDataEnvio(jTextField1.getText())) {
+        		s += encomenda.toString() + "\n";
+        	}
+        	jTextArea1.setText(s);
+        }
         
     }
 
@@ -386,7 +418,13 @@ public class ListarEncomendas extends javax.swing.JFrame {
     }
 
     private void checarEstado(java.awt.event.KeyEvent evt) {
-        // TODO add your handling code here:
+    	String check = "";
+        for (String s: jTextField3.getText().split("")) {
+        	if (s.toLowerCase().matches("[a-z]") || s.equals(" ")) {
+        		check+=s;
+        	}
+        }
+        jTextField3.setText(check);
     }
 
     private void listarEstado(java.awt.event.ActionEvent evt) {
@@ -394,7 +432,13 @@ public class ListarEncomendas extends javax.swing.JFrame {
     }
 
     private void checarCidade(java.awt.event.KeyEvent evt) {
-        // TODO add your handling code here:
+    	String check = "";
+        for (String s: jTextField4.getText().split("")) {
+        	if (s.toLowerCase().matches("[a-z]") || s.equals(" ")) {
+        		check+=s;
+        	}
+        }
+        jTextField4.setText(check);
     }
 
     private void listarCidade(java.awt.event.ActionEvent evt) {
@@ -407,7 +451,7 @@ public class ListarEncomendas extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListarEncomendas().setVisible(true);
+                new ListarEncomendas("").setVisible(true);
             }
         });
     }
