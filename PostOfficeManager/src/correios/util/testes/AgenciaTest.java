@@ -6,7 +6,13 @@ import correios.util.Encomenda;
 
 import org.junit.Before;
 import org.junit.Test;
-
+/**
+ * 
+ * @author Marcus Vinicius Souza de Oliveira
+ *         Rafael Oliveira Vieira
+ *         Samir Trajano Feitosa
+ *         Werton Vinicius Guimaraes Gomes
+ */
 public class AgenciaTest {
 	
 	Agencia agencia1, agencia2, agencia5, agencia6;

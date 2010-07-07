@@ -5,7 +5,10 @@ package correios.util;
  * Por exemplo, quando o peso ou valor declarado de uma Encomenda,
  * a obrigarem a ser de um outro tipo.
  * 
- * @author Vinícius Souza.
+ * @author Marcus Vinicius Souza de Oliveira
+ *         Rafael Oliveira Vieira
+ *         Samir Trajano Feitosa
+ *         Werton Vinicius Guimaraes Gomes
  */
 public class TipoDeEncomendaException extends Exception {
 

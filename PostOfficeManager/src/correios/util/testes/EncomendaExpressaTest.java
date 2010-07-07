@@ -7,7 +7,13 @@ import org.junit.Test;
 
 import correios.util.EncomendaExpressa;
 
-
+/**
+ * 
+ * @author Marcus Vinicius Souza de Oliveira
+ *         Rafael Oliveira Vieira
+ *         Samir Trajano Feitosa
+ *         Werton Vinicius Guimaraes Gomes
+ */
 public class EncomendaExpressaTest {
 	
 	private EncomendaExpressa encomenda;
