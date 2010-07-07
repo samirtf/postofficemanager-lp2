@@ -384,6 +384,8 @@ public class NovoUsuario extends javax.swing.JFrame {
     	try {
 			bdFuncionario.adicFuncAoBancoDeDados(new Funcionario(jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), Double.parseDouble(jTextField4.getText()), jTextField1.getText()));
 			autenticacao.cadastraUsuario(jTextField1.getText(), jPasswordField1.getText(), Prioridade.DEFAULT);
+			setVisible(false);
+			(new MenuUsuario(nomeUsuario)).setVisible(true);
 		} catch (Exception e) {
 			jLabel8.setVisible(false);
 			return;
