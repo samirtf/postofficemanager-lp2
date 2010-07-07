@@ -1,4 +1,12 @@
 package correios.util;
+/**
+ * 
+ * @author Marcus Vinicius Souza de Oliveira
+ *         Rafael Oliveira Vieira
+ *         Samir Trajano Feitosa
+ *         Werton Vinicius Guimaraes Gomes
+ *
+ */
 
 public class EncomendaExpressa extends EncomendaRegistrada{
 	

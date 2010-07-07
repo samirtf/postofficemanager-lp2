@@ -2,7 +2,10 @@ package correios.util;
 
 /**
  * Classe que implementa comportamento de encomendas registradas.
- * @author Vinícius Souza
+ * @author Marcus Vinicius Souza de Oliveira
+ *         Rafael Oliveira Vieira
+ *         Samir Trajano Feitosa
+ *         Werton Vinicius Guimaraes Gomes
  */
 public class EncomendaRegistrada extends Encomenda {
 	protected String codigoDeRegistro;

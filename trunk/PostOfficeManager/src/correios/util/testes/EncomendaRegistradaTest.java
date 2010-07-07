@@ -6,7 +6,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import correios.util.EncomendaRegistrada;
-
+/**
+ * 
+ * @author Marcus Vinicius Souza de Oliveira
+ *         Rafael Oliveira Vieira
+ *         Samir Trajano Feitosa
+ *         Werton Vinicius Guimaraes Gomes
+ *
+ */
 
 public class EncomendaRegistradaTest {
 	

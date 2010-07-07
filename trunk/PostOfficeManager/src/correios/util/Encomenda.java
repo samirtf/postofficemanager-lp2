@@ -8,7 +8,10 @@ import java.util.GregorianCalendar;
  * Classe que implementa encomendas simples e com valor declarado.
  * Essa classe também é a superclasse de EncomendaRegistrada e 
  * consequentemente de EncomendaExpressa.
- * @author Vinícius Souza
+ * @author Marcus Vinicius Souza de Oliveira
+ *         Rafael Oliveira Vieira
+ *         Samir Trajano Feitosa
+ *         Werton Vinicius Guimaraes Gomes
  * @version 2.0
  */
 public class Encomenda implements Serializable{
