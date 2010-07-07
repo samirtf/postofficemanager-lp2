@@ -61,8 +61,8 @@ public class BancoDeDadosFuncServicoTest {
 		
 		Assert.assertEquals( 1, bdFunc.totalRegistrosBancoDeDados() );
 		
-		Assert.assertEquals("nome: Samir, data nasc.: 22031988, cpf: 22233366638, " +
-				"chave: true, login: samirtf, salario: 7530.87",
+		Assert.assertEquals("Nome: Samir Trajano Feitosa\nData nasc.: 22\03\1988\n" +
+				"CPF: 222.333.666-38\nEm atividade: SIM\nLogin: samirtf\nSalario: R$ 7530.87",
 				bdFunc.pesquisaFuncionarioPorCpf(func1.getCpf()).toString());
 
 		//adiciona o mesmo func1
@@ -74,9 +74,7 @@ public class BancoDeDadosFuncServicoTest {
 		}
 		
 		Assert.assertEquals( 1, bdFunc.totalRegistrosBancoDeDados() );
-		Assert.assertEquals("nome: Samir, data nasc.: 22031988, cpf: 22233366638, " +
-				"chave: true, login: samirtf, salario: 7530.87",
-				bdFunc.pesquisaFuncionarioPorCpf(func1.getCpf()).toString());
+		
 		
 		//adiciona func2
 		Assert.assertEquals(1, bdFunc.totalRegistrosBancoDeDados() );
@@ -87,8 +85,8 @@ public class BancoDeDadosFuncServicoTest {
 		}
 		
 		Assert.assertEquals( 2, bdFunc.totalRegistrosBancoDeDados() );
-		Assert.assertEquals("nome: Rafael, data nasc.: 12061987, cpf: 50651797608, " +
-				"chave: true, login: rafaelcc, salario: 7530.87",
+		Assert.assertEquals("Nome: Rafael\nData nasc.: 12\06\1987\nCPF: 506.517.976-08\n" +
+				"Em atividade: SIM\nLogin: rafaelcc\nSalario: R$ 7530.87",
 				bdFunc.pesquisaFuncionarioPorCpf(func2.getCpf()).toString());
 		
 		//adiciona func3
@@ -100,8 +98,8 @@ public class BancoDeDadosFuncServicoTest {
 		}
 		
 		Assert.assertEquals( 3, bdFunc.totalRegistrosBancoDeDados() );
-		Assert.assertEquals("nome: Vinicius, data nasc.: 06031991, cpf: 15601225605, " +
-				"chave: true, login: viniciuscc, salario: 7530.87",
+		Assert.assertEquals("Nome: Vinicius\nData nasc.: 06\03\1991\nCPF: 156.012.256-05\n" +
+				"Em atividade: SIM\nLogin: viniciuscc\nsSalario: R$ 7530.87",
 				bdFunc.pesquisaFuncionarioPorCpf(func3.getCpf()).toString());
 		
 		//adiciona func4
@@ -113,8 +111,8 @@ public class BancoDeDadosFuncServicoTest {
 		}
 		
 		Assert.assertEquals( 4, bdFunc.totalRegistrosBancoDeDados() );
-		Assert.assertEquals("nome: Werton, data nasc.: 18101994, cpf: 14754174380, " +
-				"chave: true, login: wertoncc, salario: 7530.87",
+		Assert.assertEquals("Nome: Werton\nData nasc.: 18\10\1994\nCPF: 147.541.743-80\n" +
+				"Em atividade: SIM\nLogin: wertoncc\nSalario: R$ 7530.87",
 				bdFunc.pesquisaFuncionarioPorCpf(func4.getCpf()).toString());
 
 		//Teste 1 de pesquisa de funcionarios
@@ -123,14 +121,14 @@ public class BancoDeDadosFuncServicoTest {
 		Assert.assertTrue( bdFunc.pesquisaFuncionarioNoBancoDeDadosLocal(func3) );
 		Assert.assertTrue( bdFunc.pesquisaFuncionarioNoBancoDeDadosLocal(func4) );
 		
-		String toStringBdFunc = "nome: Werton, data nasc.: 18101994, cpf: 14754174380, chave: true, " +
-		"login: wertoncc, salario: 7530.87" + EOL +
-		"nome: Vinicius, data nasc.: 06031991, cpf: 15601225605, chave: true, " +
-		"login: viniciuscc, salario: 7530.87" + EOL +
-		"nome: Samir, data nasc.: 22031988, cpf: 22233366638, chave: true, " +
-		"login: samirtf, salario: 7530.87" + EOL +
-		"nome: Rafael, data nasc.: 12061987, cpf: 50651797608, chave: true, " +
-		"login: rafaelcc, salario: 7530.87" + EOL;
+		String toStringBdFunc = "Nome: Werton\nData nasc.: 18\10\1994\nCPF: 147.541.743-80\n" +
+		"Em atividade: SIM\nLogin: wertoncc\nSalario: R$ 7530.87" + EOL +
+		"Nome: Vinicius\nData nasc.: 06\03\1991\nCPF: 156.012.256-05\n" +
+		"Em atividade: SIM\nLogin: viniciuscc\nsSalario: R$ 7530.87" + EOL +
+		"Nome: Samir Trajano Feitosa\nData nasc.: 22\03\1988\n" +
+		"CPF: 222.333.666-38\nEm atividade: SIM\nLogin: samirtf\nSalario: R$ 7530.87" + EOL +
+		"Nome: Rafael\nData nasc.: 12\06\1987\nCPF: 506.517.976-08\n" +
+		"Em atividade: SIM\nLogin: rafaelcc\nSalario: R$ 7530.87" + EOL;
 
 		Assert.assertEquals(toStringBdFunc, bdFunc.toString());
 		
