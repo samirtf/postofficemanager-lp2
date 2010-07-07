@@ -150,7 +150,7 @@ public class Agencia implements Serializable {
 	}
 	
 	/**
-	 * Método tilizado para o envio de encomendas.
+	 * Mï¿½todo tilizado para o envio de encomendas.
 	 * @param encomenda - encomenda a ser enviada.
 	 * @return boolean - se a operacao realizada.
 	 */
@@ -364,6 +364,31 @@ public class Agencia implements Serializable {
 			return true;
 		} catch (Exception e) {
 			return false;
+		}
+	}
+	
+	public Encomenda pesquisaId(String id) {
+		for (Encomenda e: listaDeEncomendas) {
+			if (e.getId().equals(id)) {
+				return e;
+			}
+		}
+		return null;
+	}
+	
+	public void confirmaEncomenda(Encomenda e) {
+		if (!e.equals(null)) {
+			int ind = listaDeEncomendas.indexOf(e);
+			e.entregouComSucesso();
+			listaDeEncomendas.set(ind, e);
+		}
+	}
+	
+	public void falharEncomenda(Encomenda e) {
+		if (!e.equals(null)) {
+			int ind = listaDeEncomendas.indexOf(e);
+			e.falhouNaEntrega();
+			listaDeEncomendas.set(ind, e);
 		}
 	}
 }
