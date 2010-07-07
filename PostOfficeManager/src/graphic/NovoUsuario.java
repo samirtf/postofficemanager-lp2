@@ -160,7 +160,7 @@ public class NovoUsuario extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 12));
         jLabel4.setForeground(new java.awt.Color(63, 60, 142));
-        jLabel4.setText("salario, so numeros separados por virgula");
+        jLabel4.setText("salario, so numeros separados por ponto");
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 12));
         jLabel5.setForeground(new java.awt.Color(63, 60, 142));

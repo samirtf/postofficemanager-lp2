@@ -13,6 +13,7 @@ public class ListarEncomendas extends javax.swing.JFrame {
         initComponents();
         agencia = new Agencia(nomeUsuario);
         this.nomeUsuario = nomeUsuario;
+        listarTodas();
     }
 
     /** This method is called from within the constructor to
@@ -406,18 +407,28 @@ public class ListarEncomendas extends javax.swing.JFrame {
         if (VerificaDados.verificaData(jTextField1.getText())) {
         	String s = "Enviadas\n\n";
         	for (Encomenda encomenda: agencia.getEncomendasDataEnvio(jTextField1.getText())) {
-        		s += encomenda.toString() + "\n";
+        		s += encomenda.toString() + "\n\n";
         	}
-        	jTextArea1.setText(s);
         	s+= "\nRecebidas\n\n";
         	for (Encomenda encomenda: agencia.getEncomendasDataRecebimento(jTextField1.getText())) {
-        		s += encomenda.toString() + "\n";
+        		s += encomenda.toString() + "\n\n";
         	}
+        	jTextArea1.setText(s);
         }   
     }
 
     private void listarCep(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+    	if (VerificaDados.verificaCep(jTextField2.getText())) {
+        	String s = "CEP destinatario\n\n";
+        	for (Encomenda encomenda: agencia.getEncomendasCEPDestinatario((jTextField2.getText()))) {
+        		s += encomenda.toString() + "\n\n";
+        	}
+        	s+= "\nCEP remetente\n\n";
+        	for (Encomenda encomenda: agencia.getEncomendasCEPRemetente(jTextField2.getText())) {
+        		s += encomenda.toString() + "\n\n";
+        	}
+        	jTextArea2.setText(s);
+        } 
     }
 
     private void checarEstado(java.awt.event.KeyEvent evt) {
@@ -431,7 +442,13 @@ public class ListarEncomendas extends javax.swing.JFrame {
     }
 
     private void listarEstado(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+    	if (VerificaDados.verificaEstado(jTextField3.getText())) {
+    		String check = "";
+        	for (Encomenda encomenda: agencia.getEncomendasEstado((jTextField3.getText()))) {
+        		check += encomenda.toString() + "\n\n";
+        	}
+        	jTextArea3.setText(check);
+    	}
     }
 
     private void checarCidade(java.awt.event.KeyEvent evt) {
@@ -445,7 +462,21 @@ public class ListarEncomendas extends javax.swing.JFrame {
     }
 
     private void listarCidade(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+    	if (VerificaDados.verificaEstado(jTextField4.getText())) {
+    		String check = "";
+        	for (Encomenda encomenda: agencia.getEncomendasCidade((jTextField4.getText()))) {
+        		check += encomenda.toString() + "\n\n";
+        	}
+        	jTextArea4.setText(check);
+    	}
+    }
+    
+    private void listarTodas() {
+    	String s = "";
+    	for (Encomenda encomenda: agencia.getEncomendas()) {
+    		s+=encomenda.toString()+"\n\n";
+    	}
+    	jTextArea5.setText(s);
     }
 
     /**

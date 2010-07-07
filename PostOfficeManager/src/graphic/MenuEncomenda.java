@@ -160,8 +160,8 @@ public class MenuEncomenda extends javax.swing.JFrame {
     }
 
     private void listarEncomendas(java.awt.event.ActionEvent evt) {
-        Agencia agencia = new Agencia(nomeDoUsuario);
-        System.out.println(agencia.getEncomendas());
+        setVisible(false);
+        (new ListarEncomendas(nomeDoUsuario)).setVisible(true);
     }
     
     // Variables declaration - do not modify
