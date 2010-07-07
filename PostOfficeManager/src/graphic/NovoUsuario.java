@@ -152,15 +152,15 @@ public class NovoUsuario extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 12));
         jLabel2.setForeground(new java.awt.Color(63, 60, 142));
-        jLabel2.setText("data de nascimento, soh numeros");
+        jLabel2.setText("data de nascimento, só numeros");
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 12));
         jLabel3.setForeground(new java.awt.Color(63, 60, 142));
-        jLabel3.setText("CPF, soh numeros");
+        jLabel3.setText("CPF, só números");
 
         jLabel4.setFont(new java.awt.Font("Verdana", 0, 12));
         jLabel4.setForeground(new java.awt.Color(63, 60, 142));
-        jLabel4.setText("salario, soh numeros separados por virgula");
+        jLabel4.setText("salário, só números separados por vírgula");
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 12));
         jLabel5.setForeground(new java.awt.Color(63, 60, 142));
@@ -172,7 +172,7 @@ public class NovoUsuario extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Verdana", 0, 12));
         jLabel7.setForeground(new java.awt.Color(63, 60, 142));
-        jLabel7.setText("Nome de usuario");
+        jLabel7.setText("Nome de usuário");
 
         jButton1.setBackground(new java.awt.Color(254, 238, 83));
         jButton1.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -371,6 +371,7 @@ public class NovoUsuario extends javax.swing.JFrame {
     }
 
     private void novoUsuario(java.awt.event.ActionEvent evt) {
+    	
     	if (!(VerificaDados.verificaData(jTextField3.getText()) &&
     		  VerificaDados.validaCPF(jTextField4.getText()) &&
     		  VerificaDados.verificaNome(jTextField2.getText()) &&
@@ -384,8 +385,7 @@ public class NovoUsuario extends javax.swing.JFrame {
 			bdFuncionario.adicFuncAoBancoDeDados(new Funcionario(jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), Double.parseDouble(jTextField4.getText()), jTextField1.getText()));
 			autenticacao.cadastraUsuario(jTextField1.getText(), jPasswordField1.getText(), Prioridade.DEFAULT);
 		} catch (Exception e) {
-			System.out.println("fudeu");
-			jLabel8.setVisible(true);
+			jLabel8.setVisible(false);
 			return;
 		}
     	
