@@ -221,9 +221,17 @@ public class Funcionario {
 	 * Cria uma representacao do funcionario.
 	 */
 	public String toString(){
-		return "nome: " + this.getNome() + ", data nasc.: " + this.getDataNascimento() +
-		       ", cpf: " + this.getCpf() + ", chave: " + this.getChave() +
-		       ", login: " + this.getLogin() + ", salario: " + this.getSalario();
+		final String EOL = System.getProperty("line.separator");
+		String atividade = "SIM";
+		if(this.getChave()== false){
+			atividade = "NAO";
+		}
+		String dataNasc = VerificaDados.configuraData(this.getDataNascimento());
+		String cpf = VerificaDados.configuraCPF(this.getCpf());
+		return "Nome: " + this.getNome() + EOL + "Data nasc.: " + dataNasc + EOL +
+		       "CPF: " + cpf + EOL + "Em atividade: " + atividade + EOL +
+		       "Login: " + this.getLogin() + EOL + "Salario: R$ " + this.getSalario();
 	}//fim do metodo toString.
+	
 	
 }//fim da classe
