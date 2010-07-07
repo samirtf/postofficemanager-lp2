@@ -13,16 +13,17 @@ public class Login extends javax.swing.JFrame {
 	
 	
     public Login() throws IOException {
-        initComponents();
-        autenticacao = new AutenticacaoUsuario();
+    	autenticacao = new AutenticacaoUsuario();
         autenticacao.recuperaErrosDoDia();
         autenticacao.recuperaBloqueioSistema();
-        sistemaBloqueado();
+        if (!sistemaBloqueado()) {
+        	initComponents();
+        }
     }
 
     @SuppressWarnings("unchecked")
     private void initComponents() {
-
+    	
         jPanel1 = new javax.swing.JPanel();
         jPasswordField2 = new javax.swing.JPasswordField();
         jTextField2 = new javax.swing.JTextField();
@@ -139,15 +140,15 @@ public class Login extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
         pack();
     }
     
-    private void sistemaBloqueado() {
+    private boolean sistemaBloqueado() {
     	if (!autenticacao.getSistemaDesbloqueado()) {
     		setVisible(false);
-    		(new SistemaBloqueado()).setVisible(true);
-    	}
+    		new SistemaBloqueado().setVisible(true);
+    		return true;
+    	} return false;
     }
 
     private void Confirmar(java.awt.event.ActionEvent evt) { 
