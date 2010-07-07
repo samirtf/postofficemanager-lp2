@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
  * @author
  * 	Marcus Vinicius Souza de Oliveira
  * 	Rafael O. Vieira
- * 	Samir Trajano Feitosa
+ * 	Samir Trajano Feitosa 20921299
  * 	Werton Vinícius Guimarães Gomes
  *
  */
