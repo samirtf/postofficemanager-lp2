@@ -20,15 +20,15 @@ public class Encomenda implements Serializable{
 	protected String dataRecebimento = "";
 	
 	/**
-	 * Construtor que não recebe valor declarado como parâmetro (Encomendas simples). 
-	 * @param String - cepRemetente
-	 * @param String - cepDestinatario
-	 * @param String - dataEnvio
-	 * @param String - nome da(o) atendente
-	 * @param String - cidade
-	 * @param String - estado
-	 * @param double - peso (em gramas)
-	 * @throws IllegalArgumentException - quando algum parâmetro é inválido.
+	 * Construtor que nao recebe valor declarado como parametro (Encomendas simples). 
+	 * @param cepRemetente - Conjunto de 8 numeros, para formar o CEP do Remetente
+	 * @param cepDestinatario - Conjunto de .8 numeros, para formar o CEP do Destinatario
+	 * @param dataEnvio - Conjunto de 8 numeros, para formar a data.
+	 * @param atendente - nome da(o) atendente.
+	 * @param cidade - Nome de uma cidade.
+	 * @param estado - Nome de um estado.
+	 * @param peso - pega um valor de peso (em gramas).
+	 * @throws IllegalArgumentException - quando algum parametro eh invalido.
 	 *         TipoDeEncomendaException - Quando o peso ou valor declarado da encomenda, a caracterizam de outro tipo.
 	 */
 	public Encomenda(String cepRemetente, String cepDestinatario, 
@@ -72,14 +72,14 @@ public class Encomenda implements Serializable{
 	
 	/**
 	 * Construtor que recebe valor declarado como parâmetro. 
-	 * @param String - cepRemetente
-	 * @param String - cepDestinatario
-	 * @param String - dataEnvio
-	 * @param String - nome da(o) atendente
-	 * @param String - cidade
-	 * @param String - estado
-	 * @param double - peso (em gramas)
-	 * @param double - valor declarado
+	 * @param cepRemetente - Conjunto de 8 numeros, para formar o CEP do Remetente
+	 * @param cepDestinatario - Conjunto de .8 numeros, para formar o CEP do Destinatario
+	 * @param dataEnvio - Conjunto de 8 numeros, para formar a data.
+	 * @param atendente - nome da(o) atendente.
+	 * @param cidade - Nome de uma cidade.
+	 * @param estado - Nome de um estado.
+	 * @param peso - pega um valor de peso (em gramas).
+	 * @param valorDeclarado - Pega o valor Declarado.
 	 * @throws IllegalArgumentException - quando algum parâmetro é inválido.
 	 *         TipoDeEncomendaException - Quando o peso ou valor declarado da encomenda, a caracterizam de outro tipo.
 	 */
@@ -160,9 +160,9 @@ public class Encomenda implements Serializable{
 		return "";
 		
 	}
-	/**Se a encomenda possuir um valor declarado, será retornado
-	 * Retorna o id único da carta
-	 * @return
+	/**
+	 *Se a encomenda possuir um valor declarado, sera retornado
+	 * @return o id unico da carta
 	 */
 	public String getId() {
 		return id;
