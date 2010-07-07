@@ -304,7 +304,7 @@ public class NovoUsuario extends javax.swing.JFrame {
     private void checarCPF(java.awt.event.KeyEvent evt) {
     	String check = "";
         for (String s: jTextField4.getText().split("")) {
-        	if (s.matches("[0-9]") && check.length()<9) {
+        	if (s.matches("[0-9]") && check.length()<11) {
         		check+=s;
         	}
         }
