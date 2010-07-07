@@ -4,10 +4,10 @@ import correios.util.VerificaDados;
  /**
   * Classe Funcionario
   * @author
-  * 	Marcus Vinicius Souza de Oliveira
-  * 	Rafael O. Vieira
-  * 	Samir Trajano Feitosa
-  * 	Werton Vinícius Guimarães Gomes
+  * 	Marcus Vinicius Souza de Oliveira<br>
+  * 	Rafael O. Vieira<br>
+  * 	Samir Trajano Feitosa<br>
+  * 	Werton Vinicius Guimaraes Gomes
   * 		
   * @version 1.0
   * 
@@ -150,7 +150,7 @@ public class Funcionario {
 	 * 		O CPF do funcionario.
 	 * @return
 	 * 		True - Se o CPF for alterado.
-	 *      False - Se o CPF nã for alterado.
+	 *      False - Se o CPF nao for alterado.
 	 */
 	public boolean setCpf(String cpf){
 		if( VerificaDados.validaCPF(cpf) ){
@@ -190,10 +190,10 @@ public class Funcionario {
 	 *     O login do funcionario(login do usuario).
 	 * @return
 	 *     True - Se o login do funcionario(usuario) for trocado.
-	 *     False - Se o login do funcionario(usuario) não for trocado.
+	 *     False - Se o login do funcionario(usuario) nao for trocado.
 	 */
 	public boolean setLogin(String login){
-		if(login != null && !login.trim().equals("") && login.matches("^[a-z A-z“]*$")){
+		if(login != null && !login.trim().equals("") && login.matches("^[a-z A-z]*$")){
 			this.login = login.trim();
 			return true;
 		}

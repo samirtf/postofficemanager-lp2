@@ -6,11 +6,11 @@ import java.util.GregorianCalendar;
 
 /**
  * Classe que implementa encomendas simples e com valor declarado.
- * Essa classe também é a superclasse de EncomendaRegistrada e 
+ * Essa classe tambem eh a superclasse de EncomendaRegistrada e 
  * consequentemente de EncomendaExpressa.
- * @author Marcus Vinicius Souza de Oliveira
- *         Rafael Oliveira Vieira
- *         Samir Trajano Feitosa
+ * @author Marcus Vinicius Souza de Oliveira<br>
+ *         Rafael Oliveira Vieira<br>
+ *         Samir Trajano Feitosa<br>
  *         Werton Vinicius Guimaraes Gomes
  * @version 2.0
  */
@@ -38,17 +38,17 @@ public class Encomenda implements Serializable{
 					 String dataEnvio, String atendente,
 					 String cidade, String estado,
 					 double peso) throws Exception {
-		
-		if ((!VerificaDados.verificaCep(cepRemetente)) &&
-			(!VerificaDados.verificaCep(cepDestinatario)) &&
-			(peso <= 0) &&
-			(!VerificaDados.verificaNome(atendente)) &&
-			(!VerificaDados.verificaData(dataEnvio)) &&
-			(!VerificaDados.verificaEstado(estado)) &&
-			(!VerificaDados.verificaNome(cidade))) {
-			
-			throw new IllegalArgumentException("algum(ns) parametro(s) inválido(s)");
-		}
+
+		if ((!VerificaDados.verificaCep(cepRemetente)) ||
+				(!VerificaDados.verificaCep(cepDestinatario)) ||
+				(peso <= 0) ||
+				(!VerificaDados.verificaNome(atendente)) ||
+				(!VerificaDados.verificaData(dataEnvio)) ||
+				(!VerificaDados.verificaEstado(estado)) ||
+				(!VerificaDados.verificaNome(cidade))) {
+							
+				throw new IllegalArgumentException("algum(ns) parametro(s) invalido(s)");
+			}
 		
 		if (peso > 2000) {
 			
@@ -63,18 +63,18 @@ public class Encomenda implements Serializable{
 		this.estado = estado;
 		this.peso = peso;
 		
-		/* O id de uma encomenda é único. É utilizado para acessar os dados persistentes da encomenda.
-		 * Na construção do id da encomenda, o tempo em segundos é utilizados,logo para que não haja 
+		/* O id de uma encomenda eh unico. Eh utilizado para acessar os dados persistentes da encomenda.
+		 * Na construcao do id da encomenda, o tempo em segundos eh utilizados,logo para que nao haja 
 		 * possibilidades de haver dois id's iguais, espera-se 1 segundo.
-		 * IMPORTANTE: O id de uma é baseado na hora e data que foi cadastrado no sistema,
-		 * não na hora que foi entregue ou recebido.
+		 * IMPORTANTE: O id de uma eh baseado na hora e data que foi cadastrado no sistema,
+		 * nao na hora que foi entregue ou recebido.
 		 */
 		id = new SimpleDateFormat("ddMMyyHHmmss").format((new GregorianCalendar()).getTime());
         Thread.sleep(1000);
 	}
 	
 	/**
-	 * Construtor que recebe valor declarado como parâmetro. 
+	 * Construtor que recebe valor declarado como parametro. 
 	 * @param cepRemetente - Conjunto de 8 numeros, para formar o CEP do Remetente
 	 * @param cepDestinatario - Conjunto de .8 numeros, para formar o CEP do Destinatario
 	 * @param dataEnvio - Conjunto de 8 numeros, para formar a data.
@@ -83,7 +83,7 @@ public class Encomenda implements Serializable{
 	 * @param estado - Nome de um estado.
 	 * @param peso - pega um valor de peso (em gramas).
 	 * @param valorDeclarado - Pega o valor Declarado.
-	 * @throws IllegalArgumentException - quando algum parâmetro é inválido.
+	 * @throws IllegalArgumentException - quando algum parametro eh invalido.
 	 *         TipoDeEncomendaException - Quando o peso ou valor declarado da encomenda, a caracterizam de outro tipo.
 	 */
 	public Encomenda(String cepRemetente, String cepDestinatario, 
@@ -91,16 +91,16 @@ public class Encomenda implements Serializable{
 			 String cidade, String estado,
 			 double peso, double valorDeclarado) throws Exception {
 		
-		if ((!correios.util.VerificaDados.verificaCep(cepRemetente)) &&
-			(!correios.util.VerificaDados.verificaCep(cepDestinatario)) &&
-			(peso <= 0) &&
-			(!correios.util.VerificaDados.verificaNome(atendente)) &&
-			(!correios.util.VerificaDados.verificaData(dataEnvio)) &&
-			(valorDeclarado<0) &&
-			(!VerificaDados.verificaEstado(estado)) &&
+		if ((!correios.util.VerificaDados.verificaCep(cepRemetente)) ||
+			(!correios.util.VerificaDados.verificaCep(cepDestinatario)) ||
+			(peso <= 0) ||
+			(!correios.util.VerificaDados.verificaNome(atendente)) ||
+			(!correios.util.VerificaDados.verificaData(dataEnvio)) ||
+			(valorDeclarado<0) ||
+			(!VerificaDados.verificaEstado(estado)) ||
 			(!VerificaDados.verificaNome(cidade))) {
 				
-			throw new IllegalArgumentException("algum(ns) parametro(s) inválido(s)");
+			throw new IllegalArgumentException("algum(ns) parametro(s) invalido(s)");
 		}
 		
 		if ((peso > 2000) ||
@@ -124,14 +124,14 @@ public class Encomenda implements Serializable{
 		
 	//ACCESSOR METHODS
 	/**
-	 * Retorna o atendente que realizou a operação
+	 * Retorna o atendente que realizou a operacao
 	 * @return String - nome da(o) atendente.
 	 */
 	public String getAtendente() {
 		return atendente;
 	}
 	/**
-	 * Retorna o CEP do destinatário da encomenda.
+	 * Retorna o CEP do destinatario da encomenda.
 	 * @return String - CEP
 	 */
 	public String getCepDestinatario() {
@@ -152,8 +152,8 @@ public class Encomenda implements Serializable{
 		return dataEnvio;
 	}
 	/**
-	 * Se a encomenda já tiver sido entregue com sucesso,
-	 * retornará a data, caso não, retornará <i>null</i>.
+	 * Se a encomenda jah tiver sido entregue com sucesso,
+	 * retornarah a data, caso nao, retornarah <i>null</i>.
 	 * @return String - data
 	 */
 	public String getDataRecebimento() {
@@ -178,7 +178,7 @@ public class Encomenda implements Serializable{
 		return peso;
 	}
 	/**
-	 * Retorna o valor declarado de uma encomenda, caso a encomenda não possuir um valor declarado, retornará 0 (zero).
+	 * Retorna o valor declarado de uma encomenda, caso a encomenda nao possuir um valor declarado, retornara 0 (zero).
 	 * @return double - valor
 	 */
 	public double getValorDeclarado() {
@@ -206,9 +206,9 @@ public class Encomenda implements Serializable{
 		return estado;
 	}
 	
-	//OUTROS MÉTODOS
+	//OUTROS METODOS
 	/**
-	 * Diminui o contador de chances da encomenda, se ele chegar a zero, significa que a carta voltou ao destinátario.
+	 * Diminui o contador de chances da encomenda, se ele chegar a zero, significa que a carta voltou ao destinatario.
 	 */
 	public void falhouNaEntrega() {
 		if (tentativasDeEntrega>0) {
@@ -216,7 +216,7 @@ public class Encomenda implements Serializable{
 		}
 	}
 	/**
-	 * Se uma encomenda for entregue com sucesso. Esse método cadastra a hora do recebimento.
+	 * Se uma encomenda for entregue com sucesso. Esse metodo cadastra a hora do recebimento.
 	 */
 	public void entregouComSucesso() {
 		dataRecebimento = new SimpleDateFormat("ddMMyyyy").format((new GregorianCalendar()).getTime());
