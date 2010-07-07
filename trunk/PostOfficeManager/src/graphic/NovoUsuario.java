@@ -1,16 +1,30 @@
 package graphic;
 
+import java.io.IOException;
+
 import correios.util.*;
+import funcionarioServicos.BancoDeDadosFuncServico;
+import servicosAutenticacaoGerencUsuario.*;
+import servicosAutenticacaoGerencUsuario.Usuario.Prioridade;
 
 public class NovoUsuario extends javax.swing.JFrame {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private AutenticacaoUsuario autenticacao;
+	private BancoDeDadosFuncServico bdFuncionario;
 	private String nomeUsuario;
 
-    /** Creates new form NovoUsuario */
-    public NovoUsuario(String nomeUsuario) {
+    /** Creates new form NovoUsuario 
+     * @throws Exception */
+    public NovoUsuario(String nomeUsuario) throws Exception{
         initComponents();
         jLabel8.setVisible(false);
         this.nomeUsuario = nomeUsuario;
+        autenticacao = new AutenticacaoUsuario();
+        bdFuncionario = new BancoDeDadosFuncServico();
     }
 
     /** This method is called from within the constructor to
@@ -294,7 +308,7 @@ public class NovoUsuario extends javax.swing.JFrame {
     private void checarData(java.awt.event.KeyEvent evt) {
         String check = "";
         for (String s: jTextField3.getText().split("")) {
-        	if (s.matches("[0-9]") && check.length()<9) {
+        	if (s.matches("[0-9]") && check.length()<8) {
         		check+=s;
         	}
         }
@@ -359,12 +373,22 @@ public class NovoUsuario extends javax.swing.JFrame {
     private void novoUsuario(java.awt.event.ActionEvent evt) {
     	if (!(VerificaDados.verificaData(jTextField3.getText()) &&
     		  VerificaDados.validaCPF(jTextField4.getText()) &&
-    		  VerificaDados.verificaNome(jTextField2.getText()) //&&
-    		  )) {
+    		  VerificaDados.verificaNome(jTextField2.getText()) &&
+    		  AutenticacaoUsuario.validaLogin(jTextField1.getText()) &&
+    		  (jPasswordField1.getText()).equals(jPasswordField2.getText()) &&
+    		  AutenticacaoUsuario.validaSenha(jTextField1.getText(), jPasswordField1.getText()))) {
     		jLabel8.setVisible(true);
-    		return;
-    		
+    		return;    		
     	}
+    	try {
+			bdFuncionario.adicFuncAoBancoDeDados(new Funcionario(jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), Double.parseDouble(jTextField4.getText()), jTextField1.getText()));
+			autenticacao.cadastraUsuario(jTextField1.getText(), jPasswordField1.getText(), Prioridade.DEFAULT);
+		} catch (Exception e) {
+			System.out.println("fudeu");
+			jLabel8.setVisible(true);
+			return;
+		}
+    	
     }
 
     private void checarNome(java.awt.event.KeyEvent evt) {
@@ -383,7 +407,12 @@ public class NovoUsuario extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NovoUsuario("a").setVisible(true);
+            	try {
+            		new NovoUsuario("a").setVisible(true);
+            	} catch (Exception e) {
+					
+				}
+                
             }
         });
     }
