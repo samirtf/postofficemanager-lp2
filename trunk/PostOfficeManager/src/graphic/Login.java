@@ -10,9 +10,14 @@ public class Login extends javax.swing.JFrame {
 	
 	
 	private AutenticacaoUsuario autenticacao;
+	
+	
     public Login() throws IOException {
-    	autenticacao = new AutenticacaoUsuario();
         initComponents();
+        autenticacao = new AutenticacaoUsuario();
+        autenticacao.recuperaErrosDoDia();
+        autenticacao.recuperaBloqueioSistema();
+        sistemaBloqueado();
     }
 
     @SuppressWarnings("unchecked")
@@ -137,8 +142,17 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }
+    
+    private void sistemaBloqueado() {
+    	if (!autenticacao.getSistemaDesbloqueado()) {
+    		setVisible(false);
+    		(new SistemaBloqueado()).setVisible(true);
+    	}
+    }
 
-    private void Confirmar(java.awt.event.ActionEvent evt) {                           
+    private void Confirmar(java.awt.event.ActionEvent evt) { 
+    	autenticacao.recuperaErrosDoDia();
+    	autenticacao.recuperaBloqueioSistema();
     	try {
 			if (autenticacao.logaNoSistema(jTextField2.getText(), jPasswordField2.getText())) {
 			    setVisible(false);
@@ -147,8 +161,11 @@ public class Login extends javax.swing.JFrame {
 			    
 			} else {
 				jLabel1.setVisible(true);
+				autenticacao.geraErroAutenticacao(jTextField2.getText());
 			}
-		} catch (Exception e) {
+		}catch (Exception e) {
+		} finally {
+			sistemaBloqueado();
 		}
     }                          
 
