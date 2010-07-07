@@ -67,6 +67,6 @@ public class EncomendaRegistrada extends Encomenda {
 	
 	@Override
 	public String toString() {
-		return  id + "\n" + cidade  + "\n" + estado + "\nCEP destinatario: " + cepDestinatario + "\nCEP remetente: " + cepRemetente + "\n" + String.format("%.0f gramas\nValor: %.2f", peso, valorDaEncomenda()) + "\n" + getCodigoDeRegistro();
+		return "id: " + id + "\n" + cidade  + "\n" + estado + "\nCEP destinatario: " + cepDestinatario + "\nCEP remetente: " + cepRemetente + "\n" + String.format("%.0f gramas\nValor: %.2f", peso, valorDaEncomenda()) + "\n" + getCodigoDeRegistro();
 	}
 }
